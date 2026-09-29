@@ -91,7 +91,7 @@ Using the generation feature means sending your content to Repagify, and is subj
 
 == Installation ==
 
-1. Upload the `repagify-plugin` folder to `/wp-content/plugins/`, or install the plugin through the Plugins screen in WordPress.
+1. Upload the `repagify` folder to `/wp-content/plugins/`, or install the plugin through the Plugins screen in WordPress.
 2. Activate the plugin through the Plugins screen.
 3. Go to **Repagify → Dashboard**. The scanner runs immediately — no account needed.
 4. Optionally, to generate content, go to **Repagify → Settings**, paste the API key from your Repagify account, and press **Test connection**.

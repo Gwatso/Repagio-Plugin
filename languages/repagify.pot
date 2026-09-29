@@ -9,11 +9,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-28T14:14:26Z\n"
+"POT-Creation-Date: 2026-09-29T15:08:42Z\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: repagify-makepot\n"
-"X-Domain: repagify-plugin\n"
+"X-Domain: repagify\n"
 
 #. translators: 1: generations left, 2: the account's lifetime cap.
 #: includes/class-repagify-quota.php:364
@@ -75,7 +75,7 @@ msgstr ""
 msgid "(no title)"
 msgstr ""
 
-#: admin/views/dashboard.php:715
+#: admin/views/dashboard.php:716
 msgid "(optional)"
 msgstr ""
 
@@ -144,7 +144,7 @@ msgstr ""
 msgid "Blog Post"
 msgstr ""
 
-#: admin/views/dashboard.php:742
+#: admin/views/dashboard.php:743
 msgid "Cancel"
 msgstr ""
 
@@ -161,9 +161,9 @@ msgid "Choose an output format."
 msgstr ""
 
 #: admin/class-repagify-admin.php:303
-#: admin/views/dashboard.php:675
-#: admin/views/dashboard.php:764
-#: admin/views/dashboard.php:784
+#: admin/views/dashboard.php:676
+#: admin/views/dashboard.php:765
+#: admin/views/dashboard.php:785
 msgid "Close"
 msgstr ""
 
@@ -175,7 +175,7 @@ msgstr ""
 msgid "Connected"
 msgstr ""
 
-#: admin/class-repagify-admin.php:1003
+#: admin/class-repagify-admin.php:1004
 msgid "Connected to Repagify."
 msgstr ""
 
@@ -208,7 +208,7 @@ msgid "Copied"
 msgstr ""
 
 #: admin/class-repagify-admin.php:302
-#: admin/views/dashboard.php:758
+#: admin/views/dashboard.php:759
 msgid "Copy to clipboard"
 msgstr ""
 
@@ -282,11 +282,11 @@ msgstr ""
 msgid "From"
 msgstr ""
 
-#: admin/views/dashboard.php:738
+#: admin/views/dashboard.php:739
 msgid "Generate"
 msgstr ""
 
-#: admin/views/dashboard.php:761
+#: admin/views/dashboard.php:762
 msgid "Generate another format"
 msgstr ""
 
@@ -298,11 +298,11 @@ msgstr ""
 msgid "Generation could not be completed"
 msgstr ""
 
-#: admin/views/dashboard.php:637
+#: admin/views/dashboard.php:638
 msgid "Generation is carried out by the Repagify web service, so it needs a connected account. Everything else on this page works without one."
 msgstr ""
 
-#: admin/views/dashboard.php:616
+#: admin/views/dashboard.php:617
 msgid "Generation is performed by the Repagify web service. Connect an account on the settings screen to use it."
 msgstr ""
 
@@ -332,7 +332,7 @@ msgid "LinkedIn post"
 msgstr ""
 
 #: admin/views/dashboard.php:283
-#: admin/views/dashboard.php:583
+#: admin/views/dashboard.php:584
 msgid "Never repurposed"
 msgstr ""
 
@@ -361,7 +361,7 @@ msgstr ""
 msgid "Nothing to scan yet"
 msgstr ""
 
-#: admin/class-repagify-admin.php:913
+#: admin/class-repagify-admin.php:914
 msgid "Only published posts can be repurposed."
 msgstr ""
 
@@ -372,7 +372,7 @@ msgstr ""
 msgid "Open settings"
 msgstr ""
 
-#: admin/views/dashboard.php:688
+#: admin/views/dashboard.php:689
 msgid "Output format"
 msgstr ""
 
@@ -498,16 +498,16 @@ msgstr ""
 msgid "Report an issue"
 msgstr ""
 
-#: admin/views/dashboard.php:611
-#: admin/views/dashboard.php:624
+#: admin/views/dashboard.php:612
+#: admin/views/dashboard.php:625
 msgid "Repurpose"
 msgstr ""
 
-#: admin/views/dashboard.php:673
+#: admin/views/dashboard.php:674
 msgid "Repurpose this post"
 msgstr ""
 
-#: admin/views/dashboard.php:587
+#: admin/views/dashboard.php:588
 msgid "Repurposed"
 msgstr ""
 
@@ -550,7 +550,7 @@ msgid "Scanned %1$s of %2$s posts."
 msgstr ""
 
 #. translators: %s: human-readable time difference, such as "5 mins".
-#: admin/views/dashboard.php:653
+#: admin/views/dashboard.php:654
 msgid "Scanned %s ago. Results are cached for an hour; use Rescan content to refresh them now."
 msgstr ""
 
@@ -584,7 +584,7 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: admin/views/dashboard.php:714
+#: admin/views/dashboard.php:715
 msgid "Target keyword"
 msgstr ""
 
@@ -606,7 +606,7 @@ msgstr ""
 msgid "That is not an output format Repagify can produce."
 msgstr ""
 
-#: admin/class-repagify-admin.php:898
+#: admin/class-repagify-admin.php:899
 #: includes/class-repagify-content.php:55
 msgid "That post could not be found."
 msgstr ""
@@ -652,7 +652,7 @@ msgid "This site has %s published posts, so the scan runs in batches to stay wel
 msgstr ""
 
 #: admin/class-repagify-admin.php:292
-#: admin/views/dashboard.php:747
+#: admin/views/dashboard.php:748
 msgid "This usually takes 20 to 45 seconds. Leave this window open."
 msgstr ""
 
@@ -664,7 +664,7 @@ msgstr ""
 msgid "To"
 msgstr ""
 
-#: admin/views/dashboard.php:699
+#: admin/views/dashboard.php:700
 msgid "Tone"
 msgstr ""
 
@@ -680,7 +680,7 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: admin/class-repagify-admin.php:1056
+#: admin/class-repagify-admin.php:1057
 msgid "Unlimited"
 msgstr ""
 
@@ -725,8 +725,8 @@ msgid "X thread"
 msgstr ""
 
 #: admin/class-repagify-admin.php:647
-#: admin/class-repagify-admin.php:887
-#: admin/class-repagify-admin.php:985
+#: admin/class-repagify-admin.php:888
+#: admin/class-repagify-admin.php:986
 msgid "You do not have permission to do that."
 msgstr ""
 
@@ -734,7 +734,7 @@ msgstr ""
 msgid "You do not have permission to manage these settings."
 msgstr ""
 
-#: admin/class-repagify-admin.php:906
+#: admin/class-repagify-admin.php:907
 msgid "You do not have permission to repurpose that post."
 msgstr ""
 
@@ -791,7 +791,7 @@ msgid "already repurposed as %s"
 msgstr ""
 
 #. translators: %s: comma-separated list of output format names.
-#: admin/views/dashboard.php:594
+#: admin/views/dashboard.php:595
 msgid "as %s"
 msgstr ""
 
@@ -799,7 +799,7 @@ msgstr ""
 msgid "clearly structured"
 msgstr ""
 
-#: admin/views/dashboard.php:723
+#: admin/views/dashboard.php:724
 msgid "e.g. content repurposing"
 msgstr ""
 

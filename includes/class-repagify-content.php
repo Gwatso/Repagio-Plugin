@@ -52,7 +52,7 @@ class Repagify_Content {
 		if ( ! $post instanceof WP_Post ) {
 			return new WP_Error(
 				'repagify_no_post',
-				__( 'That post could not be found.', 'repagify-plugin' )
+				__( 'That post could not be found.', 'repagify' )
 			);
 		}
 
@@ -64,7 +64,7 @@ class Repagify_Content {
 				'repagify_too_short',
 				sprintf(
 					/* translators: 1: characters found, 2: minimum characters required. */
-					__( 'This post is too short to repurpose. It has %1$s characters of text and Repagify needs at least %2$s. Add more to the post, or pick a longer one.', 'repagify-plugin' ),
+					__( 'This post is too short to repurpose. It has %1$s characters of text and Repagify needs at least %2$s. Add more to the post, or pick a longer one.', 'repagify' ),
 					number_format_i18n( $original ),
 					number_format_i18n( self::MIN_CHARS )
 				),

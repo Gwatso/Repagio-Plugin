@@ -100,8 +100,8 @@ class Repagify_Admin {
 	 */
 	public function register_menu() {
 		$this->screens['dashboard'] = add_menu_page(
-			__( 'Repagify', 'repagify-plugin' ),
-			__( 'Repagify', 'repagify-plugin' ),
+			__( 'Repagify', 'repagify' ),
+			__( 'Repagify', 'repagify' ),
 			self::CAPABILITY,
 			self::DASHBOARD_PAGE,
 			array( $this, 'render_dashboard_page' ),
@@ -113,8 +113,8 @@ class Repagify_Admin {
 		// repeat the top level title.
 		add_submenu_page(
 			self::DASHBOARD_PAGE,
-			__( 'Repagify dashboard', 'repagify-plugin' ),
-			__( 'Dashboard', 'repagify-plugin' ),
+			__( 'Repagify dashboard', 'repagify' ),
+			__( 'Dashboard', 'repagify' ),
 			self::CAPABILITY,
 			self::DASHBOARD_PAGE,
 			array( $this, 'render_dashboard_page' )
@@ -122,8 +122,8 @@ class Repagify_Admin {
 
 		$this->screens['settings'] = add_submenu_page(
 			self::DASHBOARD_PAGE,
-			__( 'Repagify settings', 'repagify-plugin' ),
-			__( 'Settings', 'repagify-plugin' ),
+			__( 'Repagify settings', 'repagify' ),
+			__( 'Settings', 'repagify' ),
 			self::CAPABILITY,
 			Repagify_Settings::PAGE,
 			array( $this, 'render_settings_page' )
@@ -187,12 +187,12 @@ class Repagify_Admin {
 			sprintf(
 				'<a href="%s">%s</a>',
 				esc_url( Repagify_Settings::settings_url() ),
-				esc_html__( 'Settings', 'repagify-plugin' )
+				esc_html__( 'Settings', 'repagify' )
 			),
 			sprintf(
 				'<a href="%s">%s</a>',
 				esc_url( admin_url( 'admin.php?page=' . self::DASHBOARD_PAGE ) ),
-				esc_html__( 'Dashboard', 'repagify-plugin' )
+				esc_html__( 'Dashboard', 'repagify' )
 			),
 		);
 	}
@@ -216,9 +216,9 @@ class Repagify_Admin {
 		}
 
 		$links = array(
-			'https://repagify.afriflare.com/api-access' => __( 'Documentation', 'repagify-plugin' ),
-			'https://repagify.afriflare.com/help'       => __( 'Support', 'repagify-plugin' ),
-			'https://github.com/Gwatso/Repagify-AI-Plugin/issues' => __( 'Report an issue', 'repagify-plugin' ),
+			'https://repagify.afriflare.com/api-access' => __( 'Documentation', 'repagify' ),
+			'https://repagify.afriflare.com/help'       => __( 'Support', 'repagify' ),
+			'https://github.com/Gwatso/Repagify-AI-Plugin/issues' => __( 'Report an issue', 'repagify' ),
 		);
 
 		foreach ( $links as $url => $label ) {
@@ -279,29 +279,29 @@ class Repagify_Admin {
 					)
 				),
 				'i18n'        => array(
-					'testing'       => __( 'Testing…', 'repagify-plugin' ),
-					'genericError'  => __( 'Something went wrong. Please try again.', 'repagify-plugin' ),
-					'planLabel'     => __( 'Plan', 'repagify-plugin' ),
-					'remaining'     => __( 'Conversions remaining', 'repagify-plugin' ),
-					'used'          => __( 'Conversions used', 'repagify-plugin' ),
+					'testing'       => __( 'Testing…', 'repagify' ),
+					'genericError'  => __( 'Something went wrong. Please try again.', 'repagify' ),
+					'planLabel'     => __( 'Plan', 'repagify' ),
+					'remaining'     => __( 'Conversions remaining', 'repagify' ),
+					'used'          => __( 'Conversions used', 'repagify' ),
 					/* translators: 1: posts scanned, 2: posts in total. */
-					'scanProgress'  => __( 'Scanned %1$s of %2$s posts.', 'repagify-plugin' ),
-					'scanDone'      => __( 'Scan complete. Loading your opportunities…', 'repagify-plugin' ),
-					'scanError'     => __( 'The scan could not finish. Reload this page to try again.', 'repagify-plugin' ),
-					'generating'    => __( 'Generating…', 'repagify-plugin' ),
-					'generateWait'  => __( 'This usually takes 20 to 45 seconds. Leave this window open.', 'repagify-plugin' ),
-					'preparing'     => __( 'Reading the post…', 'repagify-plugin' ),
+					'scanProgress'  => __( 'Scanned %1$s of %2$s posts.', 'repagify' ),
+					'scanDone'      => __( 'Scan complete. Loading your opportunities…', 'repagify' ),
+					'scanError'     => __( 'The scan could not finish. Reload this page to try again.', 'repagify' ),
+					'generating'    => __( 'Generating…', 'repagify' ),
+					'generateWait'  => __( 'This usually takes 20 to 45 seconds. Leave this window open.', 'repagify' ),
+					'preparing'     => __( 'Reading the post…', 'repagify' ),
 					/* translators: %s: formatted word count. */
-					'wordsToSend'   => __( '%s words will be sent to Repagify.', 'repagify-plugin' ),
+					'wordsToSend'   => __( '%s words will be sent to Repagify.', 'repagify' ),
 					/* translators: 1: characters being sent, 2: characters in the post. */
-					'truncated'     => __( 'This post is longer than Repagify can convert at once, so only the first %1$s characters of %2$s will be used. You may want to split it into parts and repurpose each one.', 'repagify-plugin' ),
+					'truncated'     => __( 'This post is longer than Repagify can convert at once, so only the first %1$s characters of %2$s will be used. You may want to split it into parts and repurpose each one.', 'repagify' ),
 					/* translators: %s: formatted word count. */
-					'resultWords'   => __( '%s words generated.', 'repagify-plugin' ),
-					'copied'        => __( 'Copied', 'repagify-plugin' ),
-					'copyFailed'    => __( 'Could not copy automatically. Select the text and copy it.', 'repagify-plugin' ),
-					'copy'          => __( 'Copy to clipboard', 'repagify-plugin' ),
-					'closeLabel'    => __( 'Close', 'repagify-plugin' ),
-					'noKey'         => __( 'Connect a Repagify account on the settings screen to generate content.', 'repagify-plugin' ),
+					'resultWords'   => __( '%s words generated.', 'repagify' ),
+					'copied'        => __( 'Copied', 'repagify' ),
+					'copyFailed'    => __( 'Could not copy automatically. Select the text and copy it.', 'repagify' ),
+					'copy'          => __( 'Copy to clipboard', 'repagify' ),
+					'closeLabel'    => __( 'Close', 'repagify' ),
+					'noKey'         => __( 'Connect a Repagify account on the settings screen to generate content.', 'repagify' ),
 				),
 			)
 		);
@@ -329,7 +329,7 @@ class Repagify_Admin {
 		check_admin_referer( self::RESCAN_ACTION );
 
 		if ( ! current_user_can( self::CAPABILITY ) ) {
-			wp_die( esc_html__( 'You do not have permission to rescan this site.', 'repagify-plugin' ) );
+			wp_die( esc_html__( 'You do not have permission to rescan this site.', 'repagify' ) );
 		}
 
 		Repagify_Scanner::clear_cache();
@@ -355,7 +355,7 @@ class Repagify_Admin {
 	 */
 	public function render_dashboard_page() {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
-			wp_die( esc_html__( 'You do not have permission to view this page.', 'repagify-plugin' ) );
+			wp_die( esc_html__( 'You do not have permission to view this page.', 'repagify' ) );
 		}
 
 		require REPAGIFY_PATH . 'admin/views/dashboard.php';
@@ -370,7 +370,7 @@ class Repagify_Admin {
 	 */
 	public function render_settings_page() {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
-			wp_die( esc_html__( 'You do not have permission to manage these settings.', 'repagify-plugin' ) );
+			wp_die( esc_html__( 'You do not have permission to manage these settings.', 'repagify' ) );
 		}
 
 		require REPAGIFY_PATH . 'admin/views/settings.php';
@@ -552,7 +552,7 @@ class Repagify_Admin {
 		$title = trim( (string) $title );
 
 		if ( '' === $title ) {
-			return __( '(no title)', 'repagify-plugin' );
+			return __( '(no title)', 'repagify' );
 		}
 
 		return $title;
@@ -644,7 +644,7 @@ class Repagify_Admin {
 
 		if ( ! current_user_can( self::CAPABILITY ) ) {
 			wp_send_json_error(
-				array( 'message' => __( 'You do not have permission to do that.', 'repagify-plugin' ) ),
+				array( 'message' => __( 'You do not have permission to do that.', 'repagify' ) ),
 				403
 			);
 		}
@@ -711,7 +711,7 @@ class Repagify_Admin {
 
 		if ( ! Repagify_Formats::exists( $format ) ) {
 			wp_send_json_error(
-				array( 'message' => __( 'Choose an output format.', 'repagify-plugin' ) )
+				array( 'message' => __( 'Choose an output format.', 'repagify' ) )
 			);
 		}
 
@@ -769,7 +769,7 @@ class Repagify_Admin {
 		if ( '' === $content ) {
 			wp_send_json_error(
 				array(
-					'message' => __( 'Repagify replied without any content. Nothing was saved — try again.', 'repagify-plugin' ),
+					'message' => __( 'Repagify replied without any content. Nothing was saved — try again.', 'repagify' ),
 				)
 			);
 		}
@@ -885,7 +885,7 @@ class Repagify_Admin {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
 			return new WP_Error(
 				'repagify_forbidden',
-				__( 'You do not have permission to do that.', 'repagify-plugin' )
+				__( 'You do not have permission to do that.', 'repagify' )
 			);
 		}
 
@@ -896,7 +896,7 @@ class Repagify_Admin {
 		if ( ! $post instanceof WP_Post ) {
 			return new WP_Error(
 				'repagify_no_post',
-				__( 'That post could not be found.', 'repagify-plugin' )
+				__( 'That post could not be found.', 'repagify' )
 			);
 		}
 
@@ -904,14 +904,14 @@ class Repagify_Admin {
 		if ( ! current_user_can( 'edit_post', $post->ID ) ) {
 			return new WP_Error(
 				'repagify_forbidden',
-				__( 'You do not have permission to repurpose that post.', 'repagify-plugin' )
+				__( 'You do not have permission to repurpose that post.', 'repagify' )
 			);
 		}
 
 		if ( 'publish' !== $post->post_status ) {
 			return new WP_Error(
 				'repagify_not_published',
-				__( 'Only published posts can be repurposed.', 'repagify-plugin' )
+				__( 'Only published posts can be repurposed.', 'repagify' )
 			);
 		}
 
@@ -983,7 +983,7 @@ class Repagify_Admin {
 
 		if ( ! current_user_can( self::CAPABILITY ) ) {
 			wp_send_json_error(
-				array( 'message' => __( 'You do not have permission to do that.', 'repagify-plugin' ) ),
+				array( 'message' => __( 'You do not have permission to do that.', 'repagify' ) ),
 				403
 			);
 		}
@@ -1001,7 +1001,7 @@ class Repagify_Admin {
 
 		wp_send_json_success(
 			array(
-				'message' => __( 'Connected to Repagify.', 'repagify-plugin' ),
+				'message' => __( 'Connected to Repagify.', 'repagify' ),
 				'account' => $this->summarise_account( $response ),
 				'quota'   => $this->quota_payload( $account ),
 			)
@@ -1054,7 +1054,7 @@ class Repagify_Admin {
 		$limit_type = $this->first_string( $account, array( 'limit_type' ) );
 
 		if ( 'unlimited' === $limit_type && null === $summary['remaining'] ) {
-			$summary['remaining'] = __( 'Unlimited', 'repagify-plugin' );
+			$summary['remaining'] = __( 'Unlimited', 'repagify' );
 		}
 
 		// Plan tiers come back as bare slugs such as "agency".

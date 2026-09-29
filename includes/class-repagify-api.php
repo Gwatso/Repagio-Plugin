@@ -120,7 +120,7 @@ class Repagify_API {
 				'repagify_too_short',
 				sprintf(
 					/* translators: %s: minimum number of characters. */
-					__( 'There is not enough text to repurpose. Repagify needs at least %s characters.', 'repagify-plugin' ),
+					__( 'There is not enough text to repurpose. Repagify needs at least %s characters.', 'repagify' ),
 					number_format_i18n( Repagify_Content::MIN_CHARS )
 				)
 			);
@@ -131,7 +131,7 @@ class Repagify_API {
 				'repagify_too_long',
 				sprintf(
 					/* translators: %s: maximum number of characters. */
-					__( 'That is more than Repagify can convert at once. The limit is %s characters.', 'repagify-plugin' ),
+					__( 'That is more than Repagify can convert at once. The limit is %s characters.', 'repagify' ),
 					number_format_i18n( Repagify_Content::MAX_CHARS )
 				)
 			);
@@ -142,7 +142,7 @@ class Repagify_API {
 		if ( ! in_array( $output_type, Repagify_Formats::api_types(), true ) ) {
 			return new WP_Error(
 				'repagify_bad_output_type',
-				__( 'That is not an output format Repagify can produce.', 'repagify-plugin' )
+				__( 'That is not an output format Repagify can produce.', 'repagify' )
 			);
 		}
 
@@ -185,10 +185,10 @@ class Repagify_API {
 		if ( '' === $this->api_key ) {
 			return new WP_Error(
 				'repagify_no_api_key',
-				__( 'Add your Repagify API key on the settings screen first.', 'repagify-plugin' ),
+				__( 'Add your Repagify API key on the settings screen first.', 'repagify' ),
 				array(
 					'action_url'   => Repagify_Settings::settings_url(),
-					'action_label' => __( 'Open settings', 'repagify-plugin' ),
+					'action_label' => __( 'Open settings', 'repagify' ),
 				)
 			);
 		}
@@ -240,7 +240,7 @@ class Repagify_API {
 				'repagify_timeout',
 				sprintf(
 					/* translators: %s: number of seconds waited. */
-					__( 'Repagify did not answer within %s seconds. The service may be busy — nothing on your site was changed, so it is safe to try again.', 'repagify-plugin' ),
+					__( 'Repagify did not answer within %s seconds. The service may be busy — nothing on your site was changed, so it is safe to try again.', 'repagify' ),
 					number_format_i18n( (int) $timeout )
 				),
 				array( 'timeout' => (int) $timeout )
@@ -251,7 +251,7 @@ class Repagify_API {
 			'repagify_unreachable',
 			sprintf(
 				/* translators: %s: transport level error message. */
-				__( 'Could not reach Repagify: %s. This is a connection problem between your server and the service, not something wrong with your content.', 'repagify-plugin' ),
+				__( 'Could not reach Repagify: %s. This is a connection problem between your server and the service, not something wrong with your content.', 'repagify' ),
 				$this->redact( $raw )
 			)
 		);
@@ -280,11 +280,11 @@ class Repagify_API {
 			if ( ! is_array( $decoded ) ) {
 				return new WP_Error(
 					'repagify_bad_response',
-					__( 'Repagify returned a response this plugin could not read. Check the API base URL on the settings screen.', 'repagify-plugin' ),
+					__( 'Repagify returned a response this plugin could not read. Check the API base URL on the settings screen.', 'repagify' ),
 					array(
 						'status'       => $status,
 						'action_url'   => Repagify_Settings::settings_url(),
-						'action_label' => __( 'Open settings', 'repagify-plugin' ),
+						'action_label' => __( 'Open settings', 'repagify' ),
 					)
 				);
 			}
@@ -298,20 +298,20 @@ class Repagify_API {
 					'repagify_invalid_request',
 					'' !== $api_text
 						? $api_text
-						: __( 'Repagify could not use this content. It may be too short, too long, or not text it can work with.', 'repagify-plugin' ),
+						: __( 'Repagify could not use this content. It may be too short, too long, or not text it can work with.', 'repagify' ),
 					$this->error_data( $status, $api_code )
 				);
 
 			case 401 === $status || 403 === $status:
 				return new WP_Error(
 					'repagify_unauthorized',
-					__( 'Repagify rejected the saved API key — it is invalid or has been revoked. Paste a current key on the settings screen and save.', 'repagify-plugin' ),
+					__( 'Repagify rejected the saved API key — it is invalid or has been revoked. Paste a current key on the settings screen and save.', 'repagify' ),
 					$this->error_data(
 						$status,
 						$api_code,
 						array(
 							'action_url'   => Repagify_Settings::settings_url(),
-							'action_label' => __( 'Open settings', 'repagify-plugin' ),
+							'action_label' => __( 'Open settings', 'repagify' ),
 						)
 					)
 				);
@@ -323,7 +323,7 @@ class Repagify_API {
 					'repagify_limit_reached',
 					'' !== $api_text
 						? $api_text
-						: __( 'You have used every conversion on your Repagify plan.', 'repagify-plugin' ),
+						: __( 'You have used every conversion on your Repagify plan.', 'repagify' ),
 					$this->error_data( $status, $api_code, $this->link_action_from( $api_text ) )
 				);
 
@@ -332,7 +332,7 @@ class Repagify_API {
 					'repagify_not_found',
 					sprintf(
 						/* translators: %s: API endpoint path, e.g. /generate. */
-						__( 'Repagify does not recognise %s. Check the API base URL on the settings screen.', 'repagify-plugin' ),
+						__( 'Repagify does not recognise %s. Check the API base URL on the settings screen.', 'repagify' ),
 						$endpoint
 					),
 					$this->error_data(
@@ -340,7 +340,7 @@ class Repagify_API {
 						$api_code,
 						array(
 							'action_url'   => Repagify_Settings::settings_url(),
-							'action_label' => __( 'Open settings', 'repagify-plugin' ),
+							'action_label' => __( 'Open settings', 'repagify' ),
 						)
 					)
 				);
@@ -359,7 +359,7 @@ class Repagify_API {
 					'repagify_server_error',
 					sprintf(
 						/* translators: %d: HTTP status code. */
-						__( 'Repagify had a problem on its end (HTTP %d). Nothing on your site was changed — try again in a few minutes.', 'repagify-plugin' ),
+						__( 'Repagify had a problem on its end (HTTP %d). Nothing on your site was changed — try again in a few minutes.', 'repagify' ),
 						$status
 					),
 					$this->error_data( $status, $api_code )
@@ -372,7 +372,7 @@ class Repagify_API {
 				? $api_text
 				: sprintf(
 					/* translators: %d: HTTP status code. */
-					__( 'Repagify refused the request (HTTP %d).', 'repagify-plugin' ),
+					__( 'Repagify refused the request (HTTP %d).', 'repagify' ),
 					$status
 				),
 			$this->error_data( $status, $api_code )
@@ -498,7 +498,7 @@ class Repagify_API {
 		if ( $retry > 0 ) {
 			return sprintf(
 				/* translators: %s: human-readable delay, such as "45 seconds" or "2 minutes". */
-				__( 'Repagify is rate limiting this site. Try again in %s.', 'repagify-plugin' ),
+				__( 'Repagify is rate limiting this site. Try again in %s.', 'repagify' ),
 				human_time_diff( time(), time() + $retry )
 			);
 		}
@@ -507,7 +507,7 @@ class Repagify_API {
 			return $api_text;
 		}
 
-		return __( 'Repagify is rate limiting this site. Wait a minute and try again.', 'repagify-plugin' );
+		return __( 'Repagify is rate limiting this site. Wait a minute and try again.', 'repagify' );
 	}
 
 	/**
@@ -535,7 +535,7 @@ class Repagify_API {
 
 		return array(
 			'action_url'   => $url,
-			'action_label' => __( 'View plans', 'repagify-plugin' ),
+			'action_label' => __( 'View plans', 'repagify' ),
 		);
 	}
 

@@ -10,7 +10,8 @@ You need a WordPress install running **WordPress 6.0 or newer** on
 
 - **[Local](https://localwp.com/)** — simplest on Windows and macOS. Create a
   site, then clone this repository into
-  `app/public/wp-content/plugins/repagify-plugin`.
+  `app/public/wp-content/plugins/repagify`. The folder name matters: Plugin
+  Check derives both the plugin slug and the expected text domain from it.
 - **[wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/)** —
   `npx wp-env start` from the repository root.
 - **[LocalWP alternatives](https://make.wordpress.org/core/handbook/tutorials/installing-a-local-server/)** —
@@ -102,14 +103,14 @@ Please do not send patches adding these:
 
 ## Internationalisation
 
-Text domain is `repagify-plugin`, matching the plugin folder name, loaded from `/languages`. Plugin Check derives the expected domain from the folder, so the two must stay in step. Wrap every user-facing
+Text domain is `repagify`, matching the plugin folder name, loaded from `/languages`. Plugin Check derives the expected domain from the folder, so the two must stay in step. Wrap every user-facing
 string, use `printf`-style placeholders rather than concatenation, and add a
 `translators:` comment wherever a placeholder's meaning is not obvious:
 
 ```php
 printf(
     /* translators: %s: formatted word count. */
-    esc_html__( '%s words will be sent.', 'repagify-plugin' ),
+    esc_html__( '%s words will be sent.', 'repagify' ),
     esc_html( number_format_i18n( $words ) )
 );
 ```
@@ -120,12 +121,12 @@ hardcode user-facing English in a `.js` file.
 Regenerate the translation template after changing any string:
 
 ```
-wp i18n make-pot . languages/repagify-plugin.pot
+wp i18n make-pot . languages/repagify.pot
 ```
 
 ## Building the distribution zip
 
-`bin/build-zip.sh` produces `repagify-plugin.zip`, exactly what would be
+`bin/build-zip.sh` produces `repagify.zip`, exactly what would be
 submitted to WordPress.org. It is the single source of truth for what ships:
 the release workflow calls this same script rather than repeating the rules, so
 CI and your machine cannot disagree.
@@ -164,24 +165,34 @@ To check the real artefact:
 
 1. `bash bin/build-zip.sh`
 2. In WordPress admin, go to **Tools → Plugin Check**
-3. Choose **Check an uploaded plugin** and upload `repagify-plugin.zip`
+3. Choose **Check an uploaded plugin** and upload `repagify.zip`
 
 Or unzip it into a scratch WordPress install's `wp-content/plugins/` and check
-it there. The folder must keep the name `repagify-plugin`, because Plugin Check
+it there. The folder must keep the name `repagify`, because Plugin Check
 derives both the plugin slug and the expected text domain from the folder name
 — rename it and you will get a false `TextDomainMismatch` on every string.
 
 ### What is expected to remain
 
-Two findings are known and deliberate:
+One finding is known and deliberate:
 
 - **`plugin_updater_detected`** — the `Update URI` header, which routes update
   checks to GitHub releases until the plugin is hosted on WordPress.org. It
   must be removed at submission; the reason is spelled out at the top of
-  `repagify-plugin.php`.
-- **`trademarked_term`** — the slug `repagify-plugin` contains the restricted
-  word "plugin". Resolving this means renaming the folder, the repository and
-  the text domain to `repagify`.
+  `repagify.php`.
+
+### Why the slug is `repagify` and not `repagify-plugin`
+
+WordPress.org treats "plugin" as a restricted term and will not accept a slug
+containing it. The folder, the main file, the text domain and
+`Repagify_Updater::SLUG` are therefore all plain `repagify`, and they have to
+stay in step: Plugin Check derives both the slug and the expected text domain
+from the folder name, so renaming any one of them alone reintroduces a
+`TextDomainMismatch` on every translatable string.
+
+The GitHub repository is still named `Repagify-AI-Plugin`. That is fine — the
+repository name has no bearing on the directory slug, and
+`Repagify_Updater::REPO` refers to it deliberately.
 
 ## Pull requests
 

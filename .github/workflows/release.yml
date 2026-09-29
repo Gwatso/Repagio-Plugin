@@ -27,7 +27,7 @@ jobs:
         id: version
         run: |
           TAG="${GITHUB_REF_NAME#v}"
-          HEADER=$(grep -m1 -oP '^\s*\*\s*Version:\s*\K[0-9.]+' repagify-plugin.php)
+          HEADER=$(grep -m1 -oP '^\s*\*\s*Version:\s*\K[0-9.]+' repagify.php)
           README=$(grep -m1 -oP '^Stable tag:\s*\K[0-9.]+' readme.txt)
 
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
@@ -36,7 +36,7 @@ jobs:
           # A mismatch ships a plugin that reports the wrong version and would
           # offer itself an update it has already installed.
           if [ "$TAG" != "$HEADER" ]; then
-            echo "::error::Tag v$TAG does not match the Version header ($HEADER) in repagify-plugin.php"
+            echo "::error::Tag v$TAG does not match the Version header ($HEADER) in repagify.php"
             exit 1
           fi
 
@@ -57,27 +57,27 @@ jobs:
       - name: Confirm the archive is what we expect
         run: |
           echo "Archive contents:"
-          unzip -l repagify-plugin.zip
+          unzip -l repagify.zip
 
           # Exactly one top-level folder, named for the install directory.
-          TOP=$(unzip -Z1 repagify-plugin.zip | cut -d/ -f1 | sort -u)
-          if [ "$TOP" != "repagify-plugin" ]; then
-            echo "::error::Expected a single top-level folder 'repagify-plugin', found: $TOP"
+          TOP=$(unzip -Z1 repagify.zip | cut -d/ -f1 | sort -u)
+          if [ "$TOP" != "repagify" ]; then
+            echo "::error::Expected a single top-level folder 'repagify', found: $TOP"
             exit 1
           fi
 
           # Plugin Check reports every dotfile as hidden_files.
-          if unzip -Z1 repagify-plugin.zip | grep -E '(^|/)\.'; then
+          if unzip -Z1 repagify.zip | grep -E '(^|/)\.'; then
             echo "::error::A dotfile reached the archive"
             exit 1
           fi
 
       - name: Name the archive for the release
-        run: mv repagify-plugin.zip "repagify-plugin-${{ steps.version.outputs.tag }}.zip"
+        run: mv repagify.zip "repagify-${{ steps.version.outputs.tag }}.zip"
 
       - name: Attach the zip to the release
         uses: softprops/action-gh-release@v2
         with:
-          files: repagify-plugin-${{ steps.version.outputs.tag }}.zip
+          files: repagify-${{ steps.version.outputs.tag }}.zip
           generate_release_notes: true
           fail_on_unmatched_files: true

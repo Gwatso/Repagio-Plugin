@@ -45,7 +45,7 @@ class Repagify_Updater {
 	 *
 	 * @var string
 	 */
-	const SLUG = 'repagify-plugin';
+	const SLUG = 'repagify';
 
 	/**
 	 * Transient holding the last successful release lookup.

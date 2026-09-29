@@ -606,29 +606,29 @@ class Repagify_Scanner {
 			// with, so the explanation says the one thing that matters.
 			$parts[] = sprintf(
 				/* translators: %s: formatted word count. */
-				__( 'only %s words', 'repagify-plugin' ),
+				__( 'only %s words', 'repagify' ),
 				number_format_i18n( $words )
 			);
-			$parts[] = __( 'too short to repurpose well', 'repagify-plugin' );
+			$parts[] = __( 'too short to repurpose well', 'repagify' );
 		} else {
 			$parts[] = sprintf(
 				/* translators: %s: formatted word count. */
-				__( '%s words', 'repagify-plugin' ),
+				__( '%s words', 'repagify' ),
 				number_format_i18n( $words )
 			);
 
 			if ( $headings >= 6 ) {
-				$parts[] = __( 'well structured', 'repagify-plugin' );
+				$parts[] = __( 'well structured', 'repagify' );
 			} elseif ( $headings >= 3 ) {
-				$parts[] = __( 'clearly structured', 'repagify-plugin' );
+				$parts[] = __( 'clearly structured', 'repagify' );
 			} elseif ( $headings >= 1 ) {
-				$parts[] = __( 'few headings', 'repagify-plugin' );
+				$parts[] = __( 'few headings', 'repagify' );
 			} else {
-				$parts[] = __( 'no headings', 'repagify-plugin' );
+				$parts[] = __( 'no headings', 'repagify' );
 			}
 
 			if ( $oversized ) {
-				$parts[] = __( 'needs splitting to convert', 'repagify-plugin' );
+				$parts[] = __( 'needs splitting to convert', 'repagify' );
 			}
 		}
 
@@ -638,18 +638,18 @@ class Repagify_Scanner {
 			if ( ! empty( $labels ) ) {
 				$parts[] = sprintf(
 					/* translators: %s: comma-separated list of output format names. */
-					__( 'already repurposed as %s', 'repagify-plugin' ),
+					__( 'already repurposed as %s', 'repagify' ),
 					implode( ', ', $labels )
 				);
 			} else {
-				$parts[] = __( 'already repurposed', 'repagify-plugin' );
+				$parts[] = __( 'already repurposed', 'repagify' );
 			}
 		} else {
-			$parts[] = __( 'never repurposed', 'repagify-plugin' );
+			$parts[] = __( 'never repurposed', 'repagify' );
 		}
 
 		/* translators: separator between the clauses of a score explanation. */
-		return implode( __( ', ', 'repagify-plugin' ), $parts );
+		return implode( __( ', ', 'repagify' ), $parts );
 	}
 
 	/**
@@ -839,10 +839,10 @@ class Repagify_Scanner {
 	 */
 	public static function format_labels() {
 		return array(
-			'seo_blog'      => __( 'SEO blog post', 'repagify-plugin' ),
-			'linkedin_post' => __( 'LinkedIn post', 'repagify-plugin' ),
-			'x_thread'      => __( 'X thread', 'repagify-plugin' ),
-			'newsletter'    => __( 'Newsletter', 'repagify-plugin' ),
+			'seo_blog'      => __( 'SEO blog post', 'repagify' ),
+			'linkedin_post' => __( 'LinkedIn post', 'repagify' ),
+			'x_thread'      => __( 'X thread', 'repagify' ),
+			'newsletter'    => __( 'Newsletter', 'repagify' ),
 		);
 	}
 

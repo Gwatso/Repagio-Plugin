@@ -235,7 +235,7 @@ class Repagify_Settings {
 			return '';
 		}
 
-		return __( 'Repagify currently issues API keys on its Pro and Agency plans, with Free and Creator support on the way. That is the service’s own policy about its API. The plugin’s scanner and dashboard work with no key at all.', 'repagify-plugin' );
+		return __( 'Repagify currently issues API keys on its Pro and Agency plans, with Free and Creator support on the way. That is the service’s own policy about its API. The plugin’s scanner and dashboard work with no key at all.', 'repagify' );
 	}
 
 	/**
@@ -281,14 +281,14 @@ class Repagify_Settings {
 
 		add_settings_section(
 			'repagify_section_connection',
-			__( 'Connection', 'repagify-plugin' ),
+			__( 'Connection', 'repagify' ),
 			array( __CLASS__, 'render_connection_section' ),
 			self::PAGE
 		);
 
 		add_settings_field(
 			'repagify_field_api_key',
-			__( 'API key', 'repagify-plugin' ),
+			__( 'API key', 'repagify' ),
 			array( __CLASS__, 'render_api_key_field' ),
 			self::PAGE,
 			'repagify_section_connection',
@@ -297,7 +297,7 @@ class Repagify_Settings {
 
 		add_settings_field(
 			'repagify_field_api_url',
-			__( 'API base URL', 'repagify-plugin' ),
+			__( 'API base URL', 'repagify' ),
 			array( __CLASS__, 'render_api_url_field' ),
 			self::PAGE,
 			'repagify_section_connection',
@@ -378,7 +378,7 @@ class Repagify_Settings {
 	 * @return void
 	 */
 	public static function render_connection_section() {
-		echo '<p>' . esc_html__( 'Paste the API key from your Repagify account. Once saved, the key is only ever shown as a mask.', 'repagify-plugin' ) . '</p>';
+		echo '<p>' . esc_html__( 'Paste the API key from your Repagify account. Once saved, the key is only ever shown as a mask.', 'repagify' ) . '</p>';
 	}
 
 	/**
@@ -394,7 +394,7 @@ class Repagify_Settings {
 		<?php if ( $has_key ) : ?>
 			<p class="repagify-key-preview">
 				<code><?php echo esc_html( self::masked_api_key() ); ?></code>
-				<span class="repagify-badge repagify-badge--saved"><?php esc_html_e( 'Saved', 'repagify-plugin' ); ?></span>
+				<span class="repagify-badge repagify-badge--saved"><?php esc_html_e( 'Saved', 'repagify' ); ?></span>
 			</p>
 		<?php endif; ?>
 
@@ -406,12 +406,12 @@ class Repagify_Settings {
 			class="regular-text"
 			autocomplete="off"
 			spellcheck="false"
-			placeholder="<?php echo $has_key ? esc_attr__( 'Enter a new key to replace the saved one', 'repagify-plugin' ) : esc_attr__( 'Paste your Repagify API key', 'repagify-plugin' ); ?>"
+			placeholder="<?php echo $has_key ? esc_attr__( 'Enter a new key to replace the saved one', 'repagify' ) : esc_attr__( 'Paste your Repagify API key', 'repagify' ); ?>"
 		/>
 
 		<p class="description">
 			<?php if ( $has_key ) : ?>
-				<?php esc_html_e( 'Leave this blank to keep the saved key.', 'repagify-plugin' ); ?>
+				<?php esc_html_e( 'Leave this blank to keep the saved key.', 'repagify' ); ?>
 				<label for="repagify_field_remove_api_key" class="repagify-inline-label">
 					<input
 						type="checkbox"
@@ -419,10 +419,10 @@ class Repagify_Settings {
 						name="<?php echo esc_attr( self::OPTION_NAME ); ?>[remove_api_key]"
 						value="1"
 					/>
-					<?php esc_html_e( 'Delete the saved key', 'repagify-plugin' ); ?>
+					<?php esc_html_e( 'Delete the saved key', 'repagify' ); ?>
 				</label>
 			<?php else : ?>
-				<?php esc_html_e( 'Find your key in your Repagify account under Settings.', 'repagify-plugin' ); ?>
+				<?php esc_html_e( 'Find your key in your Repagify account under Settings.', 'repagify' ); ?>
 			<?php endif; ?>
 		</p>
 
@@ -458,7 +458,7 @@ class Repagify_Settings {
 			<?php
 			printf(
 				/* translators: %s: the default API base URL. */
-				esc_html__( 'Leave as %s unless you are pointing this site at a development instance.', 'repagify-plugin' ),
+				esc_html__( 'Leave as %s unless you are pointing this site at a development instance.', 'repagify' ),
 				'<code>' . esc_html( REPAGIFY_DEFAULT_API_URL ) . '</code>'
 			);
 			?>

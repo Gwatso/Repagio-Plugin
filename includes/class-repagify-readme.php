@@ -96,12 +96,12 @@ class Repagify_Readme {
 	 */
 	protected static function with_fallback( $parsed ) {
 		if ( '' === $parsed['short_description'] ) {
-			$parsed['short_description'] = __( 'Find the dormant posts in your archive worth reusing, then turn the best of them into blog posts, LinkedIn posts, X threads and newsletters.', 'repagify-plugin' );
+			$parsed['short_description'] = __( 'Find the dormant posts in your archive worth reusing, then turn the best of them into blog posts, LinkedIn posts, X threads and newsletters.', 'repagify' );
 		}
 
 		if ( empty( $parsed['sections'] ) || empty( $parsed['sections']['description'] ) ) {
 			$parsed['sections']['description'] = wpautop(
-				esc_html__( 'Repagify scans your published archive entirely on your own server, scores every post for repurposing potential, and turns the ones worth reusing into blog posts, LinkedIn posts, X threads and newsletters. Scanning needs no account; generating needs a free Repagify account.', 'repagify-plugin' )
+				esc_html__( 'Repagify scans your published archive entirely on your own server, scores every post for repurposing potential, and turns the ones worth reusing into blog posts, LinkedIn posts, X threads and newsletters. Scanning needs no account; generating needs a free Repagify account.', 'repagify' )
 			);
 		}
 
