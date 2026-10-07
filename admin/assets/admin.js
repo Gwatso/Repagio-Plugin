@@ -1,12 +1,12 @@
 /**
- * Repagify admin behaviour.
+ * Repagio admin behaviour.
  *
  * Loaded only on the plugin's own screens. Vanilla JS, no build step.
  */
 ( function () {
 	'use strict';
 
-	var settings = window.repagifyAdmin || {};
+	var settings = window.repagioAdmin || {};
 	var i18n = settings.i18n || {};
 
 	/**
@@ -21,7 +21,7 @@
 		var notice = document.createElement( 'div' );
 		var paragraph = document.createElement( 'p' );
 
-		notice.className = 'repagify-notice repagify-notice--' + type;
+		notice.className = 'repagio-notice repagio-notice--' + type;
 		paragraph.textContent = message;
 		notice.appendChild( paragraph );
 
@@ -41,7 +41,7 @@
 		var labelEl = document.createElement( 'span' );
 		var valueEl = document.createElement( 'strong' );
 
-		labelEl.className = 'repagify-account-label';
+		labelEl.className = 'repagio-account-label';
 		labelEl.textContent = label;
 		valueEl.textContent = value;
 
@@ -65,7 +65,7 @@
 		var list = document.createElement( 'ul' );
 		var rows = 0;
 
-		list.className = 'repagify-account';
+		list.className = 'repagio-account';
 
 		/**
 		 * Adds a row when the value is actually present.
@@ -126,9 +126,9 @@
 	 * @return {void}
 	 */
 	function initConnectionTest() {
-		var button = document.getElementById( 'repagify-test-connection' );
-		var result = document.getElementById( 'repagify-test-result' );
-		var spinner = document.getElementById( 'repagify-test-spinner' );
+		var button = document.getElementById( 'repagio-test-connection' );
+		var result = document.getElementById( 'repagio-test-result' );
+		var spinner = document.getElementById( 'repagio-test-spinner' );
 
 		if ( ! button || ! result ) {
 			return;
@@ -146,7 +146,7 @@
 			}
 
 			var body = new URLSearchParams();
-			body.append( 'action', 'repagify_test_connection' );
+			body.append( 'action', 'repagio_test_connection' );
 			body.append( 'nonce', settings.nonce || '' );
 
 			window
@@ -216,15 +216,15 @@
 	 * @return {void}
 	 */
 	function initBatchedScan() {
-		var container = document.getElementById( 'repagify-scan-progress' );
+		var container = document.getElementById( 'repagio-scan-progress' );
 
 		if ( ! container ) {
 			return;
 		}
 
-		var fill = document.getElementById( 'repagify-progress-fill' );
-		var status = document.getElementById( 'repagify-scan-status' );
-		var bar = container.querySelector( '.repagify-progress-bar' );
+		var fill = document.getElementById( 'repagio-progress-fill' );
+		var status = document.getElementById( 'repagio-scan-status' );
+		var bar = container.querySelector( '.repagio-progress-bar' );
 		var total = parseInt( container.getAttribute( 'data-total' ), 10 ) || 0;
 		var offset = parseInt( container.getAttribute( 'data-offset' ), 10 ) || 0;
 		var restarts = 0;
@@ -279,7 +279,7 @@
 		 */
 		function step() {
 			var body = new URLSearchParams();
-			body.append( 'action', 'repagify_scan_batch' );
+			body.append( 'action', 'repagio_scan_batch' );
 			body.append( 'nonce', settings.nonce || '' );
 			body.append( 'offset', String( offset ) );
 
@@ -373,36 +373,36 @@
 	 * @return {void}
 	 */
 	function initRepurpose() {
-		var modal = document.getElementById( 'repagify-modal' );
-		var buttons = document.querySelectorAll( '.repagify-repurpose' );
+		var modal = document.getElementById( 'repagio-modal' );
+		var buttons = document.querySelectorAll( '.repagio-repurpose' );
 
 		if ( ! modal || ! buttons.length ) {
 			return;
 		}
 
-		var form = document.getElementById( 'repagify-generate-form' );
-		var postField = document.getElementById( 'repagify-field-post' );
-		var formatField = document.getElementById( 'repagify-field-format' );
-		var toneField = document.getElementById( 'repagify-field-tone' );
-		var keywordField = document.getElementById( 'repagify-field-keyword' );
-		var keywordRow = document.getElementById( 'repagify-field-keyword-row' );
-		var postLine = document.getElementById( 'repagify-modal-post' );
-		var sourceNote = document.getElementById( 'repagify-source-note' );
-		var notice = document.getElementById( 'repagify-modal-notice' );
-		var generateButton = document.getElementById( 'repagify-generate-button' );
-		var spinner = document.getElementById( 'repagify-generate-spinner' );
-		var waitNote = document.getElementById( 'repagify-generate-wait' );
-		var resultPanel = document.getElementById( 'repagify-result-panel' );
-		var resultContent = document.getElementById( 'repagify-result-content' );
-		var resultMeta = document.getElementById( 'repagify-result-meta' );
-		var copyButton = document.getElementById( 'repagify-copy-button' );
-		var againButton = document.getElementById( 'repagify-again-button' );
-		var upgradePanel = document.getElementById( 'repagify-upgrade-panel' );
-		var upgradeTitle = document.getElementById( 'repagify-upgrade-title' );
-		var upgradeMessage = document.getElementById( 'repagify-upgrade-message' );
-		var upgradeNote = document.getElementById( 'repagify-upgrade-note' );
-		var upgradeButton = document.getElementById( 'repagify-upgrade-button' );
-		var modalQuota = document.getElementById( 'repagify-modal-quota' );
+		var form = document.getElementById( 'repagio-generate-form' );
+		var postField = document.getElementById( 'repagio-field-post' );
+		var formatField = document.getElementById( 'repagio-field-format' );
+		var toneField = document.getElementById( 'repagio-field-tone' );
+		var keywordField = document.getElementById( 'repagio-field-keyword' );
+		var keywordRow = document.getElementById( 'repagio-field-keyword-row' );
+		var postLine = document.getElementById( 'repagio-modal-post' );
+		var sourceNote = document.getElementById( 'repagio-source-note' );
+		var notice = document.getElementById( 'repagio-modal-notice' );
+		var generateButton = document.getElementById( 'repagio-generate-button' );
+		var spinner = document.getElementById( 'repagio-generate-spinner' );
+		var waitNote = document.getElementById( 'repagio-generate-wait' );
+		var resultPanel = document.getElementById( 'repagio-result-panel' );
+		var resultContent = document.getElementById( 'repagio-result-content' );
+		var resultMeta = document.getElementById( 'repagio-result-meta' );
+		var copyButton = document.getElementById( 'repagio-copy-button' );
+		var againButton = document.getElementById( 'repagio-again-button' );
+		var upgradePanel = document.getElementById( 'repagio-upgrade-panel' );
+		var upgradeTitle = document.getElementById( 'repagio-upgrade-title' );
+		var upgradeMessage = document.getElementById( 'repagio-upgrade-message' );
+		var upgradeNote = document.getElementById( 'repagio-upgrade-note' );
+		var upgradeButton = document.getElementById( 'repagio-upgrade-button' );
+		var modalQuota = document.getElementById( 'repagio-modal-quota' );
 		var keywordFormats = settings.keywordFor || [];
 		var quota = settings.quota || {};
 		var lastFocus = null;
@@ -421,16 +421,16 @@
 
 			quota = next;
 
-			var strip = document.querySelector( '.repagify-status' );
+			var strip = document.querySelector( '.repagio-status' );
 
 			if ( strip && next.phrase ) {
-				var quotaEl = strip.querySelector( '.repagify-status-quota' );
+				var quotaEl = strip.querySelector( '.repagio-status-quota' );
 
 				if ( quotaEl ) {
 					quotaEl.textContent = next.phrase;
 				}
 
-				strip.className = 'repagify-status repagify-status--' + ( next.band || 'neutral' );
+				strip.className = 'repagio-status repagio-status--' + ( next.band || 'neutral' );
 			}
 
 			if ( modalQuota ) {
@@ -587,7 +587,7 @@
 			sourceNote.textContent = i18n.preparing || 'Reading the post…';
 			generateButton.disabled = true;
 
-			ajax( 'repagify_prepare', { post_id: postId } )
+			ajax( 'repagio_prepare', { post_id: postId } )
 				.then( function ( payload ) {
 					// A later click may have replaced the post being shown.
 					if ( postField.value !== postId ) {
@@ -605,14 +605,14 @@
 
 					parts.push(
 						format(
-							i18n.wordsToSend || '%1$s words will be sent to Repagify.',
+							i18n.wordsToSend || '%1$s words will be sent to Repagio.',
 							Number( data.wordCount ).toLocaleString(),
 							''
 						)
 					);
 
 					sourceNote.textContent = parts.join( ' ' );
-					sourceNote.classList.remove( 'repagify-warning' );
+					sourceNote.classList.remove( 'repagio-warning' );
 
 					if ( data.truncated ) {
 						sourceNote.textContent =
@@ -623,7 +623,7 @@
 								Number( data.length ).toLocaleString(),
 								Number( data.originalLength ).toLocaleString()
 							);
-						sourceNote.classList.add( 'repagify-warning' );
+						sourceNote.classList.add( 'repagio-warning' );
 					}
 
 					generateButton.disabled = false;
@@ -650,7 +650,7 @@
 			postLine.textContent = button.getAttribute( 'data-post-title' ) || '';
 
 			modal.hidden = false;
-			document.body.classList.add( 'repagify-modal-open' );
+			document.body.classList.add( 'repagio-modal-open' );
 
 			// Pre-flight: an allowance known to be spent is answered from the
 			// page, without a round trip that could only say no.
@@ -665,7 +665,7 @@
 			postField.value = button.getAttribute( 'data-post-id' ) || '';
 			toneField.value = settings.defaultTone || 'professional';
 			sourceNote.textContent = '';
-			sourceNote.classList.remove( 'repagify-warning' );
+			sourceNote.classList.remove( 'repagio-warning' );
 
 			showForm();
 			applyQuota( quota );
@@ -686,7 +686,7 @@
 			}
 
 			modal.hidden = true;
-			document.body.classList.remove( 'repagify-modal-open' );
+			document.body.classList.remove( 'repagio-modal-open' );
 
 			if ( lastFocus ) {
 				lastFocus.focus();
@@ -732,7 +732,7 @@
 		formatField.addEventListener( 'change', syncKeyword );
 
 		modal.addEventListener( 'click', function ( event ) {
-			if ( event.target.closest( '[data-repagify-close]' ) ) {
+			if ( event.target.closest( '[data-repagio-close]' ) ) {
 				event.preventDefault();
 				close();
 			}
@@ -754,7 +754,7 @@
 			clearNotice();
 			setBusy( true );
 
-			ajax( 'repagify_generate', {
+			ajax( 'repagio_generate', {
 				post_id: postField.value,
 				format: formatField.value,
 				tone: toneField.value,
@@ -854,7 +854,7 @@
 	}
 
 	/**
-	 * Wires up whichever Repagify screen is on show.
+	 * Wires up whichever Repagio screen is on show.
 	 *
 	 * @return {void}
 	 */

@@ -8,7 +8,7 @@
  * degrades to an empty string for anything it does not, because a details
  * modal is not worth an error.
  *
- * @package Repagify
+ * @package Repagio
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 0.6.0
  */
-class Repagify_Readme {
+class Repagio_Readme {
 
 	/**
 	 * Sections offered in the details modal, mapped to their readme headings.
@@ -96,12 +96,12 @@ class Repagify_Readme {
 	 */
 	protected static function with_fallback( $parsed ) {
 		if ( '' === $parsed['short_description'] ) {
-			$parsed['short_description'] = __( 'Find the dormant posts in your archive worth reusing, then turn the best of them into blog posts, LinkedIn posts, X threads and newsletters.', 'repagify' );
+			$parsed['short_description'] = __( 'Find the dormant posts in your archive worth reusing, then turn the best of them into blog posts, LinkedIn posts, X threads and newsletters.', 'repagio' );
 		}
 
 		if ( empty( $parsed['sections'] ) || empty( $parsed['sections']['description'] ) ) {
 			$parsed['sections']['description'] = wpautop(
-				esc_html__( 'Repagify scans your published archive entirely on your own server, scores every post for repurposing potential, and turns the ones worth reusing into blog posts, LinkedIn posts, X threads and newsletters. Scanning needs no account; generating needs a free Repagify account.', 'repagify' )
+				esc_html__( 'Repagio scans your published archive entirely on your own server, scores every post for repurposing potential, and turns the ones worth reusing into blog posts, LinkedIn posts, X threads and newsletters. Scanning needs no account; generating needs a free Repagio account.', 'repagio' )
 			);
 		}
 

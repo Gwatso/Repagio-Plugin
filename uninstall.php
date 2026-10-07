@@ -4,7 +4,7 @@
  *
  * Runs when the site owner deletes the plugin from the Plugins screen.
  *
- * @package Repagify
+ * @package Repagio
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
@@ -22,18 +22,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return void
  */
-function repagify_uninstall_site() {
+function repagio_uninstall_site() {
+	delete_option( 'repagio_settings' );
+	delete_transient( 'repagio_scan_cache' );
+	delete_transient( 'repagio_account_cache' );
+	delete_transient( 'repagio_account_failure' );
+	delete_transient( 'repagio_latest_release' );
+	delete_transient( 'repagio_release_failure' );
+	delete_post_meta_by_key( '_repagio_converted' );
+
+	// Data left under the plugin's former name, in case the migration in
+	// Repagio_Migration never got the chance to run.
 	delete_option( 'repagify_settings' );
-	delete_transient( 'repagify_scan_cache' );
-	delete_transient( 'repagify_account_cache' );
-	delete_transient( 'repagify_account_failure' );
-	delete_transient( 'repagify_latest_release' );
-	delete_transient( 'repagify_release_failure' );
 	delete_post_meta_by_key( '_repagify_converted' );
 }
 
 if ( is_multisite() ) {
-	$repagify_site_ids = get_sites(
+	$repagio_site_ids = get_sites(
 		array(
 			'fields'                 => 'ids',
 			'number'                 => 0,
@@ -41,13 +46,13 @@ if ( is_multisite() ) {
 		)
 	);
 
-	foreach ( $repagify_site_ids as $repagify_site_id ) {
-		switch_to_blog( $repagify_site_id );
-		repagify_uninstall_site();
+	foreach ( $repagio_site_ids as $repagio_site_id ) {
+		switch_to_blog( $repagio_site_id );
+		repagio_uninstall_site();
 		restore_current_blog();
 	}
 
-	unset( $repagify_site_ids, $repagify_site_id );
+	unset( $repagio_site_ids, $repagio_site_id );
 } else {
-	repagify_uninstall_site();
+	repagio_uninstall_site();
 }

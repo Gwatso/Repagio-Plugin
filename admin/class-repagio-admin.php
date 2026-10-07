@@ -2,7 +2,7 @@
 /**
  * Admin menu, assets and AJAX endpoints.
  *
- * @package Repagify
+ * @package Repagio
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,28 +10,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers the Repagify admin pages and handles their AJAX requests.
+ * Registers the Repagio admin pages and handles their AJAX requests.
  *
  * @since 0.1.0
  */
-class Repagify_Admin {
+class Repagio_Admin {
 
 	/**
-	 * Nonce action shared by every Repagify AJAX endpoint.
+	 * Nonce action shared by every Repagio AJAX endpoint.
 	 *
 	 * @var string
 	 */
-	const NONCE_ACTION = 'repagify_ajax';
+	const NONCE_ACTION = 'repagio_ajax';
 
 	/**
 	 * Nonce action for the Rescan content form.
 	 *
 	 * @var string
 	 */
-	const RESCAN_ACTION = 'repagify_rescan';
+	const RESCAN_ACTION = 'repagio_rescan';
 
 	/**
-	 * Capability required to reach any Repagify screen.
+	 * Capability required to reach any Repagio screen.
 	 *
 	 * @var string
 	 */
@@ -42,7 +42,7 @@ class Repagify_Admin {
 	 *
 	 * @var string
 	 */
-	const DASHBOARD_PAGE = 'repagify-dashboard';
+	const DASHBOARD_PAGE = 'repagio-dashboard';
 
 	/**
 	 * Opportunity rows shown per page.
@@ -75,7 +75,7 @@ class Repagify_Admin {
 	public function init() {
 		add_action( 'admin_menu', array( $this, 'register_menu' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
-		$basename = plugin_basename( REPAGIFY_FILE );
+		$basename = plugin_basename( REPAGIO_FILE );
 
 		add_filter( 'plugin_action_links_' . $basename, array( $this, 'add_action_links' ) );
 
@@ -85,14 +85,14 @@ class Repagify_Admin {
 
 		add_filter( 'plugin_row_meta', array( $this, 'add_row_meta' ), 10, 2 );
 
-		add_action( 'wp_ajax_repagify_test_connection', array( $this, 'ajax_test_connection' ) );
-		add_action( 'wp_ajax_repagify_scan_batch', array( $this, 'ajax_scan_batch' ) );
-		add_action( 'wp_ajax_repagify_prepare', array( $this, 'ajax_prepare' ) );
-		add_action( 'wp_ajax_repagify_generate', array( $this, 'ajax_generate' ) );
+		add_action( 'wp_ajax_repagio_test_connection', array( $this, 'ajax_test_connection' ) );
+		add_action( 'wp_ajax_repagio_scan_batch', array( $this, 'ajax_scan_batch' ) );
+		add_action( 'wp_ajax_repagio_prepare', array( $this, 'ajax_prepare' ) );
+		add_action( 'wp_ajax_repagio_generate', array( $this, 'ajax_generate' ) );
 	}
 
 	/**
-	 * Adds the top level Repagify menu, whose first page is the dashboard.
+	 * Adds the top level Repagio menu, whose first page is the dashboard.
 	 *
 	 * @since 0.1.0
 	 *
@@ -100,8 +100,8 @@ class Repagify_Admin {
 	 */
 	public function register_menu() {
 		$this->screens['dashboard'] = add_menu_page(
-			__( 'Repagify', 'repagify' ),
-			__( 'Repagify', 'repagify' ),
+			__( 'Repagio', 'repagio' ),
+			__( 'Repagio', 'repagio' ),
 			self::CAPABILITY,
 			self::DASHBOARD_PAGE,
 			array( $this, 'render_dashboard_page' ),
@@ -113,8 +113,8 @@ class Repagify_Admin {
 		// repeat the top level title.
 		add_submenu_page(
 			self::DASHBOARD_PAGE,
-			__( 'Repagify dashboard', 'repagify' ),
-			__( 'Dashboard', 'repagify' ),
+			__( 'Repagio dashboard', 'repagio' ),
+			__( 'Dashboard', 'repagio' ),
 			self::CAPABILITY,
 			self::DASHBOARD_PAGE,
 			array( $this, 'render_dashboard_page' )
@@ -122,10 +122,10 @@ class Repagify_Admin {
 
 		$this->screens['settings'] = add_submenu_page(
 			self::DASHBOARD_PAGE,
-			__( 'Repagify settings', 'repagify' ),
-			__( 'Settings', 'repagify' ),
+			__( 'Repagio settings', 'repagio' ),
+			__( 'Settings', 'repagio' ),
 			self::CAPABILITY,
-			Repagify_Settings::PAGE,
+			Repagio_Settings::PAGE,
 			array( $this, 'render_settings_page' )
 		);
 
@@ -157,7 +157,7 @@ class Repagify_Admin {
 	/**
 	 * The same links on the network plugins screen.
 	 *
-	 * Both Repagify screens live on the site admin rather than the network
+	 * Both Repagio screens live on the site admin rather than the network
 	 * admin, so the links point there. A network administrator following one
 	 * lands on the main site's dashboard, which is where the settings for this
 	 * plugin actually are.
@@ -186,13 +186,13 @@ class Repagify_Admin {
 		return array(
 			sprintf(
 				'<a href="%s">%s</a>',
-				esc_url( Repagify_Settings::settings_url() ),
-				esc_html__( 'Settings', 'repagify' )
+				esc_url( Repagio_Settings::settings_url() ),
+				esc_html__( 'Settings', 'repagio' )
 			),
 			sprintf(
 				'<a href="%s">%s</a>',
 				esc_url( admin_url( 'admin.php?page=' . self::DASHBOARD_PAGE ) ),
-				esc_html__( 'Dashboard', 'repagify' )
+				esc_html__( 'Dashboard', 'repagio' )
 			),
 		);
 	}
@@ -211,14 +211,14 @@ class Repagify_Admin {
 	 * @return string[]
 	 */
 	public function add_row_meta( $meta, $plugin_file ) {
-		if ( plugin_basename( REPAGIFY_FILE ) !== $plugin_file ) {
+		if ( plugin_basename( REPAGIO_FILE ) !== $plugin_file ) {
 			return $meta;
 		}
 
 		$links = array(
-			'https://repagify.afriflare.com/api-access' => __( 'Documentation', 'repagify' ),
-			'https://repagify.afriflare.com/help'       => __( 'Support', 'repagify' ),
-			'https://github.com/Gwatso/Repagio-Plugin/issues' => __( 'Report an issue', 'repagify' ),
+			'https://repagio.app/api-access' => __( 'Documentation', 'repagio' ),
+			'https://repagio.app/help'       => __( 'Support', 'repagio' ),
+			'https://github.com/Gwatso/Repagio-Plugin/issues' => __( 'Report an issue', 'repagio' ),
 		);
 
 		foreach ( $links as $url => $label ) {
@@ -246,62 +246,62 @@ class Repagify_Admin {
 		}
 
 		wp_enqueue_style(
-			'repagify-admin',
-			REPAGIFY_URL . 'admin/assets/admin.css',
+			'repagio-admin',
+			REPAGIO_URL . 'admin/assets/admin.css',
 			array(),
-			REPAGIFY_VERSION
+			REPAGIO_VERSION
 		);
 
 		wp_enqueue_script(
-			'repagify-admin',
-			REPAGIFY_URL . 'admin/assets/admin.js',
+			'repagio-admin',
+			REPAGIO_URL . 'admin/assets/admin.js',
 			array(),
-			REPAGIFY_VERSION,
+			REPAGIO_VERSION,
 			true
 		);
 
 		wp_localize_script(
-			'repagify-admin',
-			'repagifyAdmin',
+			'repagio-admin',
+			'repagioAdmin',
 			array(
 				'ajaxUrl'     => admin_url( 'admin-ajax.php' ),
 				'nonce'       => wp_create_nonce( self::NONCE_ACTION ),
-				'hasKey'      => Repagify_Settings::has_api_key(),
-				'settingsUrl' => Repagify_Settings::settings_url(),
+				'hasKey'      => Repagio_Settings::has_api_key(),
+				'settingsUrl' => Repagio_Settings::settings_url(),
 				'quota'       => $this->quota_payload(),
-				'defaultTone' => Repagify_Formats::DEFAULT_TONE,
+				'defaultTone' => Repagio_Formats::DEFAULT_TONE,
 				'keywordFor'  => array_keys(
 					array_filter(
-						Repagify_Formats::all(),
+						Repagio_Formats::all(),
 						static function ( $format ) {
 							return ! empty( $format['keyword'] );
 						}
 					)
 				),
 				'i18n'        => array(
-					'testing'       => __( 'Testing…', 'repagify' ),
-					'genericError'  => __( 'Something went wrong. Please try again.', 'repagify' ),
-					'planLabel'     => __( 'Plan', 'repagify' ),
-					'remaining'     => __( 'Conversions remaining', 'repagify' ),
-					'used'          => __( 'Conversions used', 'repagify' ),
+					'testing'       => __( 'Testing…', 'repagio' ),
+					'genericError'  => __( 'Something went wrong. Please try again.', 'repagio' ),
+					'planLabel'     => __( 'Plan', 'repagio' ),
+					'remaining'     => __( 'Conversions remaining', 'repagio' ),
+					'used'          => __( 'Conversions used', 'repagio' ),
 					/* translators: 1: posts scanned, 2: posts in total. */
-					'scanProgress'  => __( 'Scanned %1$s of %2$s posts.', 'repagify' ),
-					'scanDone'      => __( 'Scan complete. Loading your opportunities…', 'repagify' ),
-					'scanError'     => __( 'The scan could not finish. Reload this page to try again.', 'repagify' ),
-					'generating'    => __( 'Generating…', 'repagify' ),
-					'generateWait'  => __( 'This usually takes 20 to 45 seconds. Leave this window open.', 'repagify' ),
-					'preparing'     => __( 'Reading the post…', 'repagify' ),
+					'scanProgress'  => __( 'Scanned %1$s of %2$s posts.', 'repagio' ),
+					'scanDone'      => __( 'Scan complete. Loading your opportunities…', 'repagio' ),
+					'scanError'     => __( 'The scan could not finish. Reload this page to try again.', 'repagio' ),
+					'generating'    => __( 'Generating…', 'repagio' ),
+					'generateWait'  => __( 'This usually takes 20 to 45 seconds. Leave this window open.', 'repagio' ),
+					'preparing'     => __( 'Reading the post…', 'repagio' ),
 					/* translators: %s: formatted word count. */
-					'wordsToSend'   => __( '%s words will be sent to Repagify.', 'repagify' ),
+					'wordsToSend'   => __( '%s words will be sent to Repagio.', 'repagio' ),
 					/* translators: 1: characters being sent, 2: characters in the post. */
-					'truncated'     => __( 'This post is longer than Repagify can convert at once, so only the first %1$s characters of %2$s will be used. You may want to split it into parts and repurpose each one.', 'repagify' ),
+					'truncated'     => __( 'This post is longer than Repagio can convert at once, so only the first %1$s characters of %2$s will be used. You may want to split it into parts and repurpose each one.', 'repagio' ),
 					/* translators: %s: formatted word count. */
-					'resultWords'   => __( '%s words generated.', 'repagify' ),
-					'copied'        => __( 'Copied', 'repagify' ),
-					'copyFailed'    => __( 'Could not copy automatically. Select the text and copy it.', 'repagify' ),
-					'copy'          => __( 'Copy to clipboard', 'repagify' ),
-					'closeLabel'    => __( 'Close', 'repagify' ),
-					'noKey'         => __( 'Connect a Repagify account on the settings screen to generate content.', 'repagify' ),
+					'resultWords'   => __( '%s words generated.', 'repagio' ),
+					'copied'        => __( 'Copied', 'repagio' ),
+					'copyFailed'    => __( 'Could not copy automatically. Select the text and copy it.', 'repagio' ),
+					'copy'          => __( 'Copy to clipboard', 'repagio' ),
+					'closeLabel'    => __( 'Close', 'repagio' ),
+					'noKey'         => __( 'Connect a Repagio account on the settings screen to generate content.', 'repagio' ),
 				),
 			)
 		);
@@ -318,27 +318,27 @@ class Repagify_Admin {
 	 * @return void
 	 */
 	public function maybe_rescan() {
-		if ( ! isset( $_POST['repagify_action'] ) ) {
+		if ( ! isset( $_POST['repagio_action'] ) ) {
 			return;
 		}
 
-		if ( 'rescan' !== sanitize_key( wp_unslash( $_POST['repagify_action'] ) ) ) {
+		if ( 'rescan' !== sanitize_key( wp_unslash( $_POST['repagio_action'] ) ) ) {
 			return;
 		}
 
 		check_admin_referer( self::RESCAN_ACTION );
 
 		if ( ! current_user_can( self::CAPABILITY ) ) {
-			wp_die( esc_html__( 'You do not have permission to rescan this site.', 'repagify' ) );
+			wp_die( esc_html__( 'You do not have permission to rescan this site.', 'repagio' ) );
 		}
 
-		Repagify_Scanner::clear_cache();
+		Repagio_Scanner::clear_cache();
 
 		wp_safe_redirect(
 			add_query_arg(
 				array(
 					'page'               => self::DASHBOARD_PAGE,
-					'repagify-rescanned' => 1,
+					'repagio-rescanned' => 1,
 				),
 				admin_url( 'admin.php' )
 			)
@@ -355,10 +355,10 @@ class Repagify_Admin {
 	 */
 	public function render_dashboard_page() {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
-			wp_die( esc_html__( 'You do not have permission to view this page.', 'repagify' ) );
+			wp_die( esc_html__( 'You do not have permission to view this page.', 'repagio' ) );
 		}
 
-		require REPAGIFY_PATH . 'admin/views/dashboard.php';
+		require REPAGIO_PATH . 'admin/views/dashboard.php';
 	}
 
 	/**
@@ -370,10 +370,10 @@ class Repagify_Admin {
 	 */
 	public function render_settings_page() {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
-			wp_die( esc_html__( 'You do not have permission to manage these settings.', 'repagify' ) );
+			wp_die( esc_html__( 'You do not have permission to manage these settings.', 'repagio' ) );
 		}
 
-		require REPAGIFY_PATH . 'admin/views/settings.php';
+		require REPAGIO_PATH . 'admin/views/settings.php';
 	}
 
 	/**
@@ -401,11 +401,11 @@ class Repagify_Admin {
 			$order = self::default_order( $orderby );
 		}
 
-		$post_type = isset( $_GET['repagify_post_type'] )
-			? sanitize_key( wp_unslash( $_GET['repagify_post_type'] ) )
+		$post_type = isset( $_GET['repagio_post_type'] )
+			? sanitize_key( wp_unslash( $_GET['repagio_post_type'] ) )
 			: '';
 
-		if ( '' !== $post_type && ! in_array( $post_type, Repagify_Scanner::scannable_post_types(), true ) ) {
+		if ( '' !== $post_type && ! in_array( $post_type, Repagio_Scanner::scannable_post_types(), true ) ) {
 			$post_type = '';
 		}
 
@@ -414,10 +414,10 @@ class Repagify_Admin {
 			'order'        => $order,
 			'paged'        => isset( $_GET['paged'] ) ? max( 1, absint( wp_unslash( $_GET['paged'] ) ) ) : 1,
 			'post_type'    => $post_type,
-			'category'     => isset( $_GET['repagify_cat'] ) ? absint( wp_unslash( $_GET['repagify_cat'] ) ) : 0,
-			'date_from'    => isset( $_GET['repagify_from'] ) ? self::sanitize_date( sanitize_text_field( wp_unslash( $_GET['repagify_from'] ) ) ) : '',
-			'date_to'      => isset( $_GET['repagify_to'] ) ? self::sanitize_date( sanitize_text_field( wp_unslash( $_GET['repagify_to'] ) ) ) : '',
-			'unrepurposed' => ! empty( $_GET['repagify_unrepurposed'] ),
+			'category'     => isset( $_GET['repagio_cat'] ) ? absint( wp_unslash( $_GET['repagio_cat'] ) ) : 0,
+			'date_from'    => isset( $_GET['repagio_from'] ) ? self::sanitize_date( sanitize_text_field( wp_unslash( $_GET['repagio_from'] ) ) ) : '',
+			'date_to'      => isset( $_GET['repagio_to'] ) ? self::sanitize_date( sanitize_text_field( wp_unslash( $_GET['repagio_to'] ) ) ) : '',
+			'unrepurposed' => ! empty( $_GET['repagio_unrepurposed'] ),
 		);
 		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
@@ -552,7 +552,7 @@ class Repagify_Admin {
 		$title = trim( (string) $title );
 
 		if ( '' === $title ) {
-			return __( '(no title)', 'repagify' );
+			return __( '(no title)', 'repagio' );
 		}
 
 		return $title;
@@ -572,23 +572,23 @@ class Repagify_Admin {
 		$query = array( 'page' => self::DASHBOARD_PAGE );
 
 		if ( '' !== $args['post_type'] ) {
-			$query['repagify_post_type'] = $args['post_type'];
+			$query['repagio_post_type'] = $args['post_type'];
 		}
 
 		if ( $args['category'] > 0 ) {
-			$query['repagify_cat'] = $args['category'];
+			$query['repagio_cat'] = $args['category'];
 		}
 
 		if ( '' !== $args['date_from'] ) {
-			$query['repagify_from'] = $args['date_from'];
+			$query['repagio_from'] = $args['date_from'];
 		}
 
 		if ( '' !== $args['date_to'] ) {
-			$query['repagify_to'] = $args['date_to'];
+			$query['repagio_to'] = $args['date_to'];
 		}
 
 		if ( ! empty( $args['unrepurposed'] ) ) {
-			$query['repagify_unrepurposed'] = 1;
+			$query['repagio_unrepurposed'] = 1;
 		}
 
 		return $query;
@@ -644,13 +644,13 @@ class Repagify_Admin {
 
 		if ( ! current_user_can( self::CAPABILITY ) ) {
 			wp_send_json_error(
-				array( 'message' => __( 'You do not have permission to do that.', 'repagify' ) ),
+				array( 'message' => __( 'You do not have permission to do that.', 'repagio' ) ),
 				403
 			);
 		}
 
 		$offset   = isset( $_POST['offset'] ) ? absint( wp_unslash( $_POST['offset'] ) ) : 0;
-		$progress = Repagify_Scanner::scan_step( $offset );
+		$progress = Repagio_Scanner::scan_step( $offset );
 
 		wp_send_json_success( $progress );
 	}
@@ -674,7 +674,7 @@ class Repagify_Admin {
 			wp_send_json_error( $this->error_payload( $post ) );
 		}
 
-		$prepared = Repagify_Content::prepare( $post );
+		$prepared = Repagio_Content::prepare( $post );
 
 		if ( is_wp_error( $prepared ) ) {
 			wp_send_json_error( $this->error_payload( $prepared ) );
@@ -709,16 +709,16 @@ class Repagify_Admin {
 		// phpcs:disable WordPress.Security.NonceVerification.Missing -- Verified above.
 		$format = isset( $_POST['format'] ) ? sanitize_key( wp_unslash( $_POST['format'] ) ) : '';
 
-		if ( ! Repagify_Formats::exists( $format ) ) {
+		if ( ! Repagio_Formats::exists( $format ) ) {
 			wp_send_json_error(
-				array( 'message' => __( 'Choose an output format.', 'repagify' ) )
+				array( 'message' => __( 'Choose an output format.', 'repagio' ) )
 			);
 		}
 
 		$tone = isset( $_POST['tone'] ) ? sanitize_key( wp_unslash( $_POST['tone'] ) ) : '';
 
-		if ( ! Repagify_Formats::tone_exists( $tone ) ) {
-			$tone = Repagify_Formats::DEFAULT_TONE;
+		if ( ! Repagio_Formats::tone_exists( $tone ) ) {
+			$tone = Repagio_Formats::DEFAULT_TONE;
 		}
 
 		$keyword = isset( $_POST['keyword'] )
@@ -727,11 +727,11 @@ class Repagify_Admin {
 		// phpcs:enable WordPress.Security.NonceVerification.Missing
 
 		// A keyword only means anything for the formats that accept one.
-		if ( ! Repagify_Formats::takes_keyword( $format ) ) {
+		if ( ! Repagio_Formats::takes_keyword( $format ) ) {
 			$keyword = '';
 		}
 
-		$prepared = Repagify_Content::prepare( $post );
+		$prepared = Repagio_Content::prepare( $post );
 
 		if ( is_wp_error( $prepared ) ) {
 			wp_send_json_error( $this->error_payload( $prepared ) );
@@ -739,10 +739,10 @@ class Repagify_Admin {
 
 		$this->allow_slow_request();
 
-		$api    = new Repagify_API();
+		$api    = new Repagio_API();
 		$result = $api->generate(
 			$prepared['text'],
-			Repagify_Formats::api_type( $format ),
+			Repagio_Formats::api_type( $format ),
 			$tone,
 			array( 'keyword' => $keyword )
 		);
@@ -753,9 +753,9 @@ class Repagify_Admin {
 			// A spent allowance is the one failure with a useful next step, and
 			// which step depends on the tier. The cached account is stale by
 			// definition here, so it is re-read before the offer is built.
-			if ( 'repagify_limit_reached' === $result->get_error_code() ) {
-				$account            = Repagify_Quota::refresh();
-				$payload['upgrade'] = Repagify_Quota::upgrade_offer( $account, $result->get_error_message() );
+			if ( 'repagio_limit_reached' === $result->get_error_code() ) {
+				$account            = Repagio_Quota::refresh();
+				$payload['upgrade'] = Repagio_Quota::upgrade_offer( $account, $result->get_error_message() );
 				$payload['quota']   = $this->quota_payload( $account );
 			}
 
@@ -769,7 +769,7 @@ class Repagify_Admin {
 		if ( '' === $content ) {
 			wp_send_json_error(
 				array(
-					'message' => __( 'Repagify replied without any content. Nothing was saved — try again.', 'repagify' ),
+					'message' => __( 'Repagio replied without any content. Nothing was saved — try again.', 'repagio' ),
 				)
 			);
 		}
@@ -779,15 +779,15 @@ class Repagify_Admin {
 		// Ask the service what is actually left rather than assuming. If that
 		// call fails the generation still happened, so the cached figure is
 		// stepped down locally instead of being left overstating the balance.
-		$account = Repagify_Quota::refresh();
+		$account = Repagio_Quota::refresh();
 
 		if ( null === $account ) {
-			$account = Repagify_Quota::decrement();
+			$account = Repagio_Quota::decrement();
 		}
 
 		$words = ( isset( $result['word_count'] ) && is_numeric( $result['word_count'] ) )
 			? (int) $result['word_count']
-			: Repagify_Content::count_words( $content );
+			: Repagio_Content::count_words( $content );
 
 		wp_send_json_success(
 			array(
@@ -795,7 +795,7 @@ class Repagify_Admin {
 				'content'      => $content,
 				'wordCount'    => $words,
 				'format'       => $format,
-				'formatLabel'  => Repagify_Formats::label( $format ),
+				'formatLabel'  => Repagio_Formats::label( $format ),
 				'tone'         => $tone,
 				'truncated'    => (bool) $prepared['truncated'],
 				'conversionId' => isset( $result['conversion_id'] ) && is_scalar( $result['conversion_id'] )
@@ -818,7 +818,7 @@ class Repagify_Admin {
 	 */
 	protected function quota_payload( $account = null ) {
 		if ( null === $account ) {
-			$account = Repagify_Settings::has_api_key() ? Repagify_Quota::get() : null;
+			$account = Repagio_Settings::has_api_key() ? Repagio_Quota::get() : null;
 		}
 
 		$known = is_array( $account );
@@ -827,13 +827,13 @@ class Repagify_Admin {
 			'known'     => $known,
 			'tier'      => $known ? $account['tier'] : '',
 			'tierLabel' => $known ? $account['tier_label'] : '',
-			'unlimited' => Repagify_Quota::is_unlimited( $account ),
+			'unlimited' => Repagio_Quota::is_unlimited( $account ),
 			'remaining' => ( $known && null !== $account['remaining'] ) ? (int) $account['remaining'] : null,
 			'limit'     => ( $known && null !== $account['limit'] ) ? (int) $account['limit'] : null,
-			'hasQuota'  => Repagify_Quota::has_quota( $account ),
-			'band'      => Repagify_Quota::band( $account ),
-			'phrase'    => $known ? Repagify_Quota::quota_phrase( $account ) : '',
-			'upgrade'   => Repagify_Quota::upgrade_offer( $account ),
+			'hasQuota'  => Repagio_Quota::has_quota( $account ),
+			'band'      => Repagio_Quota::band( $account ),
+			'phrase'    => $known ? Repagio_Quota::quota_phrase( $account ) : '',
+			'upgrade'   => Repagio_Quota::upgrade_offer( $account ),
 		);
 	}
 
@@ -863,7 +863,7 @@ class Repagify_Admin {
 		}
 
 		$current = (int) ini_get( 'max_execution_time' );
-		$needed  = Repagify_API::GENERATE_TIMEOUT + 30;
+		$needed  = Repagio_API::GENERATE_TIMEOUT + 30;
 
 		// 0 means no limit, which is already enough.
 		if ( 0 === $current || $current >= $needed ) {
@@ -884,8 +884,8 @@ class Repagify_Admin {
 	protected function request_post() {
 		if ( ! current_user_can( self::CAPABILITY ) ) {
 			return new WP_Error(
-				'repagify_forbidden',
-				__( 'You do not have permission to do that.', 'repagify' )
+				'repagio_forbidden',
+				__( 'You do not have permission to do that.', 'repagio' )
 			);
 		}
 
@@ -895,23 +895,23 @@ class Repagify_Admin {
 
 		if ( ! $post instanceof WP_Post ) {
 			return new WP_Error(
-				'repagify_no_post',
-				__( 'That post could not be found.', 'repagify' )
+				'repagio_no_post',
+				__( 'That post could not be found.', 'repagio' )
 			);
 		}
 
 		// Repurposing reads the whole post body, so require the right to read it.
 		if ( ! current_user_can( 'edit_post', $post->ID ) ) {
 			return new WP_Error(
-				'repagify_forbidden',
-				__( 'You do not have permission to repurpose that post.', 'repagify' )
+				'repagio_forbidden',
+				__( 'You do not have permission to repurpose that post.', 'repagio' )
 			);
 		}
 
 		if ( 'publish' !== $post->post_status ) {
 			return new WP_Error(
-				'repagify_not_published',
-				__( 'Only published posts can be repurposed.', 'repagify' )
+				'repagio_not_published',
+				__( 'Only published posts can be repurposed.', 'repagio' )
 			);
 		}
 
@@ -932,7 +932,7 @@ class Repagify_Admin {
 	 * @return void
 	 */
 	protected function record_conversion( $post_id, $format ) {
-		$converted = get_post_meta( (int) $post_id, Repagify_Scanner::CONVERTED_META, true );
+		$converted = get_post_meta( (int) $post_id, Repagio_Scanner::CONVERTED_META, true );
 
 		if ( ! is_array( $converted ) ) {
 			$converted = array();
@@ -940,9 +940,9 @@ class Repagify_Admin {
 
 		$converted[ $format ] = time();
 
-		update_post_meta( (int) $post_id, Repagify_Scanner::CONVERTED_META, $converted );
+		update_post_meta( (int) $post_id, Repagio_Scanner::CONVERTED_META, $converted );
 
-		Repagify_Scanner::clear_cache();
+		Repagio_Scanner::clear_cache();
 	}
 
 	/**
@@ -983,12 +983,12 @@ class Repagify_Admin {
 
 		if ( ! current_user_can( self::CAPABILITY ) ) {
 			wp_send_json_error(
-				array( 'message' => __( 'You do not have permission to do that.', 'repagify' ) ),
+				array( 'message' => __( 'You do not have permission to do that.', 'repagio' ) ),
 				403
 			);
 		}
 
-		$api      = new Repagify_API();
+		$api      = new Repagio_API();
 		$response = $api->get_me();
 
 		if ( is_wp_error( $response ) ) {
@@ -997,11 +997,11 @@ class Repagify_Admin {
 
 		// This call is a /me fetch, so the quota cache is filled from it rather
 		// than left to provoke an identical request moments later.
-		$account = Repagify_Quota::store( $response );
+		$account = Repagio_Quota::store( $response );
 
 		wp_send_json_success(
 			array(
-				'message' => __( 'Connected to Repagify.', 'repagify' ),
+				'message' => __( 'Connected to Repagio.', 'repagio' ),
 				'account' => $this->summarise_account( $response ),
 				'quota'   => $this->quota_payload( $account ),
 			)
@@ -1054,7 +1054,7 @@ class Repagify_Admin {
 		$limit_type = $this->first_string( $account, array( 'limit_type' ) );
 
 		if ( 'unlimited' === $limit_type && null === $summary['remaining'] ) {
-			$summary['remaining'] = __( 'Unlimited', 'repagify' );
+			$summary['remaining'] = __( 'Unlimited', 'repagio' );
 		}
 
 		// Plan tiers come back as bare slugs such as "agency".

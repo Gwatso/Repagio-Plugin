@@ -2,7 +2,7 @@
 /**
  * Turns post content into the plain text the generation endpoint accepts.
  *
- * @package Repagify
+ * @package Repagio
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 0.3.0
  */
-class Repagify_Content {
+class Repagio_Content {
 
 	/**
 	 * Shortest text the API will accept, in characters.
@@ -51,8 +51,8 @@ class Repagify_Content {
 
 		if ( ! $post instanceof WP_Post ) {
 			return new WP_Error(
-				'repagify_no_post',
-				__( 'That post could not be found.', 'repagify' )
+				'repagio_no_post',
+				__( 'That post could not be found.', 'repagio' )
 			);
 		}
 
@@ -61,10 +61,10 @@ class Repagify_Content {
 
 		if ( $original < self::MIN_CHARS ) {
 			return new WP_Error(
-				'repagify_too_short',
+				'repagio_too_short',
 				sprintf(
 					/* translators: 1: characters found, 2: minimum characters required. */
-					__( 'This post is too short to repurpose. It has %1$s characters of text and Repagify needs at least %2$s. Add more to the post, or pick a longer one.', 'repagify' ),
+					__( 'This post is too short to repurpose. It has %1$s characters of text and Repagio needs at least %2$s. Add more to the post, or pick a longer one.', 'repagio' ),
 					number_format_i18n( $original ),
 					number_format_i18n( self::MIN_CHARS )
 				),

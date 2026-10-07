@@ -5,7 +5,7 @@
  * One place that knows how the plugin's own format slugs, the labels shown to
  * the site owner, and the output_type values the API expects line up.
  *
- * @package Repagify
+ * @package Repagio
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,14 +15,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Describes what a post can be repurposed into, and how it should sound.
  *
- * The array keys are the slugs stored in the _repagify_converted post meta.
+ * The array keys are the slugs stored in the _repagio_converted post meta.
  * They are deliberately the same slugs the scanner already reads, so recording
  * a conversion needs no change to the scanner and no migration of existing
  * meta. The 'api' value is the vocabulary the service speaks, which differs.
  *
  * @since 0.3.0
  */
-class Repagify_Formats {
+class Repagio_Formats {
 
 	/**
 	 * Tone used when none is chosen.
@@ -46,22 +46,22 @@ class Repagify_Formats {
 		return array(
 			'seo_blog'      => array(
 				'api'     => 'blog',
-				'label'   => __( 'Blog Post', 'repagify' ),
+				'label'   => __( 'Blog Post', 'repagio' ),
 				'keyword' => true,
 			),
 			'linkedin_post' => array(
 				'api'     => 'linkedin',
-				'label'   => __( 'LinkedIn Post', 'repagify' ),
+				'label'   => __( 'LinkedIn Post', 'repagio' ),
 				'keyword' => false,
 			),
 			'x_thread'      => array(
 				'api'     => 'twitter',
-				'label'   => __( 'X Thread', 'repagify' ),
+				'label'   => __( 'X Thread', 'repagio' ),
 				'keyword' => false,
 			),
 			'newsletter'    => array(
 				'api'     => 'newsletter',
-				'label'   => __( 'Newsletter', 'repagify' ),
+				'label'   => __( 'Newsletter', 'repagio' ),
 				'keyword' => false,
 			),
 		);
@@ -141,11 +141,11 @@ class Repagify_Formats {
 	 */
 	public static function tones() {
 		return array(
-			'professional'   => __( 'Professional', 'repagify' ),
-			'conversational' => __( 'Conversational', 'repagify' ),
-			'authoritative'  => __( 'Authoritative', 'repagify' ),
-			'casual'         => __( 'Casual', 'repagify' ),
-			'inspirational'  => __( 'Inspirational', 'repagify' ),
+			'professional'   => __( 'Professional', 'repagio' ),
+			'conversational' => __( 'Conversational', 'repagio' ),
+			'authoritative'  => __( 'Authoritative', 'repagio' ),
+			'casual'         => __( 'Casual', 'repagio' ),
+			'inspirational'  => __( 'Inspirational', 'repagio' ),
 		);
 	}
 

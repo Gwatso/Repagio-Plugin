@@ -6,8 +6,8 @@
 # this script rather than repeating the rules, so there is no way for CI and a
 # local build to disagree.
 #
-# Output: repagify.zip, containing exactly one top-level folder,
-# repagify/, which is the directory WordPress installs into. GitHub's own
+# Output: repagio.zip, containing exactly one top-level folder,
+# repagio/, which is the directory WordPress installs into. GitHub's own
 # "Source code (zip)" unpacks to Owner-Repo-<sha>/ and would install to the
 # wrong place, which is why we build our own.
 #
@@ -19,7 +19,7 @@
 #
 set -euo pipefail
 
-SLUG="repagify"
+SLUG="repagio"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT="$( cd "${SCRIPT_DIR}/.." && pwd )"

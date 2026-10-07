@@ -1,10 +1,10 @@
-=== Repagify ===
+=== Repagio ===
 Contributors: afriflare
 Tags: content, repurposing, seo, social media, ai
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.6.0
+Stable tag: 0.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Scans your published archive and scores every post for repurposing potential, so
 
 == Description ==
 
-Most sites are sitting on years of published writing nobody reads any more. Repagify reads your archive and tells you which of it is still worth something.
+Most sites are sitting on years of published writing nobody reads any more. Repagio reads your archive and tells you which of it is still worth something.
 
 = What the plugin does on your own server =
 
@@ -30,11 +30,11 @@ All of that runs on your own server and makes no network request of any kind.
 
 = The optional service connection =
 
-Turning a post into new content is done by **Repagify**, a separate web service at [repagify.afriflare.com](https://repagify.afriflare.com/). Connecting an account is optional, and the plugin is fully usable without one.
+Turning a post into new content is done by **Repagio**, a separate web service at [repagio.app](https://repagio.app/). Connecting an account is optional, and the plugin is fully usable without one.
 
 If you do connect an account, you can pick a post, choose a format and a tone, and get back content to copy and use wherever you like. Available formats are a blog post, a LinkedIn post, an X thread and a newsletter, each in one of five tones.
 
-Repagify offers both free and paid plans, and those plans differ in how many generations they include. That is an arrangement between you and that service. It is not a restriction in this plugin: there is one version of this plugin, every line of its code ships to every user, and nothing in it is reserved for paying customers.
+Repagio offers both free and paid plans, and those plans differ in how many generations they include. That is an arrangement between you and that service. It is not a restriction in this plugin: there is one version of this plugin, every line of its code ships to every user, and nothing in it is reserved for paying customers.
 
 = What this plugin will not do =
 
@@ -44,21 +44,21 @@ Repagify offers both free and paid plans, and those plans differ in how many gen
 
 = Open source =
 
-Repagify is free software, licensed GPLv2 or later. Development happens in the open and patches are welcome — see CONTRIBUTING.md in the repository.
+Repagio is free software, licensed GPLv2 or later. Development happens in the open and patches are welcome — see CONTRIBUTING.md in the repository.
 
 Source code: https://github.com/Gwatso/Repagio-Plugin
 
 == External services ==
 
-This plugin can connect to the Repagify API, a third-party service operated by Afriflare, to generate content from posts you choose. Generation is computation performed by that service rather than on your server, so the plugin cannot produce generated content without it. Everything else the plugin does works with no connection at all.
+This plugin can connect to the Repagio API, a third-party service operated by Afriflare, to generate content from posts you choose. Generation is computation performed by that service rather than on your server, so the plugin cannot produce generated content without it. Everything else the plugin does works with no connection at all.
 
-**Service:** Repagify
-**Endpoint:** `https://repagify.afriflare.com/api/v1`
-**Provider:** Afriflare — https://repagify.afriflare.com/
+**Service:** Repagio
+**Endpoint:** `https://repagio.app/api/v1`
+**Provider:** Afriflare — https://repagio.app/
 
 = What is sent, and when =
 
-The plugin contacts Repagify in exactly three situations, all of them triggered by you:
+The plugin contacts Repagio in exactly three situations, all of them triggered by you:
 
 1. **When you press "Test connection"** on the settings screen. Your API key is sent so the service can identify your account. No post content is sent. The service replies with your plan and how many generations your account has used and has left.
 
@@ -69,7 +69,7 @@ The plugin contacts Repagify in exactly three situations, all of them triggered 
    * The tone you chose
    * The target keyword, only if you typed one and only for blog output
 
-3. **When a Repagify admin screen is opened**, to read your account's plan and remaining generations so the dashboard can show them. Your API key is sent; no post content is. This result is cached for five minutes, so opening the screen repeatedly does not repeat the request. It does not happen at all if you have not saved an API key.
+3. **When a Repagio admin screen is opened**, to read your account's plan and remaining generations so the dashboard can show them. Your API key is sent; no post content is. This result is cached for five minutes, so opening the screen repeatedly does not repeat the request. It does not happen at all if you have not saved an API key.
 
 = What is never sent =
 
@@ -80,27 +80,27 @@ The plugin contacts Repagify in exactly three situations, all of them triggered 
 
 = Working without an account =
 
-The archive scanner and the opportunity dashboard work fully with no Repagify account, no API key and no network access. With no API key saved, the plugin makes no external request whatsoever, and the generate action is not offered, because there is no service to send the request to.
+The archive scanner and the opportunity dashboard work fully with no Repagio account, no API key and no network access. With no API key saved, the plugin makes no external request whatsoever, and the generate action is not offered, because there is no service to send the request to.
 
 = Terms and privacy =
 
-Using the generation feature means sending your content to Repagify, and is subject to their terms:
+Using the generation feature means sending your content to Repagio, and is subject to their terms:
 
-* Terms of service: https://repagify.afriflare.com/terms
-* Privacy policy: https://repagify.afriflare.com/privacy
+* Terms of service: https://repagio.app/terms
+* Privacy policy: https://repagio.app/privacy
 
 == Installation ==
 
-1. Upload the `repagify` folder to `/wp-content/plugins/`, or install the plugin through the Plugins screen in WordPress.
+1. Upload the `repagio` folder to `/wp-content/plugins/`, or install the plugin through the Plugins screen in WordPress.
 2. Activate the plugin through the Plugins screen.
-3. Go to **Repagify → Dashboard**. The scanner runs immediately — no account needed.
-4. Optionally, to generate content, go to **Repagify → Settings**, paste the API key from your Repagify account, and press **Test connection**.
+3. Go to **Repagio → Dashboard**. The scanner runs immediately — no account needed.
+4. Optionally, to generate content, go to **Repagio → Settings**, paste the API key from your Repagio account, and press **Test connection**.
 
 == Frequently Asked Questions ==
 
 = Does this plugin require a paid account? =
 
-No. Scanning, scoring and the full opportunity dashboard work with no account at all. Generating content uses the Repagify web service, which offers both free and paid plans.
+No. Scanning, scoring and the full opportunity dashboard work with no account at all. Generating content uses the Repagio web service, which offers both free and paid plans.
 
 = What does the plugin do without an account? =
 
@@ -118,21 +118,21 @@ The only thing the plugin cannot do on its own is generate content, because gene
 
 Only when you ask it to. Scanning, scoring and filtering happen entirely on your server with no network access.
 
-When you press Generate on a post, the plain text of that one post is sent to Repagify so it can be repurposed. No other post is sent, and nothing is sent in the background. See the External services section above for the full detail.
+When you press Generate on a post, the plain text of that one post is sent to Repagio so it can be repurposed. No other post is sent, and nothing is sent in the background. See the External services section above for the full detail.
 
 = How many generations does my account get? =
 
-That depends on the plan on your Repagify account. The service offers free and paid plans that differ in how many generations they include. The dashboard shows how many your account has left before you use one, and tells you when the account has none remaining.
+That depends on the plan on your Repagio account. The service offers free and paid plans that differ in how many generations they include. The dashboard shows how many your account has left before you use one, and tells you when the account has none remaining.
 
-= Why has Repagify not issued me an API key? =
+= Why has Repagio not issued me an API key? =
 
-Repagify currently issues API keys on its Pro and Agency plans, with support for Free and Creator accounts on the way. That is the service's own policy about its API, and is nothing the plugin controls.
+Repagio currently issues API keys on its Pro and Agency plans, with support for Free and Creator accounts on the way. That is the service's own policy about its API, and is nothing the plugin controls.
 
 The scanner and the dashboard work with no key at all, on any plan or with no account, so the plugin remains fully usable meanwhile.
 
 = Can I repurpose my whole archive at once? =
 
-No, and that is deliberate. Each generation takes the better part of a minute and consumes one of the generations on your Repagify account. A bulk action would spend a small allowance in a single click with nothing to show for it. The plugin works one post at a time so you can read each result before deciding on the next.
+No, and that is deliberate. Each generation takes the better part of a minute and consumes one of the generations on your Repagio account. A bulk action would spend a small allowance in a single click with nothing to show for it. The plugin works one post at a time so you can read each result before deciding on the next.
 
 = Will this change my published posts? =
 
@@ -159,13 +159,18 @@ In your site's options table. It is never written to logs, never included in err
 
 == Changelog ==
 
+= 0.7.0 =
+* The plugin is now called Repagio, and the service has moved to repagio.app. The plugin folder, main file and text domain are now repagio.
+* Your API key, settings and the record of which posts you have converted carry over automatically from the previous name.
+* No change to scanning, scoring, quota handling or generation.
+
 = 0.6.0 =
 * Settings and Dashboard links in the Plugins list, with a matching set on the network plugins screen for multisite.
 * Documentation, Support and Report an issue links under the plugin's own row.
 * View details now opens a real modal, populated from readme.txt rather than a second copy of the same text kept in code.
 * Updates are served from GitHub releases until the plugin is hosted on WordPress.org, which is what makes the Enable auto-updates control appear. Auto-updates are never switched on for you.
 * Release builds are produced by a workflow that verifies the tag, the Version header and the Stable tag all agree before publishing.
-* Clearer wording throughout about which work happens on your server and which happens on the Repagify service. No functional change.
+* Clearer wording throughout about which work happens on your server and which happens on the Repagio service. No functional change.
 
 = 0.5.0 =
 * Compliance pass for the WordPress.org directory: full GPL-2.0 licence text, a complete external services disclosure, a translation template, and repository hygiene files.
@@ -174,10 +179,10 @@ In your site's options table. It is never written to logs, never included in err
 * No change to scanning, scoring, quota handling or generation.
 
 = 0.4.0 =
-* The dashboard now shows which plan your Repagify account is on and how many generations it has left.
+* The dashboard now shows which plan your Repagio account is on and how many generations it has left.
 * Checks the account's remaining generations before opening the generate dialog, rather than spending a request to be refused.
 * Clearer guidance when an account has no generations remaining.
-* Settings page now explains which Repagify plans can currently issue an API key.
+* Settings page now explains which Repagio plans can currently issue an API key.
 
 = 0.3.0 =
 * Generation flow: turn a published post into a blog post, LinkedIn post, X thread or newsletter.
@@ -192,11 +197,14 @@ In your site's options table. It is never written to logs, never included in err
 
 = 0.1.0 =
 * Initial release.
-* Settings page storing the Repagify API key and API base URL.
+* Settings page storing the Repagio API key and API base URL.
 * API client with distinct, readable handling for invalid keys, missing endpoints, rate limits and server errors.
 * Connection test that reports your account's plan and remaining generations.
 
 == Upgrade Notice ==
+
+= 0.7.0 =
+Repagify is now Repagio. Your settings and conversion history carry over. If the plugin shows as deactivated after updating, activate Repagio again from the Plugins screen.
 
 = 0.6.0 =
 Adds Plugins list links, a working View details modal, and updates served from GitHub releases so auto-updates can be enabled.
@@ -205,7 +213,7 @@ Adds Plugins list links, a working View details modal, and updates served from G
 Licensing, disclosure and translation housekeeping. No functional change.
 
 = 0.4.0 =
-Shows your Repagify account's plan and remaining generations, and checks before opening the generate dialog.
+Shows your Repagio account's plan and remaining generations, and checks before opening the generate dialog.
 
 = 0.3.0 =
 Adds the generation flow. Turn a published post into a blog post, LinkedIn post, X thread or newsletter.
@@ -214,4 +222,4 @@ Adds the generation flow. Turn a published post into a blog post, LinkedIn post,
 Adds the archive scanner and opportunity dashboard. Works with no account.
 
 = 0.1.0 =
-First release. Connects your site to your Repagify account.
+First release. Connects your site to your Repagio account.

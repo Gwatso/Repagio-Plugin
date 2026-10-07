@@ -7,7 +7,7 @@
  * potential. Makes no HTTP requests: the whole scanner works with no API key
  * saved.
  *
- * @package Repagify
+ * @package Repagio
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,14 +19,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 0.2.0
  */
-class Repagify_Scanner {
+class Repagio_Scanner {
 
 	/**
 	 * Transient holding the last completed (or in-progress) scan.
 	 *
 	 * @var string
 	 */
-	const TRANSIENT = 'repagify_scan_cache';
+	const TRANSIENT = 'repagio_scan_cache';
 
 	/**
 	 * How long a completed scan stays cached, in seconds.
@@ -42,7 +42,7 @@ class Repagify_Scanner {
 	 *
 	 * @var string
 	 */
-	const CONVERTED_META = '_repagify_converted';
+	const CONVERTED_META = '_repagio_converted';
 
 	/**
 	 * Archives at or below this many posts are scanned in one request.
@@ -120,7 +120,7 @@ class Repagify_Scanner {
 		 *
 		 * @param string[] $post_types Post type names. Defaults to array( 'post' ).
 		 */
-		$post_types = apply_filters( 'repagify_scannable_post_types', array( 'post' ) );
+		$post_types = apply_filters( 'repagio_scannable_post_types', array( 'post' ) );
 
 		if ( ! is_array( $post_types ) ) {
 			$post_types = array( $post_types );
@@ -606,29 +606,29 @@ class Repagify_Scanner {
 			// with, so the explanation says the one thing that matters.
 			$parts[] = sprintf(
 				/* translators: %s: formatted word count. */
-				__( 'only %s words', 'repagify' ),
+				__( 'only %s words', 'repagio' ),
 				number_format_i18n( $words )
 			);
-			$parts[] = __( 'too short to repurpose well', 'repagify' );
+			$parts[] = __( 'too short to repurpose well', 'repagio' );
 		} else {
 			$parts[] = sprintf(
 				/* translators: %s: formatted word count. */
-				__( '%s words', 'repagify' ),
+				__( '%s words', 'repagio' ),
 				number_format_i18n( $words )
 			);
 
 			if ( $headings >= 6 ) {
-				$parts[] = __( 'well structured', 'repagify' );
+				$parts[] = __( 'well structured', 'repagio' );
 			} elseif ( $headings >= 3 ) {
-				$parts[] = __( 'clearly structured', 'repagify' );
+				$parts[] = __( 'clearly structured', 'repagio' );
 			} elseif ( $headings >= 1 ) {
-				$parts[] = __( 'few headings', 'repagify' );
+				$parts[] = __( 'few headings', 'repagio' );
 			} else {
-				$parts[] = __( 'no headings', 'repagify' );
+				$parts[] = __( 'no headings', 'repagio' );
 			}
 
 			if ( $oversized ) {
-				$parts[] = __( 'needs splitting to convert', 'repagify' );
+				$parts[] = __( 'needs splitting to convert', 'repagio' );
 			}
 		}
 
@@ -638,18 +638,18 @@ class Repagify_Scanner {
 			if ( ! empty( $labels ) ) {
 				$parts[] = sprintf(
 					/* translators: %s: comma-separated list of output format names. */
-					__( 'already repurposed as %s', 'repagify' ),
+					__( 'already repurposed as %s', 'repagio' ),
 					implode( ', ', $labels )
 				);
 			} else {
-				$parts[] = __( 'already repurposed', 'repagify' );
+				$parts[] = __( 'already repurposed', 'repagio' );
 			}
 		} else {
-			$parts[] = __( 'never repurposed', 'repagify' );
+			$parts[] = __( 'never repurposed', 'repagio' );
 		}
 
 		/* translators: separator between the clauses of a score explanation. */
-		return implode( __( ', ', 'repagify' ), $parts );
+		return implode( __( ', ', 'repagio' ), $parts );
 	}
 
 	/**
@@ -839,10 +839,10 @@ class Repagify_Scanner {
 	 */
 	public static function format_labels() {
 		return array(
-			'seo_blog'      => __( 'SEO blog post', 'repagify' ),
-			'linkedin_post' => __( 'LinkedIn post', 'repagify' ),
-			'x_thread'      => __( 'X thread', 'repagify' ),
-			'newsletter'    => __( 'Newsletter', 'repagify' ),
+			'seo_blog'      => __( 'SEO blog post', 'repagio' ),
+			'linkedin_post' => __( 'LinkedIn post', 'repagio' ),
+			'x_thread'      => __( 'X thread', 'repagio' ),
+			'newsletter'    => __( 'Newsletter', 'repagio' ),
 		);
 	}
 

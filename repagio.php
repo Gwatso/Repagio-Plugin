@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name:       Repagify
+ * Plugin Name:       Repagio
  * Plugin URI:        https://github.com/Gwatso/Repagio-Plugin
  * Description:       Finds the dormant posts in your archive worth reusing, then turns the best of them into blog posts, LinkedIn posts, X threads and newsletters.
- * Version:           0.6.0
+ * Version:           0.7.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Afriflare
- * Author URI:        https://repagify.afriflare.com
+ * Author URI:        https://repagio.app
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       repagify
+ * Text Domain:       repagio
  * Domain Path:       /languages
  * Update URI:        https://github.com/Gwatso/Repagio-Plugin
  *
@@ -19,51 +19,52 @@
  * WORDPRESS.ORG DIRECTORY.
  *
  * While the header is present, WordPress routes update checks to
- * update_plugins_github.com (see includes/class-repagify-updater.php) and will
+ * update_plugins_github.com (see includes/class-repagio-updater.php) and will
  * NOT accept updates from WordPress.org for this plugin. That is exactly what
  * the header is for: it stops the directory serving updates for a plugin whose
  * slug it does not own. The moment the plugin is hosted on WordPress.org, the
  * directory becomes the correct and canonical update source, and leaving this
  * header in place would permanently block every official update.
  *
- * Removing the header is sufficient on its own — Repagify_Updater only ever
+ * Removing the header is sufficient on its own — Repagio_Updater only ever
  * hooks a filter keyed on the header's hostname, so it becomes inert. Deleting
  * the updater class as well is tidier but not required.
  * ---------------------------------------------------------------------------
  *
- * @package Repagify
+ * @package Repagio
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'REPAGIFY_VERSION', '0.6.0' );
-define( 'REPAGIFY_FILE', __FILE__ );
-define( 'REPAGIFY_PATH', plugin_dir_path( __FILE__ ) );
-define( 'REPAGIFY_URL', plugin_dir_url( __FILE__ ) );
+define( 'REPAGIO_VERSION', '0.7.0' );
+define( 'REPAGIO_FILE', __FILE__ );
+define( 'REPAGIO_PATH', plugin_dir_path( __FILE__ ) );
+define( 'REPAGIO_URL', plugin_dir_url( __FILE__ ) );
 
 /**
  * Fallback API base URL, used until the site owner overrides it in settings.
  */
-define( 'REPAGIFY_DEFAULT_API_URL', 'https://repagify.afriflare.com/api/v1' );
+define( 'REPAGIO_DEFAULT_API_URL', 'https://repagio.app/api/v1' );
 
 /**
  * Where site owners without an account are sent to create a free one.
  */
-define( 'REPAGIFY_SIGNUP_URL', 'https://repagify.afriflare.com/signup' );
+define( 'REPAGIO_SIGNUP_URL', 'https://repagio.app/signup' );
 
-require_once REPAGIFY_PATH . 'includes/class-repagify-settings.php';
-require_once REPAGIFY_PATH . 'includes/class-repagify-formats.php';
-require_once REPAGIFY_PATH . 'includes/class-repagify-content.php';
-require_once REPAGIFY_PATH . 'includes/class-repagify-api.php';
-require_once REPAGIFY_PATH . 'includes/class-repagify-quota.php';
-require_once REPAGIFY_PATH . 'includes/class-repagify-scanner.php';
-require_once REPAGIFY_PATH . 'includes/class-repagify-readme.php';
-require_once REPAGIFY_PATH . 'includes/class-repagify-updater.php';
+require_once REPAGIO_PATH . 'includes/class-repagio-settings.php';
+require_once REPAGIO_PATH . 'includes/class-repagio-formats.php';
+require_once REPAGIO_PATH . 'includes/class-repagio-content.php';
+require_once REPAGIO_PATH . 'includes/class-repagio-api.php';
+require_once REPAGIO_PATH . 'includes/class-repagio-quota.php';
+require_once REPAGIO_PATH . 'includes/class-repagio-scanner.php';
+require_once REPAGIO_PATH . 'includes/class-repagio-readme.php';
+require_once REPAGIO_PATH . 'includes/class-repagio-updater.php';
+require_once REPAGIO_PATH . 'includes/class-repagio-migration.php';
 
 if ( is_admin() ) {
-	require_once REPAGIFY_PATH . 'admin/class-repagify-admin.php';
+	require_once REPAGIO_PATH . 'admin/class-repagio-admin.php';
 }
 
 /**
@@ -73,19 +74,23 @@ if ( is_admin() ) {
  *
  * @return void
  */
-function repagify_bootstrap() {
-	Repagify_Settings::init();
+function repagio_bootstrap() {
+	Repagio_Settings::init();
 
 	if ( is_admin() ) {
-		$admin = new Repagify_Admin();
+		// Carries settings and post meta over from the plugin's former name.
+		// A no-op once done, and admin-only like everything that reads them.
+		Repagio_Migration::maybe_migrate();
+
+		$admin = new Repagio_Admin();
 		$admin->init();
 
 		// Update checks belong to the admin only. The class hooks nothing at
 		// all on a front-end request.
-		Repagify_Updater::init();
+		Repagio_Updater::init();
 	}
 }
-add_action( 'plugins_loaded', 'repagify_bootstrap' );
+add_action( 'plugins_loaded', 'repagio_bootstrap' );
 
 /*
  * Translations are loaded by WordPress itself.
@@ -105,7 +110,9 @@ add_action( 'plugins_loaded', 'repagify_bootstrap' );
  *
  * @return void
  */
-function repagify_activate() {
-	Repagify_Settings::seed_defaults();
+function repagio_activate() {
+	// Before seeding, or a fresh empty option would shadow the migrated key.
+	Repagio_Migration::maybe_migrate();
+	Repagio_Settings::seed_defaults();
 }
-register_activation_hook( __FILE__, 'repagify_activate' );
+register_activation_hook( __FILE__, 'repagio_activate' );

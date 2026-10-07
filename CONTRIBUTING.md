@@ -1,4 +1,4 @@
-# Contributing to Repagify
+# Contributing to Repagio
 
 Thanks for taking an interest. This document covers getting a local
 environment running and the standards a patch is expected to meet.
@@ -10,7 +10,7 @@ You need a WordPress install running **WordPress 6.0 or newer** on
 
 - **[Local](https://localwp.com/)** — simplest on Windows and macOS. Create a
   site, then clone this repository into
-  `app/public/wp-content/plugins/repagify`. The folder name matters: Plugin
+  `app/public/wp-content/plugins/repagio`. The folder name matters: Plugin
   Check derives both the plugin slug and the expected text domain from it.
 - **[wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/)** —
   `npx wp-env start` from the repository root.
@@ -20,8 +20,8 @@ You need a WordPress install running **WordPress 6.0 or newer** on
 Then activate the plugin from **Plugins → Installed Plugins**.
 
 The archive scanner works immediately with no account and no network access.
-To work on the generation flow you need a Repagify API key, which you add
-under **Repagify → Settings**.
+To work on the generation flow you need a Repagio API key, which you add
+under **Repagio → Settings**.
 
 ### Testing without spending generations
 
@@ -74,7 +74,7 @@ These are WordPress.org review rejection reasons. A patch that breaks one will
 not be merged:
 
 - **Prefixing.** Every function, class, constant, option, hook and transient
-  starts with `repagify_` / `Repagify_` / `REPAGIFY_`.
+  starts with `repagio_` / `Repagio_` / `REPAGIO_`.
 - **Nonces.** Every form POST and every AJAX handler verifies one.
 - **Capabilities.** Every admin action checks `current_user_can()`.
 - **Sanitize on input, escape on output.** No exceptions, including for values
@@ -84,7 +84,7 @@ not be merged:
   put in a page attribute, or included in an error message.
 - **The WordPress HTTP API only.** `wp_remote_get()` / `wp_remote_post()`,
   never cURL directly, and every call goes through
-  `includes/class-repagify-api.php`.
+  `includes/class-repagio-api.php`.
 - **No new dependencies.** No Composer packages shipped, no npm, no React, no
   bundled fonts or icon libraries. Dashicons ship with core and are the only
   icons used.
@@ -103,14 +103,14 @@ Please do not send patches adding these:
 
 ## Internationalisation
 
-Text domain is `repagify`, matching the plugin folder name, loaded from `/languages`. Plugin Check derives the expected domain from the folder, so the two must stay in step. Wrap every user-facing
+Text domain is `repagio`, matching the plugin folder name, loaded from `/languages`. Plugin Check derives the expected domain from the folder, so the two must stay in step. Wrap every user-facing
 string, use `printf`-style placeholders rather than concatenation, and add a
 `translators:` comment wherever a placeholder's meaning is not obvious:
 
 ```php
 printf(
     /* translators: %s: formatted word count. */
-    esc_html__( '%s words will be sent.', 'repagify' ),
+    esc_html__( '%s words will be sent.', 'repagio' ),
     esc_html( number_format_i18n( $words ) )
 );
 ```
@@ -121,12 +121,12 @@ hardcode user-facing English in a `.js` file.
 Regenerate the translation template after changing any string:
 
 ```
-wp i18n make-pot . languages/repagify.pot
+wp i18n make-pot . languages/repagio.pot
 ```
 
 ## Building the distribution zip
 
-`bin/build-zip.sh` produces `repagify.zip`, exactly what would be
+`bin/build-zip.sh` produces `repagio.zip`, exactly what would be
 submitted to WordPress.org. It is the single source of truth for what ships:
 the release workflow calls this same script rather than repeating the rules, so
 CI and your machine cannot disagree.
@@ -165,10 +165,10 @@ To check the real artefact:
 
 1. `bash bin/build-zip.sh`
 2. In WordPress admin, go to **Tools → Plugin Check**
-3. Choose **Check an uploaded plugin** and upload `repagify.zip`
+3. Choose **Check an uploaded plugin** and upload `repagio.zip`
 
 Or unzip it into a scratch WordPress install's `wp-content/plugins/` and check
-it there. The folder must keep the name `repagify`, because Plugin Check
+it there. The folder must keep the name `repagio`, because Plugin Check
 derives both the plugin slug and the expected text domain from the folder name
 — rename it and you will get a false `TextDomainMismatch` on every string.
 
@@ -179,23 +179,36 @@ One finding is known and deliberate:
 - **`plugin_updater_detected`** — the `Update URI` header, which routes update
   checks to GitHub releases until the plugin is hosted on WordPress.org. It
   must be removed at submission; the reason is spelled out at the top of
-  `repagify.php`.
+  `repagio.php`.
 
-### Why the slug is `repagify` and not `repagify-plugin`
+### Why the slug is `repagio` and not `repagio-plugin`
 
 WordPress.org treats "plugin" as a restricted term and will not accept a slug
 containing it. The folder, the main file, the text domain and
-`Repagify_Updater::SLUG` are therefore all plain `repagify`, and they have to
+`Repagio_Updater::SLUG` are therefore all plain `repagio`, and they have to
 stay in step: Plugin Check derives both the slug and the expected text domain
 from the folder name, so renaming any one of them alone reintroduces a
 `TextDomainMismatch` on every translatable string.
 
 The GitHub repository is named `Repagio-Plugin`. That is fine — the
 repository name has no bearing on the directory slug, and
-`Repagify_Updater::REPO` refers to it deliberately. If the repository is
-renamed again, update `Repagify_Updater::REPO`, the `Plugin URI` and
-`Update URI` headers in `repagify.php`, the "Report an issue" link in
-`Repagify_Admin`, and the source link in `readme.txt` together.
+`Repagio_Updater::REPO` refers to it deliberately. If the repository is
+renamed again, update `Repagio_Updater::REPO`, the `Plugin URI` and
+`Update URI` headers in `repagio.php`, the "Report an issue" link in
+`Repagio_Admin`, and the source link in `readme.txt` together.
+
+### The former name, Repagify
+
+Up to 0.6.0 the plugin was called Repagify, with the slug, text domain and
+prefix `repagify`. Sites that ran it have their API key in the
+`repagify_settings` option and their converted posts marked with
+`_repagify_converted` post meta. `Repagio_Migration` moves both onto the
+`repagio` keys the first time 0.7.0 loads in the admin, and `uninstall.php`
+also deletes them in case it never ran.
+
+Those legacy names in `includes/class-repagio-migration.php` and
+`uninstall.php` are the only places the old prefix may appear. Everything
+new uses `repagio_` / `Repagio_` / `REPAGIO_`.
 
 ## Pull requests
 
@@ -209,5 +222,5 @@ renamed again, update `Repagify_Updater::REPO`, the `Plugin URI` and
 ## Reporting a security issue
 
 Please do not open a public issue for a security problem. Email
-**hello@repagify.afriflare.com** with the details and give us a reasonable
+**hello@repagio.app** with the details and give us a reasonable
 window to ship a fix before disclosing.

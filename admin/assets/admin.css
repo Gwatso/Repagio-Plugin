@@ -1,25 +1,25 @@
 /**
- * Repagify admin styles.
+ * Repagio admin styles.
  *
  * Loaded only on the plugin's own screens.
  */
 
-.repagify-wrap .repagify-intro {
+.repagio-wrap .repagio-intro {
 	max-width: 46em;
 	font-size: 14px;
 }
 
-.repagify-wrap .repagify-key-preview {
+.repagio-wrap .repagio-key-preview {
 	margin: 0 0 8px;
 }
 
-.repagify-wrap .repagify-key-preview code {
+.repagio-wrap .repagio-key-preview code {
 	padding: 4px 8px;
 	font-size: 13px;
 	letter-spacing: 1px;
 }
 
-.repagify-badge {
+.repagio-badge {
 	display: inline-block;
 	margin-left: 6px;
 	padding: 2px 8px;
@@ -31,76 +31,76 @@
 	letter-spacing: 0.4px;
 }
 
-.repagify-badge--saved {
+.repagio-badge--saved {
 	background: #edfaef;
 	color: #00652b;
 	border: 1px solid #b8e6c4;
 }
 
-.repagify-inline-label {
+.repagio-inline-label {
 	display: inline-block;
 	margin-left: 12px;
 }
 
-.repagify-hint {
+.repagio-hint {
 	margin-top: -6px;
 	color: #646970;
 	font-style: italic;
 }
 
-#repagify-test-spinner {
+#repagio-test-spinner {
 	float: none;
 	margin: 0 0 0 6px;
 	vertical-align: middle;
 }
 
-#repagify-test-spinner.is-active {
+#repagio-test-spinner.is-active {
 	visibility: visible;
 }
 
-.repagify-result {
+.repagio-result {
 	margin-top: 12px;
 	max-width: 46em;
 }
 
-.repagify-result:empty {
+.repagio-result:empty {
 	display: none;
 }
 
-.repagify-notice {
+.repagio-notice {
 	padding: 10px 14px;
 	border-left: 4px solid #72aee6;
 	background: #fff;
 	box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.04 );
 }
 
-.repagify-notice--success {
+.repagio-notice--success {
 	border-left-color: #00a32a;
 }
 
-.repagify-notice--error {
+.repagio-notice--error {
 	border-left-color: #d63638;
 }
 
-.repagify-notice p {
+.repagio-notice p {
 	margin: 0 0 6px;
 }
 
-.repagify-notice p:last-child {
+.repagio-notice p:last-child {
 	margin-bottom: 0;
 }
 
-.repagify-account {
+.repagio-account {
 	margin: 8px 0 0;
 	padding: 0;
 	list-style: none;
 }
 
-.repagify-account li {
+.repagio-account li {
 	margin: 0 0 4px;
 }
 
-.repagify-account .repagify-account-label {
+.repagio-account .repagio-account-label {
 	display: inline-block;
 	min-width: 12em;
 	color: #646970;
@@ -109,17 +109,17 @@
 /* Opportunity dashboard
    -------------------------------------------------------------- */
 
-.repagify-dashboard .repagify-rescan-form {
+.repagio-dashboard .repagio-rescan-form {
 	display: inline;
 	margin: 0;
 }
 
-.repagify-dashboard .repagify-rescan-form .page-title-action {
+.repagio-dashboard .repagio-rescan-form .page-title-action {
 	/* Matches the anchor core uses for this slot. */
 	cursor: pointer;
 }
 
-.repagify-hook {
+.repagio-hook {
 	margin: 20px 0 24px;
 	padding: 20px 24px;
 	border: 1px solid #dcdcde;
@@ -129,31 +129,31 @@
 	box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.04 );
 }
 
-.repagify-hook-lead {
+.repagio-hook-lead {
 	margin: 0;
 	font-size: 20px;
 	line-height: 1.5;
 	color: #1d2327;
 }
 
-.repagify-hook-lead strong {
+.repagio-hook-lead strong {
 	font-weight: 700;
 }
 
-.repagify-hook-sub {
+.repagio-hook-sub {
 	margin: 10px 0 0;
 	font-size: 14px;
 	color: #50575e;
 }
 
-.repagify-stats {
+.repagio-stats {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 12px;
 	margin: 0 0 24px;
 }
 
-.repagify-card {
+.repagio-card {
 	display: flex;
 	flex: 1 1 180px;
 	flex-direction: column;
@@ -165,7 +165,7 @@
 	box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.04 );
 }
 
-.repagify-card-label {
+.repagio-card-label {
 	font-size: 12px;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -173,7 +173,7 @@
 	color: #646970;
 }
 
-.repagify-card-value {
+.repagio-card-value {
 	margin: 4px 0 2px;
 	font-size: 26px;
 	font-weight: 700;
@@ -181,25 +181,25 @@
 	color: #1d2327;
 }
 
-.repagify-card-note {
+.repagio-card-note {
 	font-size: 12px;
 	color: #646970;
 }
 
-.repagify-card--opportunity .repagify-card-value {
+.repagio-card--opportunity .repagio-card-value {
 	color: #2271b1;
 }
 
-.repagify-card--done .repagify-card-value {
+.repagio-card--done .repagio-card-value {
 	color: #00652b;
 }
 
-.repagify-section-heading {
+.repagio-section-heading {
 	margin: 24px 0 8px;
 	font-size: 16px;
 }
 
-.repagify-filters {
+.repagio-filters {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -211,33 +211,33 @@
 	background: #fff;
 }
 
-.repagify-filters .repagify-filter {
+.repagio-filters .repagio-filter {
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
 }
 
-.repagify-filters label {
+.repagio-filters label {
 	font-size: 13px;
 	color: #50575e;
 }
 
-.repagify-reset-filters {
+.repagio-reset-filters {
 	font-size: 13px;
 }
 
-.repagify-table .column-word_count,
-.repagify-table .column-date,
-.repagify-table .column-status,
-.repagify-table .column-score {
+.repagio-table .column-word_count,
+.repagio-table .column-date,
+.repagio-table .column-status,
+.repagio-table .column-score {
 	width: 14%;
 }
 
-.repagify-table .column-action {
+.repagio-table .column-action {
 	width: 10%;
 }
 
-.repagify-row-meta {
+.repagio-row-meta {
 	display: block;
 	margin-top: 3px;
 	font-size: 12px;
@@ -245,7 +245,7 @@
 	color: #646970;
 }
 
-.repagify-score {
+.repagio-score {
 	display: inline-block;
 	min-width: 2.6em;
 	padding: 2px 8px;
@@ -255,25 +255,25 @@
 	text-align: center;
 }
 
-.repagify-score--high {
+.repagio-score--high {
 	background: #edfaef;
 	color: #00652b;
 	border: 1px solid #b8e6c4;
 }
 
-.repagify-score--medium {
+.repagio-score--medium {
 	background: #fcf9e8;
 	color: #8a6116;
 	border: 1px solid #f0e3a8;
 }
 
-.repagify-score--low {
+.repagio-score--low {
 	background: #f6f7f7;
 	color: #646970;
 	border: 1px solid #dcdcde;
 }
 
-.repagify-score-track {
+.repagio-score-track {
 	display: block;
 	width: 100%;
 	max-width: 100px;
@@ -284,40 +284,40 @@
 	overflow: hidden;
 }
 
-.repagify-score-fill {
+.repagio-score-fill {
 	display: block;
 	height: 100%;
 	background: #2271b1;
 }
 
-.repagify-score--medium + .repagify-score-track .repagify-score-fill {
+.repagio-score--medium + .repagio-score-track .repagio-score-fill {
 	background: #dba617;
 }
 
-.repagify-score--low + .repagify-score-track .repagify-score-fill {
+.repagio-score--low + .repagio-score-track .repagio-score-fill {
 	background: #a7aaad;
 }
 
-.repagify-badge--opportunity {
+.repagio-badge--opportunity {
 	background: #f0f6fc;
 	color: #0a4b78;
 	border: 1px solid #b8d5ea;
 }
 
-.repagify-badge--done {
+.repagio-badge--done {
 	background: #edfaef;
 	color: #00652b;
 	border: 1px solid #b8e6c4;
 }
 
-.repagify-badge--opportunity,
-.repagify-badge--done {
+.repagio-badge--opportunity,
+.repagio-badge--done {
 	margin-left: 0;
 }
 
 /* Wraps the disabled Repurpose button so its tooltip is still reachable:
    a disabled button gets no hover title of its own in some browsers. */
-.repagify-soon-wrap {
+.repagio-soon-wrap {
 	display: inline-block;
 	cursor: not-allowed;
 }
@@ -325,7 +325,7 @@
 /* Empty state
    -------------------------------------------------------------- */
 
-.repagify-empty {
+.repagio-empty {
 	max-width: 40em;
 	margin: 24px 0;
 	padding: 32px 28px;
@@ -336,37 +336,37 @@
 	box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.04 );
 }
 
-.repagify-empty .dashicons {
+.repagio-empty .dashicons {
 	width: 42px;
 	height: 42px;
 	font-size: 42px;
 	color: #c3c4c7;
 }
 
-.repagify-empty h2 {
+.repagio-empty h2 {
 	margin: 8px 0 12px;
 	font-size: 20px;
 }
 
-.repagify-empty p {
+.repagio-empty p {
 	margin: 0 auto 12px;
 	max-width: 34em;
 	font-size: 14px;
 	color: #50575e;
 }
 
-.repagify-empty-actions {
+.repagio-empty-actions {
 	margin-top: 20px;
 }
 
-.repagify-empty-actions .button {
+.repagio-empty-actions .button {
 	margin: 0 4px;
 }
 
 /* Batched scan progress
    -------------------------------------------------------------- */
 
-.repagify-scan-progress {
+.repagio-scan-progress {
 	max-width: 44em;
 	margin: 24px 0;
 	padding: 24px 26px;
@@ -376,17 +376,17 @@
 	box-shadow: 0 1px 1px rgba( 0, 0, 0, 0.04 );
 }
 
-.repagify-scan-progress h2 {
+.repagio-scan-progress h2 {
 	margin-top: 0;
 	font-size: 18px;
 }
 
-.repagify-scan-blurb {
+.repagio-scan-blurb {
 	font-size: 14px;
 	color: #50575e;
 }
 
-.repagify-progress-bar {
+.repagio-progress-bar {
 	height: 10px;
 	margin: 18px 0 10px;
 	border-radius: 5px;
@@ -394,7 +394,7 @@
 	overflow: hidden;
 }
 
-.repagify-progress-fill {
+.repagio-progress-fill {
 	display: block;
 	width: 0;
 	height: 100%;
@@ -402,7 +402,7 @@
 	transition: width 200ms ease-out;
 }
 
-.repagify-scan-status {
+.repagio-scan-status {
 	margin: 0;
 	font-size: 13px;
 	color: #50575e;
@@ -411,11 +411,11 @@
 /* Repurpose modal
    -------------------------------------------------------------- */
 
-body.repagify-modal-open {
+body.repagio-modal-open {
 	overflow: hidden;
 }
 
-.repagify-modal {
+.repagio-modal {
 	position: fixed;
 	inset: 0;
 	z-index: 160000;
@@ -426,17 +426,17 @@ body.repagify-modal-open {
 	overflow-y: auto;
 }
 
-.repagify-modal[hidden] {
+.repagio-modal[hidden] {
 	display: none;
 }
 
-.repagify-modal-backdrop {
+.repagio-modal-backdrop {
 	position: fixed;
 	inset: 0;
 	background: rgba( 0, 0, 0, 0.7 );
 }
 
-.repagify-modal-panel {
+.repagio-modal-panel {
 	position: relative;
 	width: 100%;
 	max-width: 720px;
@@ -447,7 +447,7 @@ body.repagify-modal-open {
 	box-shadow: 0 3px 30px rgba( 0, 0, 0, 0.3 );
 }
 
-.repagify-modal-head {
+.repagio-modal-head {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -455,13 +455,13 @@ body.repagify-modal-open {
 	border-bottom: 1px solid #dcdcde;
 }
 
-.repagify-modal-head h2 {
+.repagio-modal-head h2 {
 	margin: 0;
 	font-size: 18px;
 	line-height: 1.3;
 }
 
-.repagify-modal-close {
+.repagio-modal-close {
 	padding: 0 6px;
 	border: 0;
 	background: none;
@@ -471,12 +471,12 @@ body.repagify-modal-open {
 	cursor: pointer;
 }
 
-.repagify-modal-close:hover,
-.repagify-modal-close:focus {
+.repagio-modal-close:hover,
+.repagio-modal-close:focus {
 	color: #d63638;
 }
 
-.repagify-modal-post {
+.repagio-modal-post {
 	margin: 0;
 	padding: 12px 20px;
 	border-bottom: 1px solid #f0f0f1;
@@ -487,57 +487,57 @@ body.repagify-modal-open {
 	word-wrap: break-word;
 }
 
-.repagify-modal-post:empty {
+.repagio-modal-post:empty {
 	display: none;
 }
 
-.repagify-modal-body {
+.repagio-modal-body {
 	padding: 16px 20px 0;
 }
 
-.repagify-field {
+.repagio-field {
 	margin: 0 0 14px;
 }
 
-.repagify-field[hidden] {
+.repagio-field[hidden] {
 	display: none;
 }
 
-.repagify-field label {
+.repagio-field label {
 	display: block;
 	margin-bottom: 4px;
 	font-weight: 600;
 }
 
-.repagify-field select,
-.repagify-field input[type="text"] {
+.repagio-field select,
+.repagio-field input[type="text"] {
 	width: 100%;
 	max-width: 100%;
 }
 
-.repagify-optional {
+.repagio-optional {
 	font-weight: 400;
 	color: #646970;
 }
 
-.repagify-source-note {
+.repagio-source-note {
 	margin: 0 0 14px;
 	font-size: 13px;
 	color: #50575e;
 }
 
-.repagify-source-note:empty {
+.repagio-source-note:empty {
 	display: none;
 }
 
-.repagify-source-note.repagify-warning {
+.repagio-source-note.repagio-warning {
 	padding: 8px 12px;
 	border-left: 4px solid #dba617;
 	background: #fcf9e8;
 	color: #674600;
 }
 
-.repagify-modal-actions {
+.repagio-modal-actions {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -545,38 +545,38 @@ body.repagify-modal-open {
 	margin-top: 4px;
 }
 
-#repagify-generate-spinner {
+#repagio-generate-spinner {
 	float: none;
 	margin: 0;
 }
 
-#repagify-generate-spinner.is-active {
+#repagio-generate-spinner.is-active {
 	visibility: visible;
 }
 
-.repagify-generate-wait {
+.repagio-generate-wait {
 	margin: 10px 0 0;
 	font-size: 13px;
 	font-style: italic;
 	color: #646970;
 }
 
-.repagify-generate-wait[hidden] {
+.repagio-generate-wait[hidden] {
 	display: none;
 }
 
-.repagify-result-panel[hidden] {
+.repagio-result-panel[hidden] {
 	display: none;
 }
 
-.repagify-result-meta {
+.repagio-result-meta {
 	margin: 0 0 10px;
 	font-size: 13px;
 	font-weight: 600;
 	color: #50575e;
 }
 
-.repagify-result-content {
+.repagio-result-content {
 	max-height: 45vh;
 	margin: 0 0 14px;
 	padding: 14px 16px;
@@ -592,34 +592,34 @@ body.repagify-modal-open {
 	tab-size: 4;
 }
 
-.repagify-result-content:focus {
+.repagio-result-content:focus {
 	outline: 2px solid #2271b1;
 	outline-offset: 1px;
 }
 
-.repagify-modal-notice:empty {
+.repagio-modal-notice:empty {
 	display: none;
 }
 
-.repagify-modal-notice {
+.repagio-modal-notice {
 	margin-top: 12px;
 }
 
-.repagify-connect-notice .button {
+.repagio-connect-notice .button {
 	margin-right: 6px;
 }
 
 @media screen and ( max-width: 600px ) {
-	.repagify-modal {
+	.repagio-modal {
 		padding: 0;
 	}
 
-	.repagify-modal-panel {
+	.repagio-modal-panel {
 		max-width: none;
 		border-radius: 0;
 	}
 
-	.repagify-result-content {
+	.repagio-result-content {
 		max-height: 40vh;
 	}
 }
@@ -627,7 +627,7 @@ body.repagify-modal-open {
 /* Connection and quota status strip
    -------------------------------------------------------------- */
 
-.repagify-status {
+.repagio-status {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -642,7 +642,7 @@ body.repagify-modal-open {
 	color: #50575e;
 }
 
-.repagify-status-dot {
+.repagio-status-dot {
 	width: 8px;
 	height: 8px;
 	border-radius: 50%;
@@ -650,60 +650,60 @@ body.repagify-modal-open {
 	flex: 0 0 auto;
 }
 
-.repagify-status-sep {
+.repagio-status-sep {
 	margin: 0 4px;
 	color: #c3c4c7;
 }
 
-.repagify-status-quota {
+.repagio-status-quota {
 	font-weight: 600;
 }
 
-.repagify-status-link {
+.repagio-status-link {
 	margin-left: auto;
 }
 
 /* Connected, plenty left. */
-.repagify-status--normal,
-.repagify-status--neutral {
+.repagio-status--normal,
+.repagio-status--neutral {
 	border-left-color: #00a32a;
 }
 
-.repagify-status--normal .repagify-status-dot,
-.repagify-status--neutral .repagify-status-dot {
+.repagio-status--normal .repagio-status-dot,
+.repagio-status--neutral .repagio-status-dot {
 	background: #00a32a;
 }
 
 /* At or below a quarter of the allowance. */
-.repagify-status--low {
+.repagio-status--low {
 	border-left-color: #dba617;
 	background: #fcf9e8;
 }
 
-.repagify-status--low .repagify-status-dot {
+.repagio-status--low .repagio-status-dot {
 	background: #dba617;
 }
 
-.repagify-status--low .repagify-status-quota {
+.repagio-status--low .repagio-status-quota {
 	color: #674600;
 }
 
 /* Nothing left. */
-.repagify-status--empty {
+.repagio-status--empty {
 	border-left-color: #d63638;
 	background: #fcf0f1;
 }
 
-.repagify-status--empty .repagify-status-dot {
+.repagio-status--empty .repagio-status-dot {
 	background: #d63638;
 }
 
-.repagify-status--empty .repagify-status-quota {
+.repagio-status--empty .repagio-status-quota {
 	color: #8a1f21;
 }
 
 /* No key saved at all. */
-.repagify-status--offline {
+.repagio-status--offline {
 	border-left-color: #a7aaad;
 	background: #f6f7f7;
 }
@@ -711,50 +711,50 @@ body.repagify-modal-open {
 /* Upgrade prompt
    -------------------------------------------------------------- */
 
-.repagify-upgrade-panel[hidden] {
+.repagio-upgrade-panel[hidden] {
 	display: none;
 }
 
-.repagify-upgrade-title {
+.repagio-upgrade-title {
 	margin: 0 0 8px;
 	font-size: 15px;
 	font-weight: 600;
 	color: #1d2327;
 }
 
-.repagify-upgrade-message {
+.repagio-upgrade-message {
 	margin: 0 0 10px;
 	font-size: 14px;
 	line-height: 1.6;
 	color: #50575e;
 }
 
-.repagify-upgrade-note {
+.repagio-upgrade-note {
 	margin: 0 0 16px;
 	font-size: 13px;
 	font-style: italic;
 	color: #646970;
 }
 
-.repagify-upgrade-note[hidden],
-.repagify-upgrade-note:empty {
+.repagio-upgrade-note[hidden],
+.repagio-upgrade-note:empty {
 	display: none;
 }
 
-.repagify-modal-quota {
+.repagio-modal-quota {
 	margin: 0 0 14px;
 	font-size: 13px;
 	font-weight: 600;
 	color: #50575e;
 }
 
-.repagify-modal-quota:empty {
+.repagio-modal-quota:empty {
 	display: none;
 }
 
 /* Settings: which plans can issue a key */
 
-.repagify-key-tier-note {
+.repagio-key-tier-note {
 	display: flex;
 	align-items: flex-start;
 	gap: 6px;
@@ -766,7 +766,7 @@ body.repagify-modal-open {
 	color: #0a4b78;
 }
 
-.repagify-key-tier-note .dashicons {
+.repagio-key-tier-note .dashicons {
 	flex: 0 0 auto;
 	font-size: 18px;
 	width: 18px;

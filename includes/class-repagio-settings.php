@@ -2,7 +2,7 @@
 /**
  * Options storage and Settings API registration.
  *
- * @package Repagify
+ * @package Repagio
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers and reads the Repagify settings.
+ * Registers and reads the Repagio settings.
  *
  * The API key is stored in wp_options but is never rendered in full. The
  * settings form only ever shows a mask, and the input that writes the key is
@@ -18,33 +18,33 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 0.1.0
  */
-class Repagify_Settings {
+class Repagio_Settings {
 
 	/**
 	 * Option name holding every plugin setting.
 	 *
 	 * @var string
 	 */
-	const OPTION_NAME = 'repagify_settings';
+	const OPTION_NAME = 'repagio_settings';
 
 	/**
 	 * Settings API group name.
 	 *
 	 * @var string
 	 */
-	const GROUP = 'repagify_settings_group';
+	const GROUP = 'repagio_settings_group';
 
 	/**
 	 * Slug of the settings page the sections are attached to.
 	 *
 	 * @var string
 	 */
-	const PAGE = 'repagify-settings';
+	const PAGE = 'repagio-settings';
 
 	/**
 	 * Whether to warn that API keys are not yet available on every plan.
 	 *
-	 * TEMPORARY. Repagify is opening API keys to Free and Creator accounts,
+	 * TEMPORARY. Repagio is opening API keys to Free and Creator accounts,
 	 * with per-plan quotas doing the gating instead of a tier wall. The moment
 	 * that ships, set this to false — or delete this constant and
 	 * key_tier_notice() together, which are the only two places this claim is
@@ -81,7 +81,7 @@ class Repagify_Settings {
 	public static function defaults() {
 		return array(
 			'api_key' => '',
-			'api_url' => REPAGIFY_DEFAULT_API_URL,
+			'api_url' => REPAGIO_DEFAULT_API_URL,
 		);
 	}
 
@@ -121,7 +121,7 @@ class Repagify_Settings {
 	 * Returns the stored API key.
 	 *
 	 * Callers must never render, log or transmit this value anywhere other than
-	 * the Authorization header built by Repagify_API.
+	 * the Authorization header built by Repagio_API.
 	 *
 	 * @since 0.1.0
 	 *
@@ -182,7 +182,7 @@ class Repagify_Settings {
 		$settings = self::all();
 		$url      = untrailingslashit( trim( (string) $settings['api_url'] ) );
 
-		return '' === $url ? REPAGIFY_DEFAULT_API_URL : $url;
+		return '' === $url ? REPAGIO_DEFAULT_API_URL : $url;
 	}
 
 	/**
@@ -216,8 +216,8 @@ class Repagify_Settings {
 	public static function forget_account( $old = null, $new = null ) {
 		unset( $old, $new );
 
-		if ( class_exists( 'Repagify_Quota' ) ) {
-			Repagify_Quota::clear();
+		if ( class_exists( 'Repagio_Quota' ) ) {
+			Repagio_Quota::clear();
 		}
 	}
 
@@ -235,22 +235,22 @@ class Repagify_Settings {
 			return '';
 		}
 
-		return __( 'Repagify currently issues API keys on its Pro and Agency plans, with Free and Creator support on the way. That is the service’s own policy about its API. The plugin’s scanner and dashboard work with no key at all.', 'repagify' );
+		return __( 'Repagio currently issues API keys on its Pro and Agency plans, with Free and Creator support on the way. That is the service’s own policy about its API. The plugin’s scanner and dashboard work with no key at all.', 'repagio' );
 	}
 
 	/**
-	 * URL of the Repagify signup page.
+	 * URL of the Repagio signup page.
 	 *
 	 * @since 0.3.0
 	 *
 	 * @return string
 	 */
 	public static function signup_url() {
-		return REPAGIFY_SIGNUP_URL;
+		return REPAGIO_SIGNUP_URL;
 	}
 
 	/**
-	 * URL of this site's Repagify settings screen.
+	 * URL of this site's Repagio settings screen.
 	 *
 	 * @since 0.3.0
 	 *
@@ -280,28 +280,28 @@ class Repagify_Settings {
 		);
 
 		add_settings_section(
-			'repagify_section_connection',
-			__( 'Connection', 'repagify' ),
+			'repagio_section_connection',
+			__( 'Connection', 'repagio' ),
 			array( __CLASS__, 'render_connection_section' ),
 			self::PAGE
 		);
 
 		add_settings_field(
-			'repagify_field_api_key',
-			__( 'API key', 'repagify' ),
+			'repagio_field_api_key',
+			__( 'API key', 'repagio' ),
 			array( __CLASS__, 'render_api_key_field' ),
 			self::PAGE,
-			'repagify_section_connection',
-			array( 'label_for' => 'repagify_field_api_key' )
+			'repagio_section_connection',
+			array( 'label_for' => 'repagio_field_api_key' )
 		);
 
 		add_settings_field(
-			'repagify_field_api_url',
-			__( 'API base URL', 'repagify' ),
+			'repagio_field_api_url',
+			__( 'API base URL', 'repagio' ),
 			array( __CLASS__, 'render_api_url_field' ),
 			self::PAGE,
-			'repagify_section_connection',
-			array( 'label_for' => 'repagify_field_api_url' )
+			'repagio_section_connection',
+			array( 'label_for' => 'repagio_field_api_url' )
 		);
 	}
 
@@ -327,7 +327,7 @@ class Repagify_Settings {
 		$clean['api_key'] = $current['api_key'];
 
 		// Each field is forced to a scalar before anything is done with it: a
-		// crafted post can submit repagify_settings[api_url][] as an array, and
+		// crafted post can submit repagio_settings[api_url][] as an array, and
 		// PHP 8 makes passing that to a string function fatal.
 		$submitted_key = trim( sanitize_text_field( self::scalar( $input, 'api_key' ) ) );
 
@@ -342,7 +342,7 @@ class Repagify_Settings {
 		$submitted_url = esc_url_raw( trim( self::scalar( $input, 'api_url' ) ) );
 
 		if ( '' === $submitted_url ) {
-			$clean['api_url'] = REPAGIFY_DEFAULT_API_URL;
+			$clean['api_url'] = REPAGIO_DEFAULT_API_URL;
 		} else {
 			$clean['api_url'] = untrailingslashit( $submitted_url );
 		}
@@ -378,7 +378,7 @@ class Repagify_Settings {
 	 * @return void
 	 */
 	public static function render_connection_section() {
-		echo '<p>' . esc_html__( 'Paste the API key from your Repagify account. Once saved, the key is only ever shown as a mask.', 'repagify' ) . '</p>';
+		echo '<p>' . esc_html__( 'Paste the API key from your Repagio account. Once saved, the key is only ever shown as a mask.', 'repagio' ) . '</p>';
 	}
 
 	/**
@@ -392,44 +392,44 @@ class Repagify_Settings {
 		$has_key = self::has_api_key();
 		?>
 		<?php if ( $has_key ) : ?>
-			<p class="repagify-key-preview">
+			<p class="repagio-key-preview">
 				<code><?php echo esc_html( self::masked_api_key() ); ?></code>
-				<span class="repagify-badge repagify-badge--saved"><?php esc_html_e( 'Saved', 'repagify' ); ?></span>
+				<span class="repagio-badge repagio-badge--saved"><?php esc_html_e( 'Saved', 'repagio' ); ?></span>
 			</p>
 		<?php endif; ?>
 
 		<input
 			type="password"
-			id="repagify_field_api_key"
+			id="repagio_field_api_key"
 			name="<?php echo esc_attr( self::OPTION_NAME ); ?>[api_key]"
 			value=""
 			class="regular-text"
 			autocomplete="off"
 			spellcheck="false"
-			placeholder="<?php echo $has_key ? esc_attr__( 'Enter a new key to replace the saved one', 'repagify' ) : esc_attr__( 'Paste your Repagify API key', 'repagify' ); ?>"
+			placeholder="<?php echo $has_key ? esc_attr__( 'Enter a new key to replace the saved one', 'repagio' ) : esc_attr__( 'Paste your Repagio API key', 'repagio' ); ?>"
 		/>
 
 		<p class="description">
 			<?php if ( $has_key ) : ?>
-				<?php esc_html_e( 'Leave this blank to keep the saved key.', 'repagify' ); ?>
-				<label for="repagify_field_remove_api_key" class="repagify-inline-label">
+				<?php esc_html_e( 'Leave this blank to keep the saved key.', 'repagio' ); ?>
+				<label for="repagio_field_remove_api_key" class="repagio-inline-label">
 					<input
 						type="checkbox"
-						id="repagify_field_remove_api_key"
+						id="repagio_field_remove_api_key"
 						name="<?php echo esc_attr( self::OPTION_NAME ); ?>[remove_api_key]"
 						value="1"
 					/>
-					<?php esc_html_e( 'Delete the saved key', 'repagify' ); ?>
+					<?php esc_html_e( 'Delete the saved key', 'repagio' ); ?>
 				</label>
 			<?php else : ?>
-				<?php esc_html_e( 'Find your key in your Repagify account under Settings.', 'repagify' ); ?>
+				<?php esc_html_e( 'Find your key in your Repagio account under Settings.', 'repagio' ); ?>
 			<?php endif; ?>
 		</p>
 
 		<?php $tier_notice = self::key_tier_notice(); ?>
 
 		<?php if ( '' !== $tier_notice ) : ?>
-			<p class="description repagify-key-tier-note">
+			<p class="description repagio-key-tier-note">
 				<span class="dashicons dashicons-info-outline" aria-hidden="true"></span>
 				<?php echo esc_html( $tier_notice ); ?>
 			</p>
@@ -448,7 +448,7 @@ class Repagify_Settings {
 		?>
 		<input
 			type="url"
-			id="repagify_field_api_url"
+			id="repagio_field_api_url"
 			name="<?php echo esc_attr( self::OPTION_NAME ); ?>[api_url]"
 			value="<?php echo esc_attr( self::get_api_url() ); ?>"
 			class="regular-text code"
@@ -458,8 +458,8 @@ class Repagify_Settings {
 			<?php
 			printf(
 				/* translators: %s: the default API base URL. */
-				esc_html__( 'Leave as %s unless you are pointing this site at a development instance.', 'repagify' ),
-				'<code>' . esc_html( REPAGIFY_DEFAULT_API_URL ) . '</code>'
+				esc_html__( 'Leave as %s unless you are pointing this site at a development instance.', 'repagio' ),
+				'<code>' . esc_html( REPAGIO_DEFAULT_API_URL ) . '</code>'
 			);
 			?>
 		</p>

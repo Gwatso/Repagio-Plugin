@@ -6,13 +6,13 @@
  * somewhere to check. Until this plugin is in the directory, that somewhere is
  * its GitHub releases.
  *
- * This is the one place outside class-repagify-api.php that makes an outbound
- * request, and deliberately so: it talks to GitHub, not to Repagify, and has
- * nothing to do with the site owner's API key. Routing it through the Repagify
+ * This is the one place outside class-repagio-api.php that makes an outbound
+ * request, and deliberately so: it talks to GitHub, not to Repagio, and has
+ * nothing to do with the site owner's API key. Routing it through the Repagio
  * client — which exists to attach a Bearer token to every call — would be
  * wrong. It still uses the WordPress HTTP API, never cURL.
  *
- * @package Repagify
+ * @package Repagio
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 0.6.0
  */
-class Repagify_Updater {
+class Repagio_Updater {
 
 	/**
 	 * Owner and repository the releases are read from.
@@ -45,21 +45,21 @@ class Repagify_Updater {
 	 *
 	 * @var string
 	 */
-	const SLUG = 'repagify';
+	const SLUG = 'repagio';
 
 	/**
 	 * Transient holding the last successful release lookup.
 	 *
 	 * @var string
 	 */
-	const TRANSIENT = 'repagify_latest_release';
+	const TRANSIENT = 'repagio_latest_release';
 
 	/**
 	 * Transient marking a recent failed lookup.
 	 *
 	 * @var string
 	 */
-	const FAILURE_TRANSIENT = 'repagify_release_failure';
+	const FAILURE_TRANSIENT = 'repagio_release_failure';
 
 	/**
 	 * How long a successful lookup is trusted, in seconds.
@@ -134,7 +134,7 @@ class Repagify_Updater {
 			return $update;
 		}
 
-		$installed = isset( $plugin_data['Version'] ) ? (string) $plugin_data['Version'] : REPAGIFY_VERSION;
+		$installed = isset( $plugin_data['Version'] ) ? (string) $plugin_data['Version'] : REPAGIO_VERSION;
 
 		$response = array(
 			'slug'         => self::SLUG,
@@ -175,16 +175,16 @@ class Repagify_Updater {
 		}
 
 		$release = self::latest_release();
-		$readme  = Repagify_Readme::parse( REPAGIFY_PATH . 'readme.txt' );
+		$readme  = Repagio_Readme::parse( REPAGIO_PATH . 'readme.txt' );
 
 		$information = array(
-			'name'          => 'Repagify',
+			'name'          => 'Repagio',
 			'slug'          => self::SLUG,
 			'version'       => ( is_array( $release ) && '' !== $release['version'] )
 				? $release['version']
-				: REPAGIFY_VERSION,
-			'author'        => '<a href="https://repagify.afriflare.com">Afriflare</a>',
-			'author_profile' => 'https://repagify.afriflare.com',
+				: REPAGIO_VERSION,
+			'author'        => '<a href="https://repagio.app">Afriflare</a>',
+			'author_profile' => 'https://repagio.app',
 			'homepage'      => 'https://github.com/' . self::REPO,
 			'requires'      => '' !== $readme['requires'] ? $readme['requires'] : '6.0',
 			'tested'        => '' !== $readme['tested'] ? $readme['tested'] : '',
@@ -254,7 +254,7 @@ class Repagify_Updater {
 				'headers' => array(
 					'Accept' => 'application/vnd.github+json',
 					// GitHub rejects requests without one.
-					'User-Agent' => 'Repagify-WordPress-Plugin/' . REPAGIFY_VERSION,
+					'User-Agent' => 'Repagio-WordPress-Plugin/' . REPAGIO_VERSION,
 				),
 			)
 		);

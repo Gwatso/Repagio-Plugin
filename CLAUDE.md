@@ -1,10 +1,10 @@
-# Repagify WordPress Plugin
+# Repagio WordPress Plugin
 
-Connects a WordPress site to Repagify (repagify.afriflare.com),
+Connects a WordPress site to Repagio (repagio.app),
 an AI content repurposing platform. The plugin scans existing
 published posts, identifies repurposing opportunities, and
 generates SEO blog posts, LinkedIn posts, X threads, and
-newsletters via the Repagify API.
+newsletters via the Repagio API.
 
 ## Non-negotiable WordPress standards
 
@@ -26,12 +26,17 @@ reason. Treat them as hard requirements, not suggestions.
 
 ### Conventions
 - Prefix every function, class, constant, option and hook with
-  repagify_ / Repagify_ / REPAGIFY_
+  repagio_ / Repagio_ / REPAGIO_
+  (The plugin was called Repagify up to 0.6.0. The legacy
+  repagify_settings / _repagify_converted names may appear only
+  in includes/class-repagio-migration.php and uninstall.php)
+- The folder, main file (repagio.php), text domain and
+  Repagio_Updater::SLUG are all "repagio" and must stay in step
 - Follow WordPress PHP Coding Standards (WPCS), NOT PSR-12
 - Use the WordPress HTTP API (wp_remote_get / wp_remote_post).
   Never use cURL directly
 - Use the Settings API for the options page
-- Text domain: repagify — wrap all user-facing strings in
+- Text domain: repagio — wrap all user-facing strings in
   __() or esc_html__()
 - Minimum PHP 7.4, minimum WordPress 6.0
 - GPL-2.0-or-later license
@@ -40,7 +45,7 @@ reason. Treat them as hard requirements, not suggestions.
 - No build step for admin pages — vanilla PHP with minimal
   inline JS. A build step comes later, only for the Gutenberg
   sidebar
-- All API calls go through includes/class-repagify-api.php.
+- All API calls go through includes/class-repagio-api.php.
   No scattered wp_remote_post calls anywhere else
 - Uninstall must clean up: register_uninstall_hook removing
   plugin options and post meta
@@ -53,10 +58,10 @@ reason. Treat them as hard requirements, not suggestions.
 
 ## API
 
-Base URL: https://repagify.afriflare.com/api/v1
+Base URL: https://repagio.app/api/v1
 Auth: Authorization: Bearer <api_key>
 
-NOTE: The Repagify API does not exist yet. Build the API client
+NOTE: The Repagio API does not exist yet. Build the API client
 class with the correct interface, but make every method fail
 gracefully with a clear message when the endpoint returns 404.
 The archive scanner must work entirely offline with no API calls.

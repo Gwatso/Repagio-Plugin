@@ -6,7 +6,7 @@
  * the questions the dashboard and the generate flow need: how many generations
  * are left, whether the account is out, and what to offer when it is.
  *
- * @package Repagify
+ * @package Repagio
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,14 +18,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 0.4.0
  */
-class Repagify_Quota {
+class Repagio_Quota {
 
 	/**
 	 * Transient holding the last successful /me response.
 	 *
 	 * @var string
 	 */
-	const TRANSIENT = 'repagify_account_cache';
+	const TRANSIENT = 'repagio_account_cache';
 
 	/**
 	 * Transient marking a recent failed lookup.
@@ -35,7 +35,7 @@ class Repagify_Quota {
 	 *
 	 * @var string
 	 */
-	const FAILURE_TRANSIENT = 'repagify_account_failure';
+	const FAILURE_TRANSIENT = 'repagio_account_failure';
 
 	/**
 	 * How long a successful lookup is trusted, in seconds.
@@ -75,7 +75,7 @@ class Repagify_Quota {
 	 *
 	 * @var string
 	 */
-	const PRICING_URL = 'https://repagify.afriflare.com/pricing';
+	const PRICING_URL = 'https://repagio.app/pricing';
 
 	/**
 	 * Returns the account, from cache when it is warm.
@@ -89,7 +89,7 @@ class Repagify_Quota {
 	 * @return array|null Normalised account, or null when it cannot be read.
 	 */
 	public static function get( $force = false ) {
-		if ( ! Repagify_Settings::has_api_key() ) {
+		if ( ! Repagio_Settings::has_api_key() ) {
 			return null;
 		}
 
@@ -106,8 +106,8 @@ class Repagify_Quota {
 			}
 		}
 
-		$api      = new Repagify_API();
-		$response = $api->get_me( Repagify_API::ACCOUNT_TIMEOUT );
+		$api      = new Repagio_API();
+		$response = $api->get_me( Repagio_API::ACCOUNT_TIMEOUT );
 
 		if ( is_wp_error( $response ) ) {
 			set_transient( self::FAILURE_TRANSIENT, $response->get_error_code(), self::FAILURE_TTL );
@@ -332,11 +332,11 @@ class Repagify_Quota {
 	 */
 	public static function quota_phrase( $account ) {
 		if ( ! is_array( $account ) ) {
-			return __( 'Plan details unavailable', 'repagify' );
+			return __( 'Plan details unavailable', 'repagio' );
 		}
 
 		if ( self::is_unlimited( $account ) ) {
-			return __( 'Unlimited generations', 'repagify' );
+			return __( 'Unlimited generations', 'repagio' );
 		}
 
 		$remaining = (int) $account['remaining'];
@@ -345,7 +345,7 @@ class Repagify_Quota {
 		if ( $remaining <= 0 ) {
 			return sprintf(
 				/* translators: %s: the account's generation allowance. */
-				__( '0 of %s generations remaining', 'repagify' ),
+				__( '0 of %s generations remaining', 'repagio' ),
 				number_format_i18n( $limit )
 			);
 		}
@@ -353,7 +353,7 @@ class Repagify_Quota {
 		if ( self::LIMIT_MONTHLY === $account['limit_type'] ) {
 			return sprintf(
 				/* translators: 1: generations left, 2: the plan's monthly cap. */
-				__( '%1$s of %2$s generations left this month', 'repagify' ),
+				__( '%1$s of %2$s generations left this month', 'repagio' ),
 				number_format_i18n( $remaining ),
 				number_format_i18n( $limit )
 			);
@@ -361,7 +361,7 @@ class Repagify_Quota {
 
 		return sprintf(
 			/* translators: 1: generations left, 2: the account's lifetime cap. */
-			__( '%1$s of %2$s free generations left', 'repagify' ),
+			__( '%1$s of %2$s free generations left', 'repagio' ),
 			number_format_i18n( $remaining ),
 			number_format_i18n( $limit )
 		);
@@ -390,11 +390,11 @@ class Repagify_Quota {
 
 		if ( self::TIER_PRO === $tier || self::TIER_AGENCY === $tier ) {
 			return array(
-				'title'   => __( 'Generation could not be completed', 'repagify' ),
+				'title'   => __( 'Generation could not be completed', 'repagio' ),
 				'message' => '' !== $service_message
 					? $service_message
-					: __( 'Your Repagify plan includes unlimited generations, so this limit should not apply to your account. Nothing was charged and nothing on your site changed.', 'repagify' ),
-				'note'    => __( 'If this keeps happening, contact Repagify support with the time it occurred.', 'repagify' ),
+					: __( 'Your Repagio plan includes unlimited generations, so this limit should not apply to your account. Nothing was charged and nothing on your site changed.', 'repagio' ),
+				'note'    => __( 'If this keeps happening, contact Repagio support with the time it occurred.', 'repagio' ),
 				'url'     => '',
 				'label'   => '',
 			);
@@ -402,21 +402,21 @@ class Repagify_Quota {
 
 		if ( self::TIER_CREATOR === $tier ) {
 			return array(
-				'title'   => __( 'Your Repagify account has no generations left this month', 'repagify' ),
-				'message' => __( 'This account has used all 20 generations its Repagify Creator plan includes this month. The service’s Pro plan includes unlimited generations, a more capable model, and brand voice matching for $19.', 'repagify' ),
+				'title'   => __( 'Your Repagio account has no generations left this month', 'repagio' ),
+				'message' => __( 'This account has used all 20 generations its Repagio Creator plan includes this month. The service’s Pro plan includes unlimited generations, a more capable model, and brand voice matching for $19.', 'repagio' ),
 				'note'    => self::reset_note( $account ),
 				'url'     => self::PRICING_URL . '#pro',
-				'label'   => __( 'View Repagify Pro plan', 'repagify' ),
+				'label'   => __( 'View Repagio Pro plan', 'repagio' ),
 			);
 		}
 
 		// Free, and anything unrecognised, gets the entry-level offer.
 		return array(
-			'title'   => __( 'Your Repagify account has no generations left', 'repagify' ),
-			'message' => __( 'This account has used both of the free generations its Repagify plan includes. Generation is performed by the Repagify web service, whose Creator plan includes 20 generations a month for $9.', 'repagify' ),
+			'title'   => __( 'Your Repagio account has no generations left', 'repagio' ),
+			'message' => __( 'This account has used both of the free generations its Repagio plan includes. Generation is performed by the Repagio web service, whose Creator plan includes 20 generations a month for $9.', 'repagio' ),
 			'note'    => self::TIER_FREE === $tier ? '' : self::reset_note( $account ),
 			'url'     => self::PRICING_URL . '#creator',
-			'label'   => __( 'View Repagify Creator plan', 'repagify' ),
+			'label'   => __( 'View Repagio Creator plan', 'repagio' ),
 		);
 	}
 
@@ -437,13 +437,13 @@ class Repagify_Quota {
 			if ( false !== $timestamp ) {
 				return sprintf(
 					/* translators: %s: date the generation allowance resets. */
-					__( 'Your Repagify allowance resets on %s.', 'repagify' ),
+					__( 'Your Repagio allowance resets on %s.', 'repagio' ),
 					date_i18n( get_option( 'date_format' ), $timestamp )
 				);
 			}
 		}
 
-		return __( 'Your Repagify allowance resets at the start of next month.', 'repagify' );
+		return __( 'Your Repagio allowance resets at the start of next month.', 'repagio' );
 	}
 
 	/**
@@ -456,10 +456,10 @@ class Repagify_Quota {
 	 */
 	public static function tier_label( $tier ) {
 		$labels = array(
-			self::TIER_FREE    => __( 'Free', 'repagify' ),
-			self::TIER_CREATOR => __( 'Creator', 'repagify' ),
-			self::TIER_PRO     => __( 'Pro', 'repagify' ),
-			self::TIER_AGENCY  => __( 'Agency', 'repagify' ),
+			self::TIER_FREE    => __( 'Free', 'repagio' ),
+			self::TIER_CREATOR => __( 'Creator', 'repagio' ),
+			self::TIER_PRO     => __( 'Pro', 'repagio' ),
+			self::TIER_AGENCY  => __( 'Agency', 'repagio' ),
 		);
 
 		if ( isset( $labels[ $tier ] ) ) {
@@ -467,7 +467,7 @@ class Repagify_Quota {
 		}
 
 		if ( '' === $tier ) {
-			return __( 'Unknown', 'repagify' );
+			return __( 'Unknown', 'repagio' );
 		}
 
 		return ucwords( str_replace( array( '_', '-' ), ' ', $tier ) );
