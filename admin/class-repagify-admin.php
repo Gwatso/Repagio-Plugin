@@ -218,7 +218,7 @@ class Repagify_Admin {
 		$links = array(
 			'https://repagify.afriflare.com/api-access' => __( 'Documentation', 'repagify' ),
 			'https://repagify.afriflare.com/help'       => __( 'Support', 'repagify' ),
-			'https://github.com/Gwatso/Repagify-AI-Plugin/issues' => __( 'Report an issue', 'repagify' ),
+			'https://github.com/Gwatso/Repagio-Plugin/issues' => __( 'Report an issue', 'repagify' ),
 		);
 
 		foreach ( $links as $url => $label ) {

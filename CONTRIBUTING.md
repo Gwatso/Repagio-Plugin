@@ -190,9 +190,12 @@ stay in step: Plugin Check derives both the slug and the expected text domain
 from the folder name, so renaming any one of them alone reintroduces a
 `TextDomainMismatch` on every translatable string.
 
-The GitHub repository is still named `Repagify-AI-Plugin`. That is fine — the
+The GitHub repository is named `Repagio-Plugin`. That is fine — the
 repository name has no bearing on the directory slug, and
-`Repagify_Updater::REPO` refers to it deliberately.
+`Repagify_Updater::REPO` refers to it deliberately. If the repository is
+renamed again, update `Repagify_Updater::REPO`, the `Plugin URI` and
+`Update URI` headers in `repagify.php`, the "Report an issue" link in
+`Repagify_Admin`, and the source link in `readme.txt` together.
 
 ## Pull requests
 

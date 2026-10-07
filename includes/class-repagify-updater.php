@@ -31,7 +31,7 @@ class Repagify_Updater {
 	 *
 	 * @var string
 	 */
-	const REPO = 'Gwatso/Repagify-AI-Plugin';
+	const REPO = 'Gwatso/Repagio-Plugin';
 
 	/**
 	 * Hostname of the Update URI header, which names the filter WordPress calls.

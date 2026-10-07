@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Repagify
- * Plugin URI:        https://github.com/Gwatso/Repagify-AI-Plugin
+ * Plugin URI:        https://github.com/Gwatso/Repagio-Plugin
  * Description:       Finds the dormant posts in your archive worth reusing, then turns the best of them into blog posts, LinkedIn posts, X threads and newsletters.
  * Version:           0.6.0
  * Requires at least: 6.0
@@ -12,7 +12,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       repagify
  * Domain Path:       /languages
- * Update URI:        https://github.com/Gwatso/Repagify-AI-Plugin
+ * Update URI:        https://github.com/Gwatso/Repagio-Plugin
  *
  * ---------------------------------------------------------------------------
  * REMOVE THE "Update URI" HEADER ABOVE ONCE THIS PLUGIN IS ACCEPTED INTO THE

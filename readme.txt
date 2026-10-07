@@ -46,7 +46,7 @@ Repagify offers both free and paid plans, and those plans differ in how many gen
 
 Repagify is free software, licensed GPLv2 or later. Development happens in the open and patches are welcome — see CONTRIBUTING.md in the repository.
 
-Source code: https://github.com/Gwatso/Repagify-AI-Plugin
+Source code: https://github.com/Gwatso/Repagio-Plugin
 
 == External services ==
 
