@@ -333,7 +333,7 @@ class Repagio_Readme {
 		// Bold, written between double asterisks.
 		$text = preg_replace( '/\*\*([^*]+)\*\*/', '<strong>$1</strong>', $text );
 
-		// `code`
+		// Inline code, written between backticks.
 		$text = preg_replace( '/`([^`]+)`/', '<code>$1</code>', $text );
 
 		return $text;

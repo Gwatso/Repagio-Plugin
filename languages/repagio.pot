@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-08T08:50:00+00:00\n"
+"POT-Creation-Date: 2026-10-08T10:36:45+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: repagio\n"
@@ -115,7 +115,7 @@ msgid "Generating…"
 msgstr ""
 
 #: admin/class-repagio-admin.php:287
-#: admin/views/dashboard.php:748
+#: admin/views/dashboard.php:753
 msgid "This usually takes 20 to 45 seconds. Leave this window open."
 msgstr ""
 
@@ -155,14 +155,14 @@ msgstr ""
 
 #: admin/class-repagio-admin.php:297
 #: admin/class-repagio-editor.php:189
-#: admin/views/dashboard.php:759
+#: admin/views/dashboard.php:764
 msgid "Copy to clipboard"
 msgstr ""
 
 #: admin/class-repagio-admin.php:298
 #: admin/views/dashboard.php:676
-#: admin/views/dashboard.php:765
-#: admin/views/dashboard.php:785
+#: admin/views/dashboard.php:770
+#: admin/views/dashboard.php:790
 msgid "Close"
 msgstr ""
 
@@ -277,7 +277,7 @@ msgid "e.g. content repurposing"
 msgstr ""
 
 #: admin/class-repagio-editor.php:179
-#: admin/views/dashboard.php:739
+#: admin/views/dashboard.php:744
 msgid "Generate"
 msgstr ""
 
@@ -296,7 +296,7 @@ msgid "%1$s — %2$s words"
 msgstr ""
 
 #: admin/class-repagio-editor.php:191
-#: admin/views/dashboard.php:762
+#: admin/views/dashboard.php:767
 msgid "Generate another format"
 msgstr ""
 
@@ -596,7 +596,7 @@ msgstr ""
 msgid "(optional)"
 msgstr ""
 
-#: admin/views/dashboard.php:743
+#: admin/views/dashboard.php:748
 msgid "Cancel"
 msgstr ""
 
