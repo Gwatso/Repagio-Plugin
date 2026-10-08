@@ -71,8 +71,8 @@ $repagio_has_key = Repagio_Settings::has_api_key();
 
 // Cached for five minutes, and never fetched at all without a key, so opening
 // this page does not mean an HTTP request.
-$repagio_account = $repagio_has_key ? Repagio_Quota::get() : null;
-$repagio_band    = Repagio_Quota::band( $repagio_account );
+$repagio_account  = $repagio_has_key ? Repagio_Quota::get() : null;
+$repagio_band     = Repagio_Quota::band( $repagio_account );
 $repagio_columns  = array(
 	'title'      => __( 'Title', 'repagio' ),
 	'word_count' => __( 'Word count', 'repagio' ),
@@ -520,7 +520,7 @@ $repagio_sortable = array( 'word_count', 'date', 'score' );
 										<span class="edit">
 											<a href="<?php echo esc_url( $repagio_row['edit_link'] ); ?>"><?php esc_html_e( 'Edit', 'repagio' ); ?></a>
 											<?php if ( '' !== $repagio_row['permalink'] ) : ?>
-												 |
+												|
 											<?php endif; ?>
 										</span>
 									<?php endif; ?>

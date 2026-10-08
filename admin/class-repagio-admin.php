@@ -274,29 +274,29 @@ class Repagio_Admin {
 					)
 				),
 				'i18n'        => array(
-					'testing'       => __( 'Testing…', 'repagio' ),
-					'genericError'  => __( 'Something went wrong. Please try again.', 'repagio' ),
-					'planLabel'     => __( 'Plan', 'repagio' ),
-					'remaining'     => __( 'Conversions remaining', 'repagio' ),
-					'used'          => __( 'Conversions used', 'repagio' ),
+					'testing'      => __( 'Testing…', 'repagio' ),
+					'genericError' => __( 'Something went wrong. Please try again.', 'repagio' ),
+					'planLabel'    => __( 'Plan', 'repagio' ),
+					'remaining'    => __( 'Conversions remaining', 'repagio' ),
+					'used'         => __( 'Conversions used', 'repagio' ),
 					/* translators: 1: posts scanned, 2: posts in total. */
-					'scanProgress'  => __( 'Scanned %1$s of %2$s posts.', 'repagio' ),
-					'scanDone'      => __( 'Scan complete. Loading your opportunities…', 'repagio' ),
-					'scanError'     => __( 'The scan could not finish. Reload this page to try again.', 'repagio' ),
-					'generating'    => __( 'Generating…', 'repagio' ),
-					'generateWait'  => __( 'This usually takes 20 to 45 seconds. Leave this window open.', 'repagio' ),
-					'preparing'     => __( 'Reading the post…', 'repagio' ),
+					'scanProgress' => __( 'Scanned %1$s of %2$s posts.', 'repagio' ),
+					'scanDone'     => __( 'Scan complete. Loading your opportunities…', 'repagio' ),
+					'scanError'    => __( 'The scan could not finish. Reload this page to try again.', 'repagio' ),
+					'generating'   => __( 'Generating…', 'repagio' ),
+					'generateWait' => __( 'This usually takes 20 to 45 seconds. Leave this window open.', 'repagio' ),
+					'preparing'    => __( 'Reading the post…', 'repagio' ),
 					/* translators: %s: formatted word count. */
-					'wordsToSend'   => __( '%s words will be sent to Repagio.', 'repagio' ),
+					'wordsToSend'  => __( '%s words will be sent to Repagio.', 'repagio' ),
 					/* translators: 1: characters being sent, 2: characters in the post. */
-					'truncated'     => __( 'This post is longer than Repagio can convert at once, so only the first %1$s characters of %2$s will be used. You may want to split it into parts and repurpose each one.', 'repagio' ),
+					'truncated'    => __( 'This post is longer than Repagio can convert at once, so only the first %1$s characters of %2$s will be used. You may want to split it into parts and repurpose each one.', 'repagio' ),
 					/* translators: %s: formatted word count. */
-					'resultWords'   => __( '%s words generated.', 'repagio' ),
-					'copied'        => __( 'Copied', 'repagio' ),
-					'copyFailed'    => __( 'Could not copy automatically. Select the text and copy it.', 'repagio' ),
-					'copy'          => __( 'Copy to clipboard', 'repagio' ),
-					'closeLabel'    => __( 'Close', 'repagio' ),
-					'noKey'         => __( 'Connect a Repagio account on the settings screen to generate content.', 'repagio' ),
+					'resultWords'  => __( '%s words generated.', 'repagio' ),
+					'copied'       => __( 'Copied', 'repagio' ),
+					'copyFailed'   => __( 'Could not copy automatically. Select the text and copy it.', 'repagio' ),
+					'copy'         => __( 'Copy to clipboard', 'repagio' ),
+					'closeLabel'   => __( 'Close', 'repagio' ),
+					'noKey'        => __( 'Connect a Repagio account on the settings screen to generate content.', 'repagio' ),
 				),
 			)
 		);
@@ -332,7 +332,7 @@ class Repagio_Admin {
 		wp_safe_redirect(
 			add_query_arg(
 				array(
-					'page'               => self::DASHBOARD_PAGE,
+					'page'              => self::DASHBOARD_PAGE,
 					'repagio-rescanned' => 1,
 				),
 				admin_url( 'admin.php' )
