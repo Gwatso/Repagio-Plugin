@@ -46,17 +46,17 @@ class Repagio_Formats {
 		return array(
 			'seo_blog'      => array(
 				'api'     => 'blog',
-				'label'   => __( 'Blog Post', 'repagio' ),
+				'label'   => __( 'SEO blog post', 'repagio' ),
 				'keyword' => true,
 			),
 			'linkedin_post' => array(
 				'api'     => 'linkedin',
-				'label'   => __( 'LinkedIn Post', 'repagio' ),
+				'label'   => __( 'LinkedIn post', 'repagio' ),
 				'keyword' => false,
 			),
 			'x_thread'      => array(
 				'api'     => 'twitter',
-				'label'   => __( 'X Thread', 'repagio' ),
+				'label'   => __( 'X thread', 'repagio' ),
 				'keyword' => false,
 			),
 			'newsletter'    => array(

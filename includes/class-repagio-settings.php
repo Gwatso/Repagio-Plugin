@@ -65,10 +65,71 @@ class Repagio_Settings {
 		add_action( 'admin_init', array( __CLASS__, 'register' ) );
 		add_action( 'admin_init', array( __CLASS__, 'seed_defaults' ) );
 
+		// options.php checks manage_options unless told otherwise, so a
+		// filtered settings capability has to be passed on to it.
+		add_filter( 'option_page_capability_' . self::GROUP, array( __CLASS__, 'capability' ) );
+
 		// A different key means a different account, so the cached plan and
 		// quota must not survive the change.
 		add_action( 'update_option_' . self::OPTION_NAME, array( __CLASS__, 'forget_account' ), 10, 2 );
 		add_action( 'add_option_' . self::OPTION_NAME, array( __CLASS__, 'forget_account' ) );
+	}
+
+	/**
+	 * Capability needed for the settings, the API key and the dashboard.
+	 *
+	 * @since 0.8.0
+	 *
+	 * @return string
+	 */
+	public static function capability() {
+		/**
+		 * Filters the capability needed to manage Repagio.
+		 *
+		 * Covers the settings screen, the API key, the connection test and the
+		 * opportunity dashboard.
+		 *
+		 * @since 0.8.0
+		 *
+		 * @param string $capability Capability name. Default 'manage_options'.
+		 */
+		return (string) apply_filters( 'repagio_settings_capability', 'manage_options' );
+	}
+
+	/**
+	 * Capability needed for the block editor sidebar.
+	 *
+	 * @since 0.8.0
+	 *
+	 * @return string
+	 */
+	public static function editor_capability() {
+		/**
+		 * Filters the capability needed to use the Repagio sidebar.
+		 *
+		 * Anyone with it can see a post's score and generate from it, and every
+		 * generation is drawn from the one Repagio account connected to the
+		 * site. Each post is still checked against edit_post as well.
+		 *
+		 * @since 0.8.0
+		 *
+		 * @param string $capability Capability name. Default 'edit_others_posts'.
+		 */
+		return (string) apply_filters( 'repagio_editor_capability', 'edit_others_posts' );
+	}
+
+	/**
+	 * Whether the current user can score and repurpose posts.
+	 *
+	 * True for anyone who manages the plugin, who repurposes from the
+	 * dashboard, and for anyone allowed the editor sidebar.
+	 *
+	 * @since 0.8.0
+	 *
+	 * @return bool
+	 */
+	public static function can_repurpose() {
+		return current_user_can( self::capability() ) || current_user_can( self::editor_capability() );
 	}
 
 	/**

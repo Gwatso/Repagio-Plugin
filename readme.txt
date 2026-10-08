@@ -1,10 +1,10 @@
 === Repagio ===
 Contributors: afriflare
 Tags: content, repurposing, seo, social media, ai
-Requires at least: 6.0
+Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.7.0
+Stable tag: 0.8.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,7 @@ The plugin is complete as installed. It needs no account, no API key and no inte
 * Filters by post type, category and date range, sorts by score, length or date, and pages through the whole archive
 * Reports totals across the archive, including how many words of dormant content you are sitting on
 * Batches the scan automatically on large archives so it never times out
+* Shows the same score, its explanation and the post's repurposing history in a Repagio sidebar in the block editor, for the post you are editing
 
 All of that runs on your own server and makes no network request of any kind.
 
@@ -32,7 +33,7 @@ All of that runs on your own server and makes no network request of any kind.
 
 Turning a post into new content is done by **Repagio**, a separate web service at [repagio.app](https://repagio.app/). Connecting an account is optional, and the plugin is fully usable without one.
 
-If you do connect an account, you can pick a post, choose a format and a tone, and get back content to copy and use wherever you like. Available formats are a blog post, a LinkedIn post, an X thread and a newsletter, each in one of five tones.
+If you do connect an account, you can pick a post, choose a format and a tone, and get back content to copy and use wherever you like. You can do this from the dashboard, or from the Repagio sidebar while you are editing the post. Available formats are a blog post, a LinkedIn post, an X thread and a newsletter, each in one of five tones.
 
 Repagio offers both free and paid plans, and those plans differ in how many generations they include. That is an arrangement between you and that service. It is not a restriction in this plugin: there is one version of this plugin, every line of its code ships to every user, and nothing in it is reserved for paying customers.
 
@@ -62,14 +63,14 @@ The plugin contacts Repagio in exactly three situations, all of them triggered b
 
 1. **When you press "Test connection"** on the settings screen. Your API key is sent so the service can identify your account. No post content is sent. The service replies with your plan and how many generations your account has used and has left.
 
-2. **When you press "Repurpose" and then "Generate"** on a post in the dashboard. The following is sent, and nothing else:
+2. **When you press "Repurpose" and then "Generate"** on a post in the dashboard, **or "Generate" in the Repagio sidebar** of the block editor. The following is sent, and nothing else:
    * Your API key, to identify your account
    * The plain text of that single post — shortcodes, HTML tags and block markup stripped out first
    * The output format you chose (blog, linkedin, twitter or newsletter)
    * The tone you chose
    * The target keyword, only if you typed one and only for blog output
 
-3. **When a Repagio admin screen is opened**, to read your account's plan and remaining generations so the dashboard can show them. Your API key is sent; no post content is. This result is cached for five minutes, so opening the screen repeatedly does not repeat the request. It does not happen at all if you have not saved an API key.
+3. **When a Repagio admin screen is opened, or you expand the "Repurpose this post" panel in the Repagio sidebar** of the block editor, to read your account's plan and remaining generations so they can be shown before you generate. Your API key is sent; no post content is. This result is cached for five minutes, so doing either repeatedly does not repeat the request. Loading the block editor sends nothing, and neither does showing the Repagio sidebar, even if you have pinned it open; the request is made only when you expand that panel. It does not happen at all if you have not saved an API key.
 
 = What is never sent =
 
@@ -124,6 +125,16 @@ When you press Generate on a post, the plain text of that one post is sent to Re
 
 That depends on the plan on your Repagio account. The service offers free and paid plans that differ in how many generations they include. The dashboard shows how many your account has left before you use one, and tells you when the account has none remaining.
 
+= Who can use the Repagio sidebar in the editor? =
+
+Administrators and Editors — anyone with the `edit_others_posts` capability — and only on posts they are allowed to edit. The settings screen, the API key and the dashboard stay with administrators (`manage_options`).
+
+The site connects one Repagio account, so **every generation anyone makes from the sidebar is drawn from that account's allowance**. Giving Editors the sidebar means giving them the ability to spend it. If you would rather keep generation to administrators, or open it to Authors as well, change the capability with a filter:
+
+`add_filter( 'repagio_editor_capability', function () { return 'manage_options'; } );`
+
+The settings capability can be changed the same way with the `repagio_settings_capability` filter.
+
 = Why has Repagio not issued me an API key? =
 
 Repagio currently issues API keys on its Pro and Agency plans, with support for Free and Creator accounts on the way. That is the service's own policy about its API, and is nothing the plugin controls.
@@ -158,6 +169,16 @@ In your site's options table. It is never written to logs, never included in err
 4. The settings screen, showing the saved API key as a mask and the result of a connection test.
 
 == Changelog ==
+
+= 0.8.0 =
+* New Repagio sidebar in the block editor. It shows the post's repurposing score, why it scored that, and what it has already been repurposed into, and lets you generate a new format without leaving the post.
+* A generation keeps running if you close the sidebar, and the result is waiting when you open it again.
+* The sidebar works from the saved, published version of the post, and says so when you have unsaved changes.
+* The sidebar is available to Editors as well as administrators. Settings, the API key and the dashboard remain administrator only. Both capabilities can be changed with the repagio_editor_capability and repagio_settings_capability filters.
+* Showing the sidebar, even pinned open, never contacts the Repagio service. Your account's remaining generations are read only when you expand its Repurpose panel.
+* Output formats are named the same way everywhere: SEO blog post, LinkedIn post, X thread and Newsletter.
+* Requires WordPress 6.6 or later.
+* No build step and no new dependencies: the sidebar uses the scripts the block editor already loads.
 
 = 0.7.0 =
 * The plugin is now called Repagio, and the service has moved to repagio.app. The plugin folder, main file and text domain are now repagio.
@@ -202,6 +223,9 @@ In your site's options table. It is never written to logs, never included in err
 * Connection test that reports your account's plan and remaining generations.
 
 == Upgrade Notice ==
+
+= 0.8.0 =
+Adds a Repagio sidebar to the block editor for Editors and administrators. Generations made from it use the site's Repagio allowance. Requires WordPress 6.6.
 
 = 0.7.0 =
 Repagify is now Repagio. Your settings and conversion history carry over. If the plugin shows as deactivated after updating, activate Repagio again from the Plugins screen.

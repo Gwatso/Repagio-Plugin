@@ -419,12 +419,15 @@ class Repagio_Scanner {
 	/**
 	 * Reduces a post to the fields the dashboard needs, with its score.
 	 *
+	 * Public since 0.8.0 so the editor sidebar can score the one post it is
+	 * showing exactly as the dashboard would, without a scan.
+	 *
 	 * @since 0.2.0
 	 *
 	 * @param WP_Post $post Post to describe.
 	 * @return array
 	 */
-	protected static function build_item( $post ) {
+	public static function build_item( $post ) {
 		$content   = isset( $post->post_content ) ? (string) $post->post_content : '';
 		$plain     = self::plain_text( $content );
 		$timestamp = (int) get_post_time( 'U', true, $post );
@@ -833,17 +836,15 @@ class Repagio_Scanner {
 	/**
 	 * Human-readable names for the output formats.
 	 *
+	 * Read from Repagio_Formats since 0.8.0, so the score explanation names a
+	 * format exactly as the format selector beside it does.
+	 *
 	 * @since 0.2.0
 	 *
 	 * @return array Format slug => label.
 	 */
 	public static function format_labels() {
-		return array(
-			'seo_blog'      => __( 'SEO blog post', 'repagio' ),
-			'linkedin_post' => __( 'LinkedIn post', 'repagio' ),
-			'x_thread'      => __( 'X thread', 'repagio' ),
-			'newsletter'    => __( 'Newsletter', 'repagio' ),
-		);
+		return wp_list_pluck( Repagio_Formats::all(), 'label' );
 	}
 
 	/**

@@ -31,13 +31,6 @@ class Repagio_Admin {
 	const RESCAN_ACTION = 'repagio_rescan';
 
 	/**
-	 * Capability required to reach any Repagio screen.
-	 *
-	 * @var string
-	 */
-	const CAPABILITY = 'manage_options';
-
-	/**
 	 * Slug of the opportunity dashboard, which is the plugin's first page.
 	 *
 	 * @var string
@@ -89,6 +82,8 @@ class Repagio_Admin {
 		add_action( 'wp_ajax_repagio_scan_batch', array( $this, 'ajax_scan_batch' ) );
 		add_action( 'wp_ajax_repagio_prepare', array( $this, 'ajax_prepare' ) );
 		add_action( 'wp_ajax_repagio_generate', array( $this, 'ajax_generate' ) );
+		add_action( 'wp_ajax_repagio_post_status', array( $this, 'ajax_post_status' ) );
+		add_action( 'wp_ajax_repagio_quota', array( $this, 'ajax_quota' ) );
 	}
 
 	/**
@@ -102,7 +97,7 @@ class Repagio_Admin {
 		$this->screens['dashboard'] = add_menu_page(
 			__( 'Repagio', 'repagio' ),
 			__( 'Repagio', 'repagio' ),
-			self::CAPABILITY,
+			Repagio_Settings::capability(),
 			self::DASHBOARD_PAGE,
 			array( $this, 'render_dashboard_page' ),
 			'dashicons-book-alt',
@@ -115,7 +110,7 @@ class Repagio_Admin {
 			self::DASHBOARD_PAGE,
 			__( 'Repagio dashboard', 'repagio' ),
 			__( 'Dashboard', 'repagio' ),
-			self::CAPABILITY,
+			Repagio_Settings::capability(),
 			self::DASHBOARD_PAGE,
 			array( $this, 'render_dashboard_page' )
 		);
@@ -124,7 +119,7 @@ class Repagio_Admin {
 			self::DASHBOARD_PAGE,
 			__( 'Repagio settings', 'repagio' ),
 			__( 'Settings', 'repagio' ),
-			self::CAPABILITY,
+			Repagio_Settings::capability(),
 			Repagio_Settings::PAGE,
 			array( $this, 'render_settings_page' )
 		);
@@ -147,7 +142,7 @@ class Repagio_Admin {
 	 * @return string[]
 	 */
 	public function add_action_links( $links ) {
-		if ( ! current_user_can( self::CAPABILITY ) ) {
+		if ( ! current_user_can( Repagio_Settings::capability() ) ) {
 			return $links;
 		}
 
@@ -328,7 +323,7 @@ class Repagio_Admin {
 
 		check_admin_referer( self::RESCAN_ACTION );
 
-		if ( ! current_user_can( self::CAPABILITY ) ) {
+		if ( ! current_user_can( Repagio_Settings::capability() ) ) {
 			wp_die( esc_html__( 'You do not have permission to rescan this site.', 'repagio' ) );
 		}
 
@@ -354,7 +349,7 @@ class Repagio_Admin {
 	 * @return void
 	 */
 	public function render_dashboard_page() {
-		if ( ! current_user_can( self::CAPABILITY ) ) {
+		if ( ! current_user_can( Repagio_Settings::capability() ) ) {
 			wp_die( esc_html__( 'You do not have permission to view this page.', 'repagio' ) );
 		}
 
@@ -369,7 +364,7 @@ class Repagio_Admin {
 	 * @return void
 	 */
 	public function render_settings_page() {
-		if ( ! current_user_can( self::CAPABILITY ) ) {
+		if ( ! current_user_can( Repagio_Settings::capability() ) ) {
 			wp_die( esc_html__( 'You do not have permission to manage these settings.', 'repagio' ) );
 		}
 
@@ -642,7 +637,7 @@ class Repagio_Admin {
 	public function ajax_scan_batch() {
 		check_ajax_referer( self::NONCE_ACTION, 'nonce' );
 
-		if ( ! current_user_can( self::CAPABILITY ) ) {
+		if ( ! current_user_can( Repagio_Settings::capability() ) ) {
 			wp_send_json_error(
 				array( 'message' => __( 'You do not have permission to do that.', 'repagio' ) ),
 				403
@@ -688,6 +683,95 @@ class Repagio_Admin {
 				'truncated'      => (bool) $prepared['truncated'],
 			)
 		);
+	}
+
+	/**
+	 * Describes one post for the editor sidebar.
+	 *
+	 * The post's score and its explanation, what it has already been
+	 * repurposed into, and what would be sent if it were generated now. All of
+	 * it is computed here on the server, from the saved post, so the sidebar
+	 * and the dashboard can never disagree.
+	 *
+	 * This never contacts the Repagio service. The sidebar can be pinned open,
+	 * which makes this request part of every editor load for whoever pinned
+	 * it, so the account's quota is left to ajax_quota(), which the sidebar
+	 * calls only when someone opens its Repurpose panel.
+	 *
+	 * @since 0.8.0
+	 *
+	 * @return void
+	 */
+	public function ajax_post_status() {
+		check_ajax_referer( self::NONCE_ACTION, 'nonce' );
+
+		$post = $this->request_post();
+
+		if ( is_wp_error( $post ) ) {
+			wp_send_json_error( $this->error_payload( $post ) );
+		}
+
+		$item      = Repagio_Scanner::build_item( $post );
+		$converted = array();
+
+		// Most recent first, which is the order anyone reading the list wants.
+		arsort( $item['converted'] );
+
+		foreach ( $item['converted'] as $format => $timestamp ) {
+			$converted[] = array(
+				'format' => $format,
+				'label'  => Repagio_Formats::label( $format ),
+				'date'   => $timestamp > 0 ? wp_date( get_option( 'date_format' ), $timestamp ) : '',
+			);
+		}
+
+		$prepared = Repagio_Content::prepare( $post );
+
+		if ( is_wp_error( $prepared ) ) {
+			$source = array( 'error' => $prepared->get_error_message() );
+		} else {
+			$source = array(
+				'wordCount'      => (int) $prepared['word_count'],
+				'length'         => (int) $prepared['length'],
+				'originalLength' => (int) $prepared['original_length'],
+				'truncated'      => (bool) $prepared['truncated'],
+			);
+		}
+
+		wp_send_json_success(
+			array(
+				'score'     => (int) $item['score'],
+				'band'      => self::score_band( $item['score'] ),
+				'reason'    => $item['reason'],
+				'converted' => $converted,
+				'source'    => $source,
+			)
+		);
+	}
+
+	/**
+	 * Reports the account's quota for the editor sidebar.
+	 *
+	 * Called only when someone opens the sidebar's Repurpose panel, never as
+	 * part of drawing the sidebar, so loading the editor does not contact the
+	 * service even when the sidebar is pinned. Reads through the same five
+	 * minute cache the dashboard uses.
+	 *
+	 * @since 0.8.0
+	 *
+	 * @return void
+	 */
+	public function ajax_quota() {
+		check_ajax_referer( self::NONCE_ACTION, 'nonce' );
+
+		if ( ! Repagio_Settings::can_repurpose() ) {
+			wp_send_json_error(
+				array( 'message' => __( 'You do not have permission to do that.', 'repagio' ) ),
+				403
+			);
+		}
+
+		wp_send_json_success( array( 'quota' => $this->quota_payload() ) );
 	}
 
 	/**
@@ -882,7 +966,9 @@ class Repagio_Admin {
 	 * @return WP_Post|WP_Error
 	 */
 	protected function request_post() {
-		if ( ! current_user_can( self::CAPABILITY ) ) {
+		// Administrators from the dashboard, and whoever the editor sidebar
+		// is open to. The post itself is checked against edit_post below.
+		if ( ! Repagio_Settings::can_repurpose() ) {
 			return new WP_Error(
 				'repagio_forbidden',
 				__( 'You do not have permission to do that.', 'repagio' )
@@ -960,6 +1046,17 @@ class Repagio_Admin {
 			$data = array();
 		}
 
+		// Errors about the key point at the settings screen. Someone using the
+		// editor sidebar without the settings capability cannot open it, so
+		// the link would only lead to a permissions error.
+		if (
+			isset( $data['action_url'] )
+			&& 0 === strpos( (string) $data['action_url'], admin_url() )
+			&& ! current_user_can( Repagio_Settings::capability() )
+		) {
+			unset( $data['action_url'], $data['action_label'] );
+		}
+
 		return array(
 			'message'     => $error->get_error_message(),
 			'code'        => $error->get_error_code(),
@@ -981,7 +1078,7 @@ class Repagio_Admin {
 	public function ajax_test_connection() {
 		check_ajax_referer( self::NONCE_ACTION, 'nonce' );
 
-		if ( ! current_user_can( self::CAPABILITY ) ) {
+		if ( ! current_user_can( Repagio_Settings::capability() ) ) {
 			wp_send_json_error(
 				array( 'message' => __( 'You do not have permission to do that.', 'repagio' ) ),
 				403

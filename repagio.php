@@ -3,8 +3,8 @@
  * Plugin Name:       Repagio
  * Plugin URI:        https://github.com/Gwatso/Repagio-Plugin
  * Description:       Finds the dormant posts in your archive worth reusing, then turns the best of them into blog posts, LinkedIn posts, X threads and newsletters.
- * Version:           0.7.0
- * Requires at least: 6.0
+ * Version:           0.8.0
+ * Requires at least: 6.6
  * Requires PHP:      7.4
  * Author:            Afriflare
  * Author URI:        https://repagio.app
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'REPAGIO_VERSION', '0.7.0' );
+define( 'REPAGIO_VERSION', '0.8.0' );
 define( 'REPAGIO_FILE', __FILE__ );
 define( 'REPAGIO_PATH', plugin_dir_path( __FILE__ ) );
 define( 'REPAGIO_URL', plugin_dir_url( __FILE__ ) );
@@ -65,6 +65,7 @@ require_once REPAGIO_PATH . 'includes/class-repagio-migration.php';
 
 if ( is_admin() ) {
 	require_once REPAGIO_PATH . 'admin/class-repagio-admin.php';
+	require_once REPAGIO_PATH . 'admin/class-repagio-editor.php';
 }
 
 /**
@@ -84,6 +85,9 @@ function repagio_bootstrap() {
 
 		$admin = new Repagio_Admin();
 		$admin->init();
+
+		$editor = new Repagio_Editor();
+		$editor->init();
 
 		// Update checks belong to the admin only. The class hooks nothing at
 		// all on a front-end request.

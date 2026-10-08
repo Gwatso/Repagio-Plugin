@@ -2,22 +2,23 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Repagio 0.7.0\n"
+"Project-Id-Version: Repagio 0.8.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/repagio\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07T12:52:19+00:00\n"
+"POT-Creation-Date: 2026-10-08T08:50:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: repagio\n"
 
 #. Plugin Name of the plugin
 #: repagio.php
-#: admin/class-repagio-admin.php:103
-#: admin/class-repagio-admin.php:104
+#: admin/class-repagio-admin.php:98
+#: admin/class-repagio-admin.php:99
+#: admin/class-repagio-editor.php:164
 msgid "Repagio"
 msgstr ""
 
@@ -41,176 +42,274 @@ msgstr ""
 msgid "https://repagio.app"
 msgstr ""
 
-#: admin/class-repagio-admin.php:116
+#: admin/class-repagio-admin.php:111
 msgid "Repagio dashboard"
 msgstr ""
 
-#: admin/class-repagio-admin.php:117
-#: admin/class-repagio-admin.php:195
+#: admin/class-repagio-admin.php:112
+#: admin/class-repagio-admin.php:190
 msgid "Dashboard"
 msgstr ""
 
-#: admin/class-repagio-admin.php:125
+#: admin/class-repagio-admin.php:120
 msgid "Repagio settings"
 msgstr ""
 
-#: admin/class-repagio-admin.php:126
-#: admin/class-repagio-admin.php:190
+#: admin/class-repagio-admin.php:121
+#: admin/class-repagio-admin.php:185
 #: admin/views/dashboard.php:242
 msgid "Settings"
 msgstr ""
 
-#: admin/class-repagio-admin.php:219
+#: admin/class-repagio-admin.php:214
 msgid "Documentation"
 msgstr ""
 
-#: admin/class-repagio-admin.php:220
+#: admin/class-repagio-admin.php:215
 msgid "Support"
 msgstr ""
 
-#: admin/class-repagio-admin.php:221
+#: admin/class-repagio-admin.php:216
 msgid "Report an issue"
 msgstr ""
 
-#: admin/class-repagio-admin.php:282
+#: admin/class-repagio-admin.php:277
 msgid "Testing…"
 msgstr ""
 
-#: admin/class-repagio-admin.php:283
+#: admin/class-repagio-admin.php:278
+#: admin/class-repagio-editor.php:195
 msgid "Something went wrong. Please try again."
 msgstr ""
 
-#: admin/class-repagio-admin.php:284
+#: admin/class-repagio-admin.php:279
 msgid "Plan"
 msgstr ""
 
-#: admin/class-repagio-admin.php:285
+#: admin/class-repagio-admin.php:280
 msgid "Conversions remaining"
 msgstr ""
 
-#: admin/class-repagio-admin.php:286
+#: admin/class-repagio-admin.php:281
 msgid "Conversions used"
 msgstr ""
 
 #. translators: 1: posts scanned, 2: posts in total.
-#: admin/class-repagio-admin.php:288
+#: admin/class-repagio-admin.php:283
 #: admin/views/dashboard.php:190
 #, php-format
 msgid "Scanned %1$s of %2$s posts."
 msgstr ""
 
-#: admin/class-repagio-admin.php:289
+#: admin/class-repagio-admin.php:284
 msgid "Scan complete. Loading your opportunities…"
 msgstr ""
 
-#: admin/class-repagio-admin.php:290
+#: admin/class-repagio-admin.php:285
 msgid "The scan could not finish. Reload this page to try again."
 msgstr ""
 
-#: admin/class-repagio-admin.php:291
+#: admin/class-repagio-admin.php:286
+#: admin/class-repagio-editor.php:180
 msgid "Generating…"
 msgstr ""
 
-#: admin/class-repagio-admin.php:292
+#: admin/class-repagio-admin.php:287
 #: admin/views/dashboard.php:748
 msgid "This usually takes 20 to 45 seconds. Leave this window open."
 msgstr ""
 
-#: admin/class-repagio-admin.php:293
+#: admin/class-repagio-admin.php:288
+#: admin/class-repagio-editor.php:173
 msgid "Reading the post…"
 msgstr ""
 
 #. translators: %s: formatted word count.
-#: admin/class-repagio-admin.php:295
+#: admin/class-repagio-admin.php:290
+#: admin/class-repagio-editor.php:183
 #, php-format
 msgid "%s words will be sent to Repagio."
 msgstr ""
 
 #. translators: 1: characters being sent, 2: characters in the post.
-#: admin/class-repagio-admin.php:297
+#: admin/class-repagio-admin.php:292
+#: admin/class-repagio-editor.php:185
 #, php-format
 msgid "This post is longer than Repagio can convert at once, so only the first %1$s characters of %2$s will be used. You may want to split it into parts and repurpose each one."
 msgstr ""
 
 #. translators: %s: formatted word count.
-#: admin/class-repagio-admin.php:299
+#: admin/class-repagio-admin.php:294
 #, php-format
 msgid "%s words generated."
 msgstr ""
 
-#: admin/class-repagio-admin.php:300
+#: admin/class-repagio-admin.php:295
+#: admin/class-repagio-editor.php:190
 msgid "Copied"
 msgstr ""
 
-#: admin/class-repagio-admin.php:301
+#: admin/class-repagio-admin.php:296
 msgid "Could not copy automatically. Select the text and copy it."
 msgstr ""
 
-#: admin/class-repagio-admin.php:302
+#: admin/class-repagio-admin.php:297
+#: admin/class-repagio-editor.php:189
 #: admin/views/dashboard.php:759
 msgid "Copy to clipboard"
 msgstr ""
 
-#: admin/class-repagio-admin.php:303
+#: admin/class-repagio-admin.php:298
 #: admin/views/dashboard.php:676
 #: admin/views/dashboard.php:765
 #: admin/views/dashboard.php:785
 msgid "Close"
 msgstr ""
 
-#: admin/class-repagio-admin.php:304
+#: admin/class-repagio-admin.php:299
 msgid "Connect a Repagio account on the settings screen to generate content."
 msgstr ""
 
-#: admin/class-repagio-admin.php:332
+#: admin/class-repagio-admin.php:327
 msgid "You do not have permission to rescan this site."
 msgstr ""
 
-#: admin/class-repagio-admin.php:358
+#: admin/class-repagio-admin.php:353
 msgid "You do not have permission to view this page."
 msgstr ""
 
-#: admin/class-repagio-admin.php:373
+#: admin/class-repagio-admin.php:368
 msgid "You do not have permission to manage these settings."
 msgstr ""
 
-#: admin/class-repagio-admin.php:555
+#: admin/class-repagio-admin.php:550
 msgid "(no title)"
 msgstr ""
 
-#: admin/class-repagio-admin.php:647
-#: admin/class-repagio-admin.php:888
-#: admin/class-repagio-admin.php:986
+#: admin/class-repagio-admin.php:642
+#: admin/class-repagio-admin.php:769
+#: admin/class-repagio-admin.php:974
+#: admin/class-repagio-admin.php:1083
 msgid "You do not have permission to do that."
 msgstr ""
 
-#: admin/class-repagio-admin.php:714
+#: admin/class-repagio-admin.php:798
 msgid "Choose an output format."
 msgstr ""
 
-#: admin/class-repagio-admin.php:772
+#: admin/class-repagio-admin.php:856
 msgid "Repagio replied without any content. Nothing was saved — try again."
 msgstr ""
 
-#: admin/class-repagio-admin.php:899
+#: admin/class-repagio-admin.php:985
 #: includes/class-repagio-content.php:55
 msgid "That post could not be found."
 msgstr ""
 
-#: admin/class-repagio-admin.php:907
+#: admin/class-repagio-admin.php:993
 msgid "You do not have permission to repurpose that post."
 msgstr ""
 
-#: admin/class-repagio-admin.php:914
+#: admin/class-repagio-admin.php:1000
 msgid "Only published posts can be repurposed."
 msgstr ""
 
-#: admin/class-repagio-admin.php:1004
+#: admin/class-repagio-admin.php:1101
 msgid "Connected to Repagio."
 msgstr ""
 
-#: admin/class-repagio-admin.php:1057
+#: admin/class-repagio-admin.php:1154
 msgid "Unlimited"
+msgstr ""
+
+#: admin/class-repagio-editor.php:165
+msgid "Opportunity"
+msgstr ""
+
+#: admin/class-repagio-editor.php:166
+#: admin/views/dashboard.php:674
+msgid "Repurpose this post"
+msgstr ""
+
+#. translators: %s: score out of 100.
+#: admin/class-repagio-editor.php:168
+#, php-format
+msgid "Repurposing score: %s out of 100"
+msgstr ""
+
+#: admin/class-repagio-editor.php:169
+msgid "Already repurposed as"
+msgstr ""
+
+#: admin/class-repagio-editor.php:170
+msgid "Open the Repagio dashboard"
+msgstr ""
+
+#: admin/class-repagio-editor.php:171
+msgid "Publish this post to score and repurpose it. Repagio works from the published version."
+msgstr ""
+
+#: admin/class-repagio-editor.php:172
+msgid "You have unsaved changes. Repagio reads the last saved version of this post, so save first if you want them included."
+msgstr ""
+
+#: admin/class-repagio-editor.php:174
+msgid "Try again"
+msgstr ""
+
+#: admin/class-repagio-editor.php:175
+#: admin/views/dashboard.php:689
+msgid "Output format"
+msgstr ""
+
+#: admin/class-repagio-editor.php:176
+#: admin/views/dashboard.php:700
+msgid "Tone"
+msgstr ""
+
+#: admin/class-repagio-editor.php:177
+msgid "Target keyword (optional)"
+msgstr ""
+
+#: admin/class-repagio-editor.php:178
+#: admin/views/dashboard.php:724
+msgid "e.g. content repurposing"
+msgstr ""
+
+#: admin/class-repagio-editor.php:179
+#: admin/views/dashboard.php:739
+msgid "Generate"
+msgstr ""
+
+#: admin/class-repagio-editor.php:181
+msgid "This usually takes 20 to 45 seconds. You can keep editing, or close this sidebar; the result will be here when you come back."
+msgstr ""
+
+#: admin/class-repagio-editor.php:186
+msgid "Generated content"
+msgstr ""
+
+#. translators: 1: output format name, 2: formatted word count.
+#: admin/class-repagio-editor.php:188
+#, php-format
+msgid "%1$s — %2$s words"
+msgstr ""
+
+#: admin/class-repagio-editor.php:191
+#: admin/views/dashboard.php:762
+msgid "Generate another format"
+msgstr ""
+
+#: admin/class-repagio-editor.php:192
+msgid "Generation is carried out by the Repagio web service, so it needs a connected account. The score above works without one."
+msgstr ""
+
+#: admin/class-repagio-editor.php:193
+msgid "Connect an account"
+msgstr ""
+
+#: admin/class-repagio-editor.php:194
+msgid "Ask a site administrator to connect a Repagio account in the plugin settings."
 msgstr ""
 
 #: admin/views/dashboard.php:77
@@ -489,18 +588,6 @@ msgstr ""
 msgid "Scanned %s ago. Results are cached for an hour; use Rescan content to refresh them now."
 msgstr ""
 
-#: admin/views/dashboard.php:674
-msgid "Repurpose this post"
-msgstr ""
-
-#: admin/views/dashboard.php:689
-msgid "Output format"
-msgstr ""
-
-#: admin/views/dashboard.php:700
-msgid "Tone"
-msgstr ""
-
 #: admin/views/dashboard.php:715
 msgid "Target keyword"
 msgstr ""
@@ -509,20 +596,8 @@ msgstr ""
 msgid "(optional)"
 msgstr ""
 
-#: admin/views/dashboard.php:724
-msgid "e.g. content repurposing"
-msgstr ""
-
-#: admin/views/dashboard.php:739
-msgid "Generate"
-msgstr ""
-
 #: admin/views/dashboard.php:743
 msgid "Cancel"
-msgstr ""
-
-#: admin/views/dashboard.php:762
-msgid "Generate another format"
 msgstr ""
 
 #: admin/views/settings.php:22
@@ -640,19 +715,18 @@ msgid "This post is too short to repurpose. It has %1$s characters of text and R
 msgstr ""
 
 #: includes/class-repagio-formats.php:49
-msgid "Blog Post"
+msgid "SEO blog post"
 msgstr ""
 
 #: includes/class-repagio-formats.php:54
-msgid "LinkedIn Post"
+msgid "LinkedIn post"
 msgstr ""
 
 #: includes/class-repagio-formats.php:59
-msgid "X Thread"
+msgid "X thread"
 msgstr ""
 
 #: includes/class-repagio-formats.php:64
-#: includes/class-repagio-scanner.php:845
 msgid "Newsletter"
 msgstr ""
 
@@ -777,118 +851,106 @@ msgid "Repagio scans your published archive entirely on your own server, scores 
 msgstr ""
 
 #. translators: %s: formatted word count.
-#: includes/class-repagio-scanner.php:609
+#: includes/class-repagio-scanner.php:612
 #, php-format
 msgid "only %s words"
 msgstr ""
 
-#: includes/class-repagio-scanner.php:612
+#: includes/class-repagio-scanner.php:615
 msgid "too short to repurpose well"
 msgstr ""
 
 #. translators: %s: formatted word count.
-#: includes/class-repagio-scanner.php:616
+#: includes/class-repagio-scanner.php:619
 #, php-format
 msgid "%s words"
 msgstr ""
 
-#: includes/class-repagio-scanner.php:621
+#: includes/class-repagio-scanner.php:624
 msgid "well structured"
 msgstr ""
 
-#: includes/class-repagio-scanner.php:623
+#: includes/class-repagio-scanner.php:626
 msgid "clearly structured"
 msgstr ""
 
-#: includes/class-repagio-scanner.php:625
+#: includes/class-repagio-scanner.php:628
 msgid "few headings"
 msgstr ""
 
-#: includes/class-repagio-scanner.php:627
+#: includes/class-repagio-scanner.php:630
 msgid "no headings"
 msgstr ""
 
-#: includes/class-repagio-scanner.php:631
+#: includes/class-repagio-scanner.php:634
 msgid "needs splitting to convert"
 msgstr ""
 
 #. translators: %s: comma-separated list of output format names.
-#: includes/class-repagio-scanner.php:641
+#: includes/class-repagio-scanner.php:644
 #, php-format
 msgid "already repurposed as %s"
 msgstr ""
 
-#: includes/class-repagio-scanner.php:645
+#: includes/class-repagio-scanner.php:648
 msgid "already repurposed"
 msgstr ""
 
-#: includes/class-repagio-scanner.php:648
+#: includes/class-repagio-scanner.php:651
 msgid "never repurposed"
 msgstr ""
 
 #. translators: separator between the clauses of a score explanation.
-#: includes/class-repagio-scanner.php:652
+#: includes/class-repagio-scanner.php:655
 msgid ", "
 msgstr ""
 
-#: includes/class-repagio-scanner.php:842
-msgid "SEO blog post"
-msgstr ""
-
-#: includes/class-repagio-scanner.php:843
-msgid "LinkedIn post"
-msgstr ""
-
-#: includes/class-repagio-scanner.php:844
-msgid "X thread"
-msgstr ""
-
-#: includes/class-repagio-settings.php:238
+#: includes/class-repagio-settings.php:299
 msgid "Repagio currently issues API keys on its Pro and Agency plans, with Free and Creator support on the way. That is the service’s own policy about its API. The plugin’s scanner and dashboard work with no key at all."
 msgstr ""
 
-#: includes/class-repagio-settings.php:284
+#: includes/class-repagio-settings.php:345
 msgid "Connection"
 msgstr ""
 
-#: includes/class-repagio-settings.php:291
+#: includes/class-repagio-settings.php:352
 msgid "API key"
 msgstr ""
 
-#: includes/class-repagio-settings.php:300
+#: includes/class-repagio-settings.php:361
 msgid "API base URL"
 msgstr ""
 
-#: includes/class-repagio-settings.php:381
+#: includes/class-repagio-settings.php:442
 msgid "Paste the API key from your Repagio account. Once saved, the key is only ever shown as a mask."
 msgstr ""
 
-#: includes/class-repagio-settings.php:397
+#: includes/class-repagio-settings.php:458
 msgid "Saved"
 msgstr ""
 
-#: includes/class-repagio-settings.php:409
+#: includes/class-repagio-settings.php:470
 msgid "Enter a new key to replace the saved one"
 msgstr ""
 
-#: includes/class-repagio-settings.php:409
+#: includes/class-repagio-settings.php:470
 msgid "Paste your Repagio API key"
 msgstr ""
 
-#: includes/class-repagio-settings.php:414
+#: includes/class-repagio-settings.php:475
 msgid "Leave this blank to keep the saved key."
 msgstr ""
 
-#: includes/class-repagio-settings.php:422
+#: includes/class-repagio-settings.php:483
 msgid "Delete the saved key"
 msgstr ""
 
-#: includes/class-repagio-settings.php:425
+#: includes/class-repagio-settings.php:486
 msgid "Find your key in your Repagio account under Settings."
 msgstr ""
 
 #. translators: %s: the default API base URL.
-#: includes/class-repagio-settings.php:461
+#: includes/class-repagio-settings.php:522
 #, php-format
 msgid "Leave as %s unless you are pointing this site at a development instance."
 msgstr ""

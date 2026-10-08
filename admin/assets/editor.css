@@ -1,0 +1,167 @@
+/**
+ * Repagio block editor sidebar.
+ *
+ * The score badge matches the dashboard's, so a post looks the same in both.
+ */
+
+.repagio-sidebar-score {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.repagio-sidebar .repagio-score {
+	display: inline-block;
+	flex: none;
+	min-width: 2.6em;
+	padding: 2px 8px;
+	border-radius: 9px;
+	font-size: 12px;
+	font-weight: 700;
+	text-align: center;
+}
+
+.repagio-sidebar .repagio-score--high {
+	background: #edfaef;
+	color: #00652b;
+	border: 1px solid #b8e6c4;
+}
+
+.repagio-sidebar .repagio-score--medium {
+	background: #fcf9e8;
+	color: #8a6116;
+	border: 1px solid #f0e3a8;
+}
+
+.repagio-sidebar .repagio-score--low {
+	background: #f6f7f7;
+	color: #646970;
+	border: 1px solid #dcdcde;
+}
+
+.repagio-sidebar .repagio-score-track {
+	display: block;
+	flex: 1;
+	height: 4px;
+	border-radius: 2px;
+	background: #f0f0f1;
+	overflow: hidden;
+}
+
+.repagio-sidebar .repagio-score-fill {
+	display: block;
+	height: 100%;
+	background: #2271b1;
+}
+
+.repagio-sidebar .repagio-score-track--medium .repagio-score-fill {
+	background: #dba617;
+}
+
+.repagio-sidebar .repagio-score-track--low .repagio-score-fill {
+	background: #a7aaad;
+}
+
+/*
+ * The editor's sidebar zeroes margin-top on every paragraph, so spacing here
+ * comes from margin-bottom and from flex gaps, which that rule cannot reach.
+ */
+.repagio-sidebar-reason {
+	margin: 10px 0 16px;
+	color: #1e1e1e;
+}
+
+.repagio-sidebar-label {
+	margin: 0 0 6px;
+	font-size: 11px;
+	font-weight: 500;
+	text-transform: uppercase;
+}
+
+.repagio-sidebar-history ul {
+	margin: 0 0 16px;
+}
+
+.repagio-sidebar-history li {
+	display: flex;
+	justify-content: space-between;
+	gap: 8px;
+	margin: 0 0 4px;
+}
+
+.repagio-sidebar-date {
+	color: #757575;
+	white-space: nowrap;
+}
+
+.repagio-sidebar-form,
+.repagio-sidebar-result,
+.repagio-sidebar-upgrade {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 16px;
+}
+
+.repagio-sidebar-result,
+.repagio-sidebar-upgrade {
+	gap: 12px;
+}
+
+.repagio-sidebar-form > .components-button,
+.repagio-sidebar-upgrade > .components-button {
+	align-self: flex-start;
+}
+
+.repagio-sidebar-note {
+	margin: 0;
+	color: #757575;
+	font-size: 12px;
+}
+
+.repagio-sidebar-note .components-spinner {
+	margin: 0 8px 0 0;
+	vertical-align: middle;
+}
+
+.repagio-sidebar-note--warning {
+	color: #8a6116;
+}
+
+.repagio-sidebar-notice.components-notice {
+	margin: 0 0 16px;
+}
+
+/* Inside a stack the gap already spaces it. */
+.repagio-sidebar-form .repagio-sidebar-notice.components-notice {
+	margin: 0;
+}
+
+.repagio-sidebar-notice p {
+	margin: 0 0 8px;
+}
+
+.repagio-sidebar-notice p:last-child {
+	margin-bottom: 0;
+}
+
+.repagio-sidebar-output textarea {
+	font-family: Menlo, Consolas, monaco, monospace;
+	font-size: 12px;
+	line-height: 1.6;
+	white-space: pre-wrap;
+}
+
+.repagio-sidebar-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.repagio-sidebar-upgrade p {
+	margin: 0;
+}
+
+.repagio-sidebar-upgrade-title {
+	font-weight: 600;
+}

@@ -186,7 +186,7 @@ class Repagio_Updater {
 			'author'        => '<a href="https://repagio.app">Afriflare</a>',
 			'author_profile' => 'https://repagio.app',
 			'homepage'      => 'https://github.com/' . self::REPO,
-			'requires'      => '' !== $readme['requires'] ? $readme['requires'] : '6.0',
+			'requires'      => '' !== $readme['requires'] ? $readme['requires'] : '6.6',
 			'tested'        => '' !== $readme['tested'] ? $readme['tested'] : '',
 			'requires_php'  => '' !== $readme['requires_php'] ? $readme['requires_php'] : '7.4',
 			'short_description' => $readme['short_description'],

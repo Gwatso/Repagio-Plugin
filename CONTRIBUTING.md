@@ -5,7 +5,7 @@ environment running and the standards a patch is expected to meet.
 
 ## Local environment
 
-You need a WordPress install running **WordPress 6.0 or newer** on
+You need a WordPress install running **WordPress 6.6 or newer** on
 **PHP 7.4 or newer**. Any of these will do:
 
 - **[Local](https://localwp.com/)** — simplest on Windows and macOS. Create a
@@ -85,9 +85,11 @@ not be merged:
 - **The WordPress HTTP API only.** `wp_remote_get()` / `wp_remote_post()`,
   never cURL directly, and every call goes through
   `includes/class-repagio-api.php`.
-- **No new dependencies.** No Composer packages shipped, no npm, no React, no
-  bundled fonts or icon libraries. Dashicons ship with core and are the only
-  icons used.
+- **No new dependencies and no build step.** No Composer packages shipped, no
+  npm, no bundled React, no bundled fonts or icon libraries. The block editor
+  sidebar (`admin/assets/editor.js`) is plain JavaScript written against the
+  `wp.*` globals the editor already loads, so what ships is what reviewers
+  read. Dashicons ship with core and are the only icons used.
 
 ### Things this plugin deliberately does not do
 
@@ -97,7 +99,9 @@ Please do not send patches adding these:
   the user's quota. A "repurpose everything" button would spend a free
   account's whole allowance in a single click.
 - **Telemetry, analytics or version pings.** The plugin makes no outbound
-  request except the two the user explicitly triggers.
+  request except those the user explicitly triggers. Loading the block editor
+  is not one of them, even with the Repagio sidebar pinned open: the quota is
+  read only when the Repurpose panel is expanded.
 - **Modifying the user's posts.** The plugin reads content and writes one post
   meta key recording what has been repurposed. It never edits or publishes.
 

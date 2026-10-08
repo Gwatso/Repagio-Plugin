@@ -14,7 +14,14 @@ reason. Treat them as hard requirements, not suggestions.
 ### Security
 - Nonce verification on EVERY form submission and AJAX handler
   (wp_nonce_field / check_admin_referer / check_ajax_referer)
-- Capability checks (current_user_can) on every admin action
+- Capability checks (current_user_can) on every admin action.
+  Settings, the API key and the dashboard use
+  Repagio_Settings::capability() (manage_options, filterable via
+  repagio_settings_capability). The editor sidebar and the
+  repurposing AJAX endpoints use Repagio_Settings::can_repurpose(),
+  which also admits Repagio_Settings::editor_capability()
+  (edit_others_posts, filterable via repagio_editor_capability).
+  Per-post endpoints also check edit_post
 - Sanitize ALL input: sanitize_text_field, esc_url_raw, absint,
   sanitize_key — never trust $_POST, $_GET or $_REQUEST directly
 - Escape ALL output: esc_html, esc_attr, esc_url, wp_kses_post
@@ -38,22 +45,33 @@ reason. Treat them as hard requirements, not suggestions.
 - Use the Settings API for the options page
 - Text domain: repagio — wrap all user-facing strings in
   __() or esc_html__()
-- Minimum PHP 7.4, minimum WordPress 6.0
+- Minimum PHP 7.4, minimum WordPress 6.6 (the sidebar uses the
+  wp.editor plugin slots; there is no wp.editPost fallback)
 - GPL-2.0-or-later license
 
 ### Architecture
-- No build step for admin pages — vanilla PHP with minimal
-  inline JS. A build step comes later, only for the Gutenberg
-  sidebar
+- No build step anywhere. Admin pages are vanilla PHP with
+  enqueued vanilla JS. The Gutenberg sidebar
+  (admin/assets/editor.js) is plain JS written against the wp.*
+  globals the editor already loads — wp.element.createElement,
+  no JSX — so WordPress.org reviewers read exactly what ships.
+  build/ is bin/build-zip.sh's staging folder, not a JS output
+  directory
 - All API calls go through includes/class-repagio-api.php.
   No scattered wp_remote_post calls anywhere else
 - Uninstall must clean up: register_uninstall_hook removing
   plugin options and post meta
 
 ### Do not
-- Add React, Composer, or npm dependencies at this stage
+- Add Composer or npm dependencies, a JS build step, or a bundled
+  copy of React (use the wp.element global)
 - Modify or publish posts without explicit user action
-- Make external HTTP requests on every page load
+- Make external HTTP requests on every page load. That includes
+  editor loads: the sidebar can be pinned, so drawing it must not
+  reach the service. Quota is fetched only when the Repurpose
+  panel is expanded, generation only on Generate. readme.txt
+  promises "It will not make an external request on a normal page
+  load" — keep that true
 - Use inline styles where an enqueued stylesheet works
 
 ## API
@@ -61,12 +79,12 @@ reason. Treat them as hard requirements, not suggestions.
 Base URL: https://repagio.app/api/v1
 Auth: Authorization: Bearer <api_key>
 
-NOTE: The Repagio API does not exist yet. Build the API client
-class with the correct interface, but make every method fail
-gracefully with a clear message when the endpoint returns 404.
-The archive scanner must work entirely offline with no API calls.
+The API is live. Every client method must still fail gracefully
+with a clear, user-readable message on 404, auth, rate-limit,
+timeout and server errors. The archive scanner must work
+entirely offline with no API calls.
 
-Planned endpoints:
+Endpoints:
 - GET  /me         — plan tier, usage, conversions remaining
 - POST /generate   — { text, output_type, tone } -> generated content
 - GET  /sources    — list saved sources
@@ -77,5 +95,5 @@ Planned endpoints:
 2. Archive scanner — WP_Query over published posts, opportunity
    dashboard (no API needed)
 3. Generation flow — calls /generate, shows result, saves to post meta
-4. Gutenberg sidebar
+4. Gutenberg sidebar — no build step (see Architecture)
 5. WordPress.org submission prep
