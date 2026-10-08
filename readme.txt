@@ -176,7 +176,7 @@ In your site's options table. It is never written to logs, never included in err
 * The sidebar works from the saved, published version of the post, and says so when you have unsaved changes.
 * The sidebar is available to Editors as well as administrators. Settings, the API key and the dashboard remain administrator only. Both capabilities can be changed with the repagio_editor_capability and repagio_settings_capability filters.
 * Showing the sidebar, even pinned open, never contacts the Repagio service. Your account's remaining generations are read only when you expand its Repurpose panel.
-* Output formats are named the same way everywhere: SEO blog post, LinkedIn post, X thread and Newsletter.
+* Output formats now read the same everywhere — "SEO blog post", "LinkedIn post", "X thread" and "Newsletter" — in score explanations, the editor sidebar and the dashboard. This changes the wording of the dashboard's format dropdown, which previously read "Blog Post", "LinkedIn Post" and "X Thread".
 * Requires WordPress 6.6 or later.
 * No build step and no new dependencies: the sidebar uses the scripts the block editor already loads.
 
