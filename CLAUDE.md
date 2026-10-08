@@ -90,6 +90,11 @@ Endpoints:
 - GET  /sources    — list saved sources
 - POST /sources    — create a source
 
+GET /sources and POST /sources exist on the service, but the
+plugin deliberately does not use them and has no feature that
+needs them. Do not wire them into Repagio_API or the UI unless a
+feature that actually requires saved sources is agreed first.
+
 ## Build order
 1. Plugin scaffold, settings page, API key storage, test connection
 2. Archive scanner — WP_Query over published posts, opportunity
