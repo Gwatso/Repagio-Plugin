@@ -725,7 +725,7 @@ class Repagio_Scanner {
 	 * @since 0.2.0
 	 *
 	 * @param array[] $items Scanned items.
-	 * @param array   $args  {
+	 * @param array   $args  Optional. Filters to apply. {
 	 *     @type string $post_type    Post type to keep, or '' for all.
 	 *     @type int    $category     Category term ID to keep, or 0 for all.
 	 *     @type string $date_from    Y-m-d lower bound, or ''.

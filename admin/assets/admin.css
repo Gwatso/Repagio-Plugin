@@ -748,10 +748,6 @@ body.repagio-modal-open {
 	color: #50575e;
 }
 
-.repagio-modal-quota:empty {
-	display: none;
-}
-
 /* Settings: which plans can issue a key */
 
 .repagio-key-tier-note {

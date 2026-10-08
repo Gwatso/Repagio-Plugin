@@ -270,12 +270,12 @@ class Repagio_Settings {
 	 *
 	 * @since 0.4.0
 	 *
-	 * @param mixed $old Previous option value. Unused for an add.
-	 * @param mixed $new New option value.
+	 * @param mixed $old_value Previous option value. Unused for an add.
+	 * @param mixed $new_value New option value.
 	 * @return void
 	 */
-	public static function forget_account( $old = null, $new = null ) {
-		unset( $old, $new );
+	public static function forget_account( $old_value = null, $new_value = null ) {
+		unset( $old_value, $new_value );
 
 		if ( class_exists( 'Repagio_Quota' ) ) {
 			Repagio_Quota::clear();

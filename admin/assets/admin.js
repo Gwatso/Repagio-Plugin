@@ -433,8 +433,20 @@
 				strip.className = 'repagio-status repagio-status--' + ( next.band || 'neutral' );
 			}
 
+			var phrase = next.unlimited ? '' : ( next.phrase || '' );
+
+			// The server leaves the line out when it had nothing to say, so a
+			// figure that arrives later needs somewhere to go.
+			if ( ! modalQuota && phrase ) {
+				modalQuota = document.createElement( 'p' );
+				modalQuota.className = 'repagio-modal-quota';
+				modalQuota.id = 'repagio-modal-quota';
+				form.insertBefore( modalQuota, form.querySelector( '.repagio-modal-actions' ) );
+			}
+
 			if ( modalQuota ) {
-				modalQuota.textContent = next.unlimited ? '' : ( next.phrase || '' );
+				modalQuota.textContent = phrase;
+				modalQuota.hidden = ! phrase;
 			}
 		}
 

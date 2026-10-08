@@ -321,7 +321,7 @@ class Repagio_Readme {
 	protected static function inline( $text ) {
 		$text = esc_html( trim( $text ) );
 
-		// [label](https://example.com)
+		// Markdown links, written as a label in square brackets then the URL in parentheses.
 		$text = preg_replace_callback(
 			'/\[([^\]]+)\]\((https?:[^)\s]+)\)/',
 			static function ( $m ) {
@@ -330,7 +330,7 @@ class Repagio_Readme {
 			$text
 		);
 
-		// **bold**
+		// Bold, written between double asterisks.
 		$text = preg_replace( '/\*\*([^*]+)\*\*/', '<strong>$1</strong>', $text );
 
 		// `code`

@@ -52,9 +52,9 @@ class Repagio_Editor {
 	/**
 	 * Whether the sidebar belongs on the current screen.
 	 *
-	 * enqueue_block_editor_assets also fires in the site editor and the widgets
-	 * screen, neither of which has a post to repurpose, so the screen is checked
-	 * rather than assumed. Only post types the scanner covers get the sidebar,
+	 * The enqueue_block_editor_assets action also fires in the site editor and
+	 * the widgets screen, neither of which has a post to repurpose, so the
+	 * screen is checked rather than assumed. Only post types the scanner covers get the sidebar,
 	 * so it appears exactly where the dashboard would list the post.
 	 *
 	 * @since 0.8.0

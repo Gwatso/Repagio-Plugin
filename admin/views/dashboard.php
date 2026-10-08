@@ -727,12 +727,17 @@ $repagio_sortable = array( 'word_count', 'date', 'score' );
 
 						<p class="repagio-source-note" id="repagio-source-note" role="status" aria-live="polite"></p>
 
-						<p class="repagio-modal-quota" id="repagio-modal-quota"><?php
-							// What this generation will cost, so the choice is informed.
-							if ( is_array( $repagio_account ) && ! Repagio_Quota::is_unlimited( $repagio_account ) ) {
-								echo esc_html( Repagio_Quota::quota_phrase( $repagio_account ) );
-							}
-						?></p>
+						<?php
+						// What this generation will cost, so the choice is informed. Left
+						// out entirely when there is nothing to say; admin.js adds it if a
+						// generation later reports a figure.
+						$repagio_quota_phrase = ( is_array( $repagio_account ) && ! Repagio_Quota::is_unlimited( $repagio_account ) )
+							? Repagio_Quota::quota_phrase( $repagio_account )
+							: '';
+						?>
+						<?php if ( '' !== $repagio_quota_phrase ) : ?>
+							<p class="repagio-modal-quota" id="repagio-modal-quota"><?php echo esc_html( $repagio_quota_phrase ); ?></p>
+						<?php endif; ?>
 
 						<div class="repagio-modal-actions">
 							<button type="submit" class="button button-primary" id="repagio-generate-button">
