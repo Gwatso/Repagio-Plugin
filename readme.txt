@@ -4,7 +4,7 @@ Tags: content, repurposing, seo, social media, ai
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.8.0
+Stable tag: 0.8.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -170,6 +170,9 @@ In your site's options table. It is never written to logs, never included in err
 
 == Changelog ==
 
+= 0.8.1 =
+* Fix: the generate dialog on the dashboard showed "%s words generated" and "%s words will be sent to Repagio" instead of the actual word count.
+
 = 0.8.0 =
 * New Repagio sidebar in the block editor. It shows the post's repurposing score, why it scored that, and what it has already been repurposed into, and lets you generate a new format without leaving the post.
 * A generation keeps running if you close the sidebar, and the result is waiting when you open it again.
@@ -223,6 +226,9 @@ In your site's options table. It is never written to logs, never included in err
 * Connection test that reports your account's plan and remaining generations.
 
 == Upgrade Notice ==
+
+= 0.8.1 =
+Fixes the word count in the dashboard's generate dialog, which showed "%s" instead of a number.
 
 = 0.8.0 =
 Adds a Repagio sidebar to the block editor for Editors and administrators. Generations made from it use the site's Repagio allowance. Requires WordPress 6.6.

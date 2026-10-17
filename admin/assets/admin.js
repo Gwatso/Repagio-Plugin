@@ -193,7 +193,7 @@
 	}
 
 	/**
-	 * Substitutes %1$s and %2$s into a localised string.
+	 * Substitutes %s, %1$s and %2$s into a localised string.
 	 *
 	 * @param {string} template Format string.
 	 * @param {string} one      First replacement.
@@ -203,7 +203,8 @@
 	function format( template, one, two ) {
 		return String( template )
 			.replace( '%1$s', one )
-			.replace( '%2$s', two );
+			.replace( '%2$s', two )
+			.replace( '%s', one );
 	}
 
 	/**
